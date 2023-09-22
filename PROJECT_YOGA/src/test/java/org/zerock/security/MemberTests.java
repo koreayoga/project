@@ -1,7 +1,11 @@
 package org.zerock.security;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import javax.sql.DataSource;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -89,4 +93,33 @@ public class MemberTests {
 		}
 	}
 	*/	
+	
+	@Test
+	public void testInsertMember() {
+		String sql = "insert into member(userid, userpw, name, birth, phone, address,"
+					+"auth,email) values (?,?,?,?,?,?,?,?)";
+		
+			Connection con = null; 
+			PreparedStatement pstmt = null;
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "admin");
+				pstmt.setString(2, pwencoder.encode("yoga"));									
+				pstmt.setString(3, "관리자");
+				pstmt.setString(4, "1988-01-01");
+				pstmt.setString(5, "010-1111-2222");
+				pstmt.setString(6, "청주시 상당구 금천동");
+				pstmt.setString(7, "1");
+				pstmt.setString(8, "yoga@gmail.com");
+				
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt != null) { try{pstmt.close();} catch(Exception e){}}
+				if(con != null) { try{con.close();} catch(Exception e){}}
+			}
+		
+	}
 }

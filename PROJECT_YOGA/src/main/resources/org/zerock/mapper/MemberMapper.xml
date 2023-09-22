@@ -21,10 +21,9 @@
 	</resultMap>	
 	
 	<select id="read" resultMap="memberMap">
-		select mem.userid, userpw, userName, enabled, regDate, updateDate, auth 
-		from tbl_member mem
-			left outer join tbl_member_auth auth on mem.userid = auth.userid
-		where mem.userid = #{userid}
+		select userid, userpw, name, enabled, auth 
+		from member
+			
 	</select>
 		
 </mapper>
