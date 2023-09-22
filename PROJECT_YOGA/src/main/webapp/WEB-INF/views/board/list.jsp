@@ -27,6 +27,7 @@
 							<th>#번호</th>
 							<th>제목</th>
 							<th>작성자</th>
+							<th>조회수</th>
 							<th>작성일</th>
 							<th>수정일</th>
 						</tr>
@@ -44,6 +45,7 @@
 								</a>								
 							</td>
 							<td><c:out value="${board.userid}" /></td>
+							<td><c:out value="${board.hit}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${board.regdate}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"

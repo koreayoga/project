@@ -15,6 +15,7 @@ public class BoardVO {
 	private Date updateDate;
 	private String userid;
 	private Long replyCnt;
+	private Long hit;//조회수
 	
 	private List<BoardAttachVO> attachList;
 }       

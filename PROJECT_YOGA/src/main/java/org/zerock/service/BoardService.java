@@ -30,4 +30,6 @@ public interface BoardService {
 	
 	//첨부파일 등록
 	public List<BoardAttachVO> getAttachList(Long bno);
+	
+	public void setHit(Long hit);
 }

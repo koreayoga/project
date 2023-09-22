@@ -102,4 +102,10 @@ public class BoardServiceImpl implements BoardService {
 		log.info("----------------get Attach list by bno : "+bno);
 		return attachMapper.findBno(bno);
 	}
+
+	@Override
+	public void setHit(Long hit) {
+		log.info("서비스 조회수 :"+hit);
+		
+	}
 }

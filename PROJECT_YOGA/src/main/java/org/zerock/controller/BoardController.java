@@ -83,9 +83,16 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping({"/get","/modify"}) // 해당 게시글 불러오기
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
-		log.info("/get or /modify");
+	@GetMapping({"/get"}) // 해당 게시글 불러오기
+	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, Long hit) {
+		log.info("/get");
+		service.setHit(hit);
+		model.addAttribute("board", service.get(bno));
+	}
+	
+	@GetMapping({"/modify"}) // 해당 게시글 불러오기
+	public void modify(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("/modify");
 		model.addAttribute("board", service.get(bno));
 	}
 
