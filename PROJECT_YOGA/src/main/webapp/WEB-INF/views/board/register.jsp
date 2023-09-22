@@ -30,7 +30,7 @@
 							</div>
 							<div class="form-group">
 								<label>Writer</label> 
-								<input class="form-control" name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">						
+								<input class="form-control" name="userid" value='<sec:authentication property="principal.username"/>' readonly="readonly">						
 							</div>		
 							
 							<!-- File Upload -->
@@ -73,7 +73,7 @@
 			function checkBlank(){
 			 	var title = $("input[name='title']").val();
 			 	var content = $("textarea[name='content']").val();
-			 	var writer = $("input[name='writer']").val();
+			 	var writer = $("input[name='userid']").val();
 			 	
 				if(title === ""){						
 					alert("제목을 작성해주세요");

@@ -88,7 +88,7 @@
 						</textarea>
 					</div>
 					<div class="form-group">
-						<label>Writer</label> <input class="form-control" name='writer'	value='<c:out value="${board.writer}"/>' readonly="readonly">
+						<label>Writer</label> <input class="form-control" name='userid'	value='<c:out value="${board.userid}"/>' readonly="readonly">
 					</div>
 					
 					<!-- File Upload -->
@@ -114,7 +114,7 @@
 					<!-- button -->
 					<sec:authentication property="principal" var="pinfo"/>
 					<sec:authorize access="isAuthenticated()">
-						<c:if test="${pinfo.username eq board.writer}">		
+						<c:if test="${pinfo.username eq board.userid}">		
 							<button data-oper="modify" class="btn btn-default">Modify</button>
 							<button data-oper="remove" class="btn btn-danger">Remove</button>
 						</c:if>

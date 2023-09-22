@@ -90,7 +90,7 @@ public class BoardController {
 	}
 
 	@PostMapping("/modify")
-	@PreAuthorize("principal.username == #board.writer") // 로그인한 ID == 작성자 ID
+	@PreAuthorize("principal.username == #board.userid") // 로그인한 ID == 작성자 ID
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify : " + board);
 		if (service.modify(board)) {
@@ -104,8 +104,8 @@ public class BoardController {
 	}
 
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #writer") // 로그인한 ID == 작성자 ID
-	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String writer) {
+	@PreAuthorize("principal.username == #userid") // 로그인한 ID == 작성자 ID
+	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String userid) {
 		log.info("remove : " + bno);
 		/*
 		// rttr.addAttribute 방식 (parameter를 계속 추가해줘야함.) 

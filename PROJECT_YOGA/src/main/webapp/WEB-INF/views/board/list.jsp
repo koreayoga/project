@@ -43,7 +43,7 @@
 									<b>[<c:out value="${board.replyCnt}"/>]</b>
 								</a>								
 							</td>
-							<td><c:out value="${board.writer}" /></td>
+							<td><c:out value="${board.userid}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${board.regdate}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"

@@ -53,7 +53,7 @@
 
 	<update id="update">
 		update tbl_board set title=#{title},
-		content=#{content}, writer=#{writer}, updateDate=sysdate where
+		content=#{content}, userid=#{userid}, updateDate=sysdate where
 		bno=#{bno}
 	</update>
 
