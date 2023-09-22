@@ -17,8 +17,8 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"/>
-		<property name="username" value="book_ex"/>
-		<property name="password" value="book_ex"/>
+		<property name="username" value="yoga"/>
+		<property name="password" value="yoga"/>
 	</bean>
 	<!-- tx추가 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
