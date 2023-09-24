@@ -33,4 +33,8 @@ public interface BoardMapper {
 
 	//댓글 수 조정
 	public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
+	
+	
+	//조회 수 조정
+	public void updateHit(@Param("bno") Long bno, @Param("hit") int hit);
 }

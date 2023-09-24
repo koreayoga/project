@@ -104,8 +104,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void setHit(Long hit) {
-		log.info("서비스 조회수 :"+hit);
-		
+	public void setHit(Long bno,Long hit) {
+		log.info("서비스 조회수 :"+hit+" bno:"+bno);
+		mapper.updateHit(bno, 1);
 	}
 }

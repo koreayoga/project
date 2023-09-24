@@ -86,7 +86,7 @@ public class BoardController {
 	@GetMapping({"/get"}) // 해당 게시글 불러오기
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, Long hit) {
 		log.info("/get");
-		service.setHit(hit);
+		service.setHit(bno,hit);
 		model.addAttribute("board", service.get(bno));
 	}
 	
