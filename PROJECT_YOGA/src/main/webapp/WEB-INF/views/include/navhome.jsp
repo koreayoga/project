@@ -32,7 +32,7 @@
                     	<li class="nav-item"><a class="nav-link" href="/main/login">LOGIN</a></li>
                         <li class="nav-item"><a class="nav-link" href="/main/member">MEMBER</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about">INTRO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">NOTICE</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/board/list">NOTICE</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">CONTECT</a></li>
                     </ul>
                 </div>
