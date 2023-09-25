@@ -1,4 +1,5 @@
 target/*
+.target
 META-INF/*
 /.metadata/
 Servers/.settings/org.eclipse.wst.server.core.prefs
