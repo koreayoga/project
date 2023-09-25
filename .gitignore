@@ -8,3 +8,5 @@ PROJECT_YOGA/target/m2e-wtp/web-resources/META-INF/maven/org.zerock/controller/p
 PROJECT_YOGA/target/m2e-wtp/web-resources/META-INF/maven/org.zerock/controller/pom.properties
 PROJECT_YOGA/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 PROJECT_YOGA/target/classes/org/zerock/controller/UploadController.class
+*.class
+*.MF
