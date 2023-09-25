@@ -24,11 +24,9 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>조회수</th>
-<<<<<<< Updated upstream
-							<th>작성일</th>
-=======
+
 							<th>등록일</th>
->>>>>>> Stashed changes
+
 							<th>수정일</th>
 						</tr>
 					</thead>
