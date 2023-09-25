@@ -6,7 +6,7 @@
  <link href="../resources/css/styles.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Tables</h1>
+		<h1 class="page-header">Notice</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -14,22 +14,21 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Board</button>
-			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-				<table width="100%"	class="table table-striped table-bordered table-hover">
+				<table width="100%"	class="table table-bordered">  <!--  table-striped table-hover-->
 					<!-- id="dataTables-example" -->
 					<thead>
 						<tr>
-							<th>#번호</th>
+							<th>글번호</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>조회수</th>
+<<<<<<< Updated upstream
 							<th>작성일</th>
+=======
+							<th>등록일</th>
+>>>>>>> Stashed changes
 							<th>수정일</th>
 						</tr>
 					</thead>

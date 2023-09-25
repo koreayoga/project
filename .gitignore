@@ -10,3 +10,4 @@ PROJECT_YOGA/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 PROJECT_YOGA/target/classes/org/zerock/controller/UploadController.class
 *.class
 *.MF
+PROJECT_YOGA/.settings/org.eclipse.core.resources.prefs
