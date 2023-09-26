@@ -14,7 +14,7 @@ public class Criteria {
 	private int amount;
 	private String type;
 	private String keyword;
-	
+	 private int startRow;
 	public Criteria(){
 		this(1, 10);
 	}
@@ -37,4 +37,7 @@ public class Criteria {
 		return builder.toUriString();
 				
 	}
+	public int getStartRow() {
+        return (pageNum - 1) * amount;
+    }
 }
