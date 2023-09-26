@@ -310,17 +310,14 @@ svg {
   vertical-align: middle;
 }
 
-table {
+/* table {
   caption-side: bottom;
   border-collapse: collapse;
-<<<<<<< Updated upstream
   width: 800px;
-	height: 400px;
-	margin:0 auto;
-	margin-top: 50px;
-=======
->>>>>>> Stashed changes
-}
+  height: 400px;
+  margin:0 auto;
+  margin-top: 50px;
+} */
 
 caption {
   padding-top: 0.5rem;
@@ -334,15 +331,25 @@ th {
   text-align: -webkit-match-parent;
 }
 
-thead,
+/* thead,
 tbody,
 tfoot,
 tr,
-td,
-th {
+td
+ {
   border-color: inherit;
   border-style: solid;
   border-width: 0;
+} */
+
+thead,
+tbody,
+tr,
+td
+ {
+	text-align: center;
+}
+	
 }
 
 label {
@@ -1763,17 +1770,20 @@ progress {
   vertical-align: top;
   border-color: var(--bs-table-border-color);
 }
+
 .table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom-width: 1px;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 }
+
 .table > tbody {
   vertical-align: inherit;
 }
 .table > thead {
   vertical-align: bottom;
+  border-bottom: 2px solid #efefef;
 }
 
 .table-group-divider {

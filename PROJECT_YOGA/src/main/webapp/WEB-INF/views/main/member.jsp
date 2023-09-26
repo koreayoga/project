@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@include file="../include/nav.jsp"%>
+<%@include file="../includes/header.jsp"%>
 <title>MEMBER</title>
 <link href="../resources/css/pageStyle.css" rel="stylesheet" />
 </head>
@@ -65,4 +65,4 @@
 			</table>
 		</form>
 	</div>
-<%@include file="../include/footer.jsp"%>		
+<%@include file="../includes/footer.jsp"%>		

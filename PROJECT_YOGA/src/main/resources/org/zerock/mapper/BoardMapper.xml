@@ -120,6 +120,7 @@
 	<update id="updateReplyCnt">
 		update tbl_board set replyCnt = replyCnt + #{amount} where bno = #{bno} 
 	</update>
+	
 	<update id="updateHit">
 		update tbl_board set hit = hit + #{hit} where bno = #{bno} 
 	</update>

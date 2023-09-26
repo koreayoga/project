@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<%@include file="../include/nav.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 	<title>INTRO</title>
 <link href="../resources/css/styles.css" rel="stylesheet" />
 </head>
@@ -174,4 +174,4 @@ div.test{
                 </div>
             </div>
         </div>
-	<%@include file="../include/footer.jsp"%>		
+	<%@include file="../includes/footer.jsp"%>		
