@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<%@include file="../include/nav.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 	<title>LOGIN</title>
 	<link href="../resources/css/pageStyle.css" rel="stylesheet" />
 	</head>			
@@ -19,4 +19,4 @@
 		<a href="searchID.jsp">아이디 찾기</a>
 		<a href="searchPW.jsp">비밀번호 찾기</a>
 	</div>
-	<%@include file="../include/footer.jsp"%>		
+	<%@include file="../includes/footer.jsp"%>		

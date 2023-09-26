@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<%@include file="../include/nav.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 	<title>CONTECT</title>
 </head>
 <body>
@@ -34,4 +34,4 @@
 			</script>
 		</div>
 	</section>
-	<%@include file="../include/footer.jsp"%>		
+	<%@include file="../includes/footer.jsp"%>		

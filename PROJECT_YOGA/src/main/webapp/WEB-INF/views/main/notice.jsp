@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@include file="../include/nav.jsp"%>
+<%@include file="../includes/header.jsp"%>
 <title>NOTICE</title>
 <link href="../resources/css/pageStyle.css" rel="stylesheet" />
 </head>
@@ -69,4 +69,4 @@ h5{
 	</table>
 	<h5>페이징</h5>
 
-	<%@include file="../include/footer.jsp"%>
+	<%@include file="../includes/footer.jsp"%>

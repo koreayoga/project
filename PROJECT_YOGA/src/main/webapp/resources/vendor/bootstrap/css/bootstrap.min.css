@@ -1359,7 +1359,7 @@ button, input, select, textarea {
 }
 
 a {
-	color: #337ab7;
+	color: #f4623a;
 	text-decoration: none
 }
 
@@ -2591,10 +2591,9 @@ th {
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th,
 	.table>thead>tr>td, .table>thead>tr>th {
-	padding: 8px;
+	padding: 10px;
 	line-height: 1.42857143;
 	vertical-align: top;
-	border-top: 1px solid #ddd
 }
 
 .table>thead>tr>th {
@@ -2622,12 +2621,12 @@ th {
 	padding: 5px
 }
 
-.table-bordered {
+/* .table-bordered {
 	border-bottom: 2px solid #f4623a;
 	border-color: #f4623a
-}
+} */
 
-.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th,
+.table-bordered>tbody>tr>th,
 	.table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th,
 	.table-bordered>thead>tr>td {
 	border: 1px solid #ddd
@@ -5150,7 +5149,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	padding: 6px 12px;
 	margin-left: -1px;
 	line-height: 1.42857143;
-	color: #337ab7;
+	color: #f4623a;
 	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #ddd
@@ -5170,7 +5169,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
 	.pagination>li>span:hover {
 	z-index: 2;
-	color: #23527c;
+	color: #fe8564;
 	background-color: #eee;
 	border-color: #ddd
 }
@@ -5181,8 +5180,8 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	z-index: 3;
 	color: #fff;
 	cursor: default;
-	background-color: #337ab7;
-	border-color: #337ab7
+	background-color: #f4623a;
+	border-color: #f4623a
 }
 
 .pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover,

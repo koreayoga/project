@@ -1,6 +1,6 @@
  	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 	<%@include file="../include/navhome.jsp"%>	 
+ 	<%@include file="../includes/navhome.jsp"%>	 
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
@@ -212,4 +212,4 @@
  		   
  		   overlay.setMap(map);	
  		</script>
- 	<%@include file="../include/footer.jsp"%>	      
+ 	<%@include file="../includes/footer.jsp"%>	      
