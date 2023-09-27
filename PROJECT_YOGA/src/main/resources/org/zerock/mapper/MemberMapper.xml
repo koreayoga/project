@@ -22,7 +22,7 @@
 	
 	<select id="read" resultMap="memberMap">
 		select userid, userpw, name, enabled, auth 
-		from member
+		from member where userid=#{userid}
 			
 	</select>
 		
