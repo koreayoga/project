@@ -97,10 +97,10 @@
         ]]>
         <include refid="criteria"></include>
         <![CDATA[
-        ORDER BY bno
+        ORDER BY bno desc
        LIMIT #{startRow}, #{amount}
       ) AS temp
-    )
+    )ORDER BY bno desc
   ]]>
 </select>
 
