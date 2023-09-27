@@ -196,7 +196,7 @@
 		  </div>	      
         </div>
 	  </div>		
-      <script type="text/javascript" src="/resources/js/reply.js"></script>
+      <script type="text/javascript" src="/resources/js1/reply.js"></script>
 		
 		<!-- // reply.js모듈 CRUD 테스트 	
 		<script>

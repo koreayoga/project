@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.ReplyMapper">
 	<insert id="insert">
-		insert into tbl_reply(rno, bno, reply, replyer) values (seq_reply.nextval, #{bno}, #{reply}, #{replyer})
+		insert into tbl_reply( bno, reply, replyer) values ( #{bno}, #{reply}, #{replyer})
 	</insert>	
 	
 	<select id="read" resultType="org.zerock.domain.ReplyVO">
@@ -26,7 +26,7 @@
 		order by rno asc
 	</select> -->
 	
-	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
+	<!--  <select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
 		<![CDATA[
 			select rno, bno, reply, replyer, replyDate, updateDate
 				from(
@@ -38,7 +38,21 @@
 				        and rownum <= #{cri.pageNum} * #{cri.amount} 
 				) where rn > (#{cri.pageNum} - 1) * #{cri.amount}
 		]]>
-	</select>		
+	</select>-->
+<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
+    <![CDATA[
+        SELECT rno, bno, reply, replyer, replyDate, updateDate
+        FROM (
+            SELECT rno, bno, reply, replyer, replyDate, updateDate
+            FROM tbl_reply
+            WHERE bno = #{bno}
+            AND rno > 0
+            LIMIT #{cri.startRow}, #{cri.amount}
+        ) AS temp
+    ]]>
+</select>
+	
+			
 	<select id="getCountByBno" resultType="int">
 		<![CDATA[select count(rno) from tbl_reply where bno = #{bno}]]>
 	</select>

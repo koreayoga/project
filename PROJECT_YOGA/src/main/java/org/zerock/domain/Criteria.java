@@ -38,6 +38,9 @@ public class Criteria {
 				
 	}
 	public int getStartRow() {
+		if(pageNum<0) {
+			return pageNum *-1* amount;
+		}	
         return (pageNum - 1) * amount;
     }
 }
