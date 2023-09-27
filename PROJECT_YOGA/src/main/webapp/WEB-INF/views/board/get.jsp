@@ -69,19 +69,19 @@
 					<!-- /.panel-heading -->
 					<div class="panel-body">						
 							<div class="form-group">
-								<label>Bno</label> 
+								<label>글번호</label> 
 								<input class="form-control" name='bno' value='<c:out value="${board.bno}"/>' readonly=readonly>						
 							</div>					
 							<div class="form-group">
-								<label>Title</label> 
+								<label>제목</label> 
 								<input class="form-control" name='title' value='<c:out value="${board.title}"/>' readonly=readonly>						
 							</div>
 							<div class="form-group">
-								<label>Text area</label>
+								<label>내용</label>
 								<textarea class="form-control" rows="10" name='content' readonly=readonly><c:out value="${board.content}"/></textarea>
 							</div>
 							<div class="form-group">
-								<label>Writer</label> 
+								<label>작성자</label> 
 								<input class="form-control" name='writer' value='<c:out value="${board.userid}"/>' readonly="readonly">						
 							</div>	
 							

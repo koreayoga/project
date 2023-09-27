@@ -33,6 +33,7 @@
 		values (seq_board.nextval, #{title}, #{content}, #{userid})
 	</insert>
 
+
 	<!-- <insert id="insertSelectKey">
 		<selectKey keyProperty="bno" order="BEFORE"
 			resultType="long">
