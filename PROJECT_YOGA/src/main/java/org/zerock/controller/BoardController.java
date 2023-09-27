@@ -67,11 +67,11 @@ public class BoardController {
 	@PostMapping("/register") // 게시글 등록	
 	@PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근가능
 	public String register(BoardVO board, RedirectAttributes rttr) {
-		log.info("register : " + board);
 		if(board.getAttachList() != null) {
 			board.getAttachList().forEach(attach -> log.info(attach));
 		}
 		service.register(board);
+		log.info("register : " + board);
 		rttr.addFlashAttribute("result", board.getBno());
 		return "redirect:/board/list";
 	}
