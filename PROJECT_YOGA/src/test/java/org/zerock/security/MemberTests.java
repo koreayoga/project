@@ -104,13 +104,13 @@ public class MemberTests {
 			try {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "admin");
+				pstmt.setString(1, "user");
 				pstmt.setString(2, pwencoder.encode("yoga"));									
-				pstmt.setString(3, "김요가");
-				pstmt.setString(4, "1988-01-01");
+				pstmt.setString(3, "이요가");
+				pstmt.setString(4, "1999-01-01");
 				pstmt.setString(5, "010-1111-2222");
-				pstmt.setString(6, "가나다");
-				pstmt.setString(7, "1");
+				pstmt.setString(6, "청주시 금천동");
+				pstmt.setString(7, "3");
 				pstmt.setString(8, "yoga@gmail.com");
 				
 				pstmt.executeUpdate();
