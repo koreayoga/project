@@ -35,7 +35,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-default">
-								<div class="panel-heading">File Attach
+								<div class="panel-heading"><i class='fa fa-times allFile'></i>File Attach
 									<div class="form-group-uploadDiv">
 										<label class="inputFile-button" for="inputFile">내 PC</label>
 										<input type="file" id="inputFile" name="uploadFile" style="display:none;" multiple>
@@ -219,13 +219,18 @@
 										dataType : 'text',
 										type : 'POST',
 										success : function(result) {
-											alert(result);
+											//alert(result);
 											targetLi.remove();
 										}
 									});
 								});
-
-					});
+						// 'x'표시에 대한 all이벤트 처리						
+						$(".panel-heading").on("click", ".allFile", function(e) {
+							$(".uploadResult button").each(function(index, element) {
+							    element.click(); // 각 버튼을 클릭
+							});   
+						});			
+});
 
 	// 업로드 결과에 대한 구현
 	function showUploadResult(uploadResultArr) {
