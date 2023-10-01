@@ -34,7 +34,7 @@
 					<label>파일첨부</label>
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="panel panel-default">
+							<div class="panel panel-default fileList">
 								<div class="panel-heading"><i class='fa fa-times allFile'></i>File Attach
 									<div class="form-group-uploadDiv">
 										<label class="inputFile-button" for="inputFile">내 PC</label>
@@ -106,6 +106,7 @@
 
 	$(document).ready(function(e) {
 			var formObj = $("form[role='form']");
+			checkImagesExist();
 
 			//등록버튼 처리
 			$("button[type='submit']").on("click", function(e) {
@@ -190,6 +191,9 @@
 												success : function(result) {
 													console.log(result);
 													showUploadResult(result);
+													checkImagesExist();
+													
+
 												}
 											});
 										});
@@ -221,6 +225,7 @@
 										success : function(result) {
 											//alert(result);
 											targetLi.remove();
+											checkImagesExist();
 										}
 									});
 								});
@@ -228,10 +233,21 @@
 						$(".panel-heading").on("click", ".allFile", function(e) {
 							$(".uploadResult button").each(function(index, element) {
 							    element.click(); // 각 버튼을 클릭
-							});   
+							});
+							
 						});			
 });
-
+	//img파일이 하나라도 있으면 x태그가 보이도록 하는 함수
+	function checkImagesExist() {
+	    var imgData = $(".fileList");
+	    var imgTags = imgData.find("img");
+	console.log(imgTags)
+	    if (imgTags.length > 0) {
+	        $(".allFile").show();
+	    } else {
+	        $(".allFile").hide();
+	    }
+	}
 	// 업로드 결과에 대한 구현
 	function showUploadResult(uploadResultArr) {
 		if (!uploadResultArr || uploadResultArr.length == 0) {
@@ -278,6 +294,7 @@
 						});
 
 		uploadUL.append(str);
+		
 	}
 </script>
 
