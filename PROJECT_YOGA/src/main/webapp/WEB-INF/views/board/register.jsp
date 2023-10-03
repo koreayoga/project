@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <%@ include file="../includes/header.jsp"%>
 
@@ -15,7 +14,7 @@
 </div>
 <!-- /.row -->
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-12-table">
 		<div class="panel panel-default">
 			<div class="panel-heading">Board Register</div>
 			<!-- /.panel-heading -->
@@ -31,27 +30,26 @@
 					</div>
 
 					<!-- File Upload -->
-					<label>파일첨부</label>
+					<div class="headFile">
+						<label>파일첨부</label>
+						<div class="form-group-uploadDiv">
+							<label class="inputFile-button" for="inputFile">내 PC</label>
+							<input type="file" id="inputFile" name="uploadFile" style="display:none;" multiple>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-default fileList">
-								<div class="panel-heading"><i class='fa fa-times allFile'></i>File Attach
-									<div class="form-group-uploadDiv">
-										<label class="inputFile-button" for="inputFile">내 PC</label>
-										<input type="file" id="inputFile" name="uploadFile" style="display:none;" multiple>
-									</div>
-								</div>
+								<div class="panel-heading"><i class='fa fa-times allFile'></i></div>
 								<!-- /.panel-heading -->
 								<div class="panel-body list">
-									
 									<div class="uploadResult">
-										<ul>
-
+										<ul class="attachul">
 										</ul>
 									</div>
 								</div>
 							</div>
-						</div>
+						 </div>
 					</div>
 					<div class="form-group">
 						<input class="form-control" name="title" placeholder="제목">
@@ -199,9 +197,7 @@
 										});
 
 						// 'x'표시에 대한 이벤트 처리
-						$(".uploadResult").on(
-								"click",
-								"button",
+						$(".uploadResult").on("click", "button",
 								function(e) {
 									var targetFile = $(this).data("file");
 									var type = $(this).data("type");
@@ -234,17 +230,19 @@
 							$(".uploadResult button").each(function(index, element) {
 							    element.click(); // 각 버튼을 클릭
 							});
-							
 						});			
-});
+	});
+	
 	//img파일이 하나라도 있으면 x태그가 보이도록 하는 함수
 	function checkImagesExist() {
 	    var imgData = $(".fileList");
 	    var imgTags = imgData.find("img");
 	console.log(imgTags)
 	    if (imgTags.length > 0) {
+	        $(".panel-heading").show();
 	        $(".allFile").show();
 	    } else {
+	    	$(".panel-heading").hide();
 	        $(".allFile").hide();
 	    }
 	}
@@ -263,18 +261,15 @@
 						function(i, obj) {
 							if (obj.image) {
 
-								var fileCallPath = encodeURIComponent(obj.uploadPath
-										+ "/thumbnail_"
+								var fileCallPath = encodeURIComponent(obj.uploadPath + "/thumbnail_"
 										+ obj.uuid
 										+ "_"
 										+ obj.fileName);
 
-								str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div>";
-								str += "	<span>" + obj.fileName
-										+ "&nbsp;&nbsp;</span>";
-								str += "	<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-								str += "	<img src='/display?fileName="
-										+ fileCallPath + "'>";
+								str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div class='headDiv'>";
+								str += "<div><button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button></div>";
+								str += "<div><img src='/display?fileName=" + fileCallPath + "' class='img-size'></div>";
+								str += "<div><span>" + obj.fileName + "&nbsp;&nbsp;</span></div>";
 								str += "</div></li>";
 
 							} else {
@@ -284,11 +279,10 @@
 								var fileLink = fileCallPath.replace(new RegExp(
 										/\\/g), "/");
 
-								str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div>"; // image부분????	
-								str += "	<span>" + obj.fileName
-										+ "&nbsp;&nbsp;</span>";
-								str += "	<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-								str += "	<img src='/resources/img/attach.png'>";
+								str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div class='headDiv'>"; // image부분????	
+								str += "<div><button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button></div>";
+								str += "<div><img src='/resources/img/attach.png' class='img-size' ></div>";
+								str += "<div><span>" + obj.fileName + "&nbsp;&nbsp;<span></div>";
 								str += "</div></li>";
 							}
 						});
