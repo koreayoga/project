@@ -17,6 +17,8 @@ private String address;
 private String email;
 
 private boolean enabled;
+private char auth;
+
 private Date regDate;
 private Date updateDate;
 

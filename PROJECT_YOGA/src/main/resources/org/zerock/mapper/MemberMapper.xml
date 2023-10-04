@@ -21,8 +21,14 @@
 	</resultMap>	
 	
 	<select id="read" resultMap="memberMap">
+
 	select userid, userpw, name, enabled, auth 
 	from member where userid=#{userid}	
+		select mem.userid, mem.userpw, mem.name, mem.enabled,mem.regdate, mem.updatedate, auth.auth
+		From 
+			member mem left outer join member_auth auth on mem.userid = auth.userid
+				where mem.userid = #{userid}
+
 	</select>
 		
 	<select id="getListMem" resultType="org.zerock.domain.MemberVO">

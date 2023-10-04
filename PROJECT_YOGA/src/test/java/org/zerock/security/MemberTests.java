@@ -26,7 +26,7 @@ public class MemberTests {
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
 	/*
-	// 사용자 생성 _ id/pw/name
+	// �궗�슜�옄 �깮�꽦 _ id/pw/name
 	@Test
 	public void testInsertMember() {
 		String sql = "insert into tbl_member(userid, userpw, username) values (?,?,?)";
@@ -41,13 +41,13 @@ public class MemberTests {
 				
 				if(i<80) {					
 					pstmt.setString(1, "user"+i);
-					pstmt.setString(3, "일반사용자"+i);
+					pstmt.setString(3, "�씪諛섏궗�슜�옄"+i);
 				} else if(i<90) {
 					pstmt.setString(1, "manager"+i);
-					pstmt.setString(3, "운영자"+i);
+					pstmt.setString(3, "�슫�쁺�옄"+i);
 				} else {
 					pstmt.setString(1, "admin"+i);
-					pstmt.setString(3, "관리자"+i);
+					pstmt.setString(3, "愿�由ъ옄"+i);
 				}				
 				pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -60,7 +60,7 @@ public class MemberTests {
 	}
 	*/
 	/*
-	// id별 권한 부여
+	// id蹂� 沅뚰븳 遺��뿬
 	@Test
 	public void testInsertMember() {
 		String sql = "insert into tbl_member_auth(userid, auth) values (?,?)";
@@ -104,13 +104,13 @@ public class MemberTests {
 			try {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "admin");
+				pstmt.setString(1, "user");
 				pstmt.setString(2, pwencoder.encode("yoga"));									
-				pstmt.setString(3, "관리자");
-				pstmt.setString(4, "1988-01-01");
+				pstmt.setString(3, "이요가");
+				pstmt.setString(4, "1999-01-01");
 				pstmt.setString(5, "010-1111-2222");
-				pstmt.setString(6, "청주시 상당구 금천동");
-				pstmt.setString(7, "1");
+				pstmt.setString(6, "청주시 금천동");
+				pstmt.setString(7, "3");
 				pstmt.setString(8, "yoga@gmail.com");
 				
 				pstmt.executeUpdate();

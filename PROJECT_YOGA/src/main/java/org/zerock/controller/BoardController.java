@@ -55,7 +55,7 @@ public class BoardController {
 		});
 	}
 
-	@GetMapping("/list") // 글목록 가져오기
+	@GetMapping("/list") 
 	public void list(Criteria cri, Model model) {		
 		log.info("list  --  "+cri);
 		int total = service.getTotal(cri);
@@ -64,40 +64,50 @@ public class BoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri,total));
 	}
 	
-	@PostMapping("/register") // 게시글 등록	
-	@PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근가능
+	@PostMapping("/register") 
+	@PreAuthorize("isAuthenticated()") 
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		if(board.getAttachList() != null) {
 			board.getAttachList().forEach(attach -> log.info(attach));
 		}
 		service.register(board);
+
+
 		log.info("register : " + board);
+
+	    log.info("register : " + board);
 		rttr.addFlashAttribute("result", board.getBno());
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/register") // 게시글 등록화면 진입
-	@PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근가능
+	@GetMapping("/register") 
+	@PreAuthorize("isAuthenticated()") 
 	public void register() {		
 		
 	}
 	
 	
-	@GetMapping({"/get"}) // 해당 게시글 불러오기
+	@GetMapping({"/get"}) 
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, Long hit) {
 		log.info("/get");
 		service.setHit(bno,hit);
 		model.addAttribute("board", service.get(bno));
 	}
+	@GetMapping({"/get2"}) // 해당 게시글 불러오기
+	public void get2(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, Long hit) {
+		log.info("/get");
+		service.setHit(bno,hit);
+		model.addAttribute("board", service.get(bno));
+	}
 	
-	@GetMapping({"/modify"}) // 해당 게시글 불러오기
+	@GetMapping({"/modify"}) 
 	public void modify(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/modify");
 		model.addAttribute("board", service.get(bno));
 	}
 
 	@PostMapping("/modify")
-	@PreAuthorize("principal.username == #board.userid") // 로그인한 ID == 작성자 ID
+	@PreAuthorize("principal.username == #board.userid") 
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify : " + board);
 		if (service.modify(board)) {
@@ -111,15 +121,15 @@ public class BoardController {
 	}
 
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #userid") // 로그인한 ID == 작성자 ID
+	@PreAuthorize("principal.username == #userid") 
 	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String userid) {
 		log.info("remove : " + bno);
 		/*
-		// rttr.addAttribute 방식 (parameter를 계속 추가해줘야함.) 
+		// rttr.addAttribute 諛⑹떇 (parameter瑜� 怨꾩냽 異붽��빐以섏빞�븿.) 
 		if (service.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		//redirect시 가지고 넘어갈 정보들 
+		//redirect�떆 媛�吏�怨� �꽆�뼱媛� �젙蹂대뱾 
 		rttr.addAttribute("pageNum",cri.getPageNum());
 		rttr.addAttribute("amount",cri.getAmount());
 		rttr.addAttribute("keyword",cri.getKeyword());
@@ -128,7 +138,7 @@ public class BoardController {
 		return "redirect:/board/list";
 		*/
 		
-		// 메서드 선언 후 링크 (리턴에서 리다이렉트경로 + 메서드)
+		// 硫붿꽌�뱶 �꽑�뼵 �썑 留곹겕 (由ы꽩�뿉�꽌 由щ떎�씠�젆�듃寃쎈줈 + 硫붿꽌�뱶)
 		List<BoardAttachVO> attachList = service.getAttachList(bno);
 		if (service.remove(bno)) {
 			//delete attachList(files)

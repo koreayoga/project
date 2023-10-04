@@ -48,8 +48,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center; 
-			}
-			
+			}			
 			.bigPicture img{
 				width: 600px;
 			}
@@ -69,19 +68,19 @@
 					<!-- /.panel-heading -->
 					<div class="panel-body">						
 							<div class="form-group">
-								<label>글번호</label> 
+								<label>Bno</label> 
 								<input class="form-control" name='bno' value='<c:out value="${board.bno}"/>' readonly=readonly>						
 							</div>					
 							<div class="form-group">
-								<label>제목</label> 
+								<label>Title</label> 
 								<input class="form-control" name='title' value='<c:out value="${board.title}"/>' readonly=readonly>						
 							</div>
 							<div class="form-group">
-								<label>내용</label>
+								<label>Text area</label>
 								<textarea class="form-control" rows="10" name='content' readonly=readonly><c:out value="${board.content}"/></textarea>
 							</div>
 							<div class="form-group">
-								<label>작성자</label> 
+								<label>Writer</label> 
 								<input class="form-control" name='writer' value='<c:out value="${board.userid}"/>' readonly="readonly">						
 							</div>	
 							
@@ -137,8 +136,12 @@
 				<div class="panel panel-default">
 					<div class="panel panel-heading">
 						<i class="fa fa-comments fa-fw"></i> Reply
-						<sec:authorize access="isAuthenticated()">	
+						<sec:authentication property="principal" var="pinfo"/>
+						<sec:authorize access="isAuthenticated()">
+						<input readonly="readonly"  id="replyer" name= "replyer" value="${pinfo.username}">
+						<input type="text" id="replyInput" name="reply">	
 							<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New</button>
+						
 						</sec:authorize>
 					</div>					
 					<div class="panel-body">
@@ -151,7 +154,7 @@
 									</div>
 									<p>Good job!!</p>
 								</div>							
-							</li> -->
+							</li>  -->
 						</ul>
 					</div>
 					<div class = "panel-footer">
@@ -160,98 +163,8 @@
 					<!-- panelfooter 끝 -->
 				</div>
 			</div>			
-		</div>	
-				
-		<!-- Modal 댓글 -->
-	    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-	      <div class="modal-dialog">
-	        <div class="modal-content">
-	          <div class="modal-header">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	            <h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
-	          </div>
-	          <div class="modal-body">
-	            <div class="form-group">
-	              <label>Reply</label> 
-	              <input class="form-control" name='reply' value='New Reply!!!!'>
-	            </div>      
-	            <div class="form-group">
-	              <label>Replyer</label> 
-	              <input class="form-control" name='replyer' value='replyer' readonly="readonly">
-	            </div>
-	            <div class="form-group">
-	              <label>Reply Date</label> 
-	              <input class="form-control" name='replyDate' value=''>
-	            </div>   
-	        </div>
-		    <div class="modal-footer">
-    			<sec:authorize access="isAuthenticated()">
-				    <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
-				    <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
-				    <button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
-	    	  	</sec:authorize>
-		      		<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
-		    </div>
-		  </div>	      
-        </div>
-	  </div>		
+		</div>		
       <script type="text/javascript" src="/resources/js1/reply.js"></script>
-		
-		<!-- // reply.js모듈 CRUD 테스트 	
-		<script>
-			console.log("====================");
-			console.log("JS TEST");
-			
-			var bnoValue = '<c:out value = "${board.bno}"/>';
-			
-			/*
-			//add Test
-			replyService.add(
-				{reply:"JS TEST", replyer:"tester", bno:bnoValue},
-				function(result){
-					alert("RESULT : "+result);	
-				}
-			); 
-			*/
-			
-			/*
-			//getList Test
-			replyService.getList({bno:bnoValue, page:1}, function(list){
-				for(var i=0, len=list.length||0; i<len; i++){					
-					console.log(list[i]);
-				}
-			})
-			*/
-			
-			/*
-			//remove Test
-			replyService.remove(16, 
-				function(count){
-					console.log(count);
-					if(count === "success"){ alert("Remove"); }
-				},
-				function(err){ alert("Error"); }
-			);
-			*/
-			/*
-			//update Test
-			replyService.update(
-				{ rno:17,
-				  bno:bnoValue,
-				  reply:"Modified Reply..." },
-				function(result){
-					  alert("Modified Success!!");
-			    }		
-		    );
-			*/
-			/*
-			//get Test
-			replyService.get(7, function(data){
-				console.log(data);
-			});
-			*/
-		</script> -->
 		
 		<script type="text/javascript">
 			$(document).ready(function(){		
@@ -298,13 +211,20 @@
 							replyUL.html("");
 							return;
 						}
-						
 						for(var i=0, len=list.length||0; i<len; i++){
-							 
+							var buttons = '';
+							console.log(list[i].replyer + " )" +replyer);
+					        if (list[i].replyer === replyer) {
+					            buttons += '<button data-rno="' + list[i].rno + '" type="button" class="btn btn-warning modalModBtn">Modify</button>';
+					            buttons += '<button id="modalRemoveBtn" data-rno="' + list[i].rno + '" type="button" class="btn btn-danger">Remove</button>';
+					        } 
 							str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";							
 							str += "	<div><div class='header'><strong class='primary-font'>["+list[i].rno+"] "+list[i].replyer+"</strong>";
 							str += "		<small class='pull-right text-muted'>"+replyService.displaytime(list[i].replyDate)+"</small></div>";
-							str += "		<p>"+list[i].reply+"</p></div></li>";
+							str += "		</div><p class='replyContent'>"+list[i].reply+"</p>";
+							str += "<sec:authorize access='isAuthenticated()'>"+buttons;
+			    	  	    str +="</sec:authorize>"+"</li>";
+							
 							
 						}
 						replyUL.html(str);
@@ -312,18 +232,7 @@
 					});
 				}
 				
-				// modal영역
-				var modal = $(".modal");
-				var modalInputReply = modal.find("input[name='reply']");
-				var modalInputReplyer = modal.find("input[name='replyer']");
-				var modalInputReplyDate = modal.find("input[name='replyDate']");
-				
-				var modalModBtn = $("#modalModBtn");
-				var modalRemoveBtn = $("#modalRemoveBtn");
-				var modalRegisterBtn = $("#modalRegisterBtn");
-				
 				var replyer = null;
-				
 				<sec:authorize access="isAuthenticated()">								
 					replyer = '<sec:authentication property="principal.username"/>';				
 				</sec:authorize>
@@ -339,108 +248,81 @@
 			
 				// 등록버튼 이벤트처리
 				$("#addReplyBtn").on("click", function(e){
-					modal.find("input").val("");
-					modal.find("input[name='replyer']").val(replyer).attr("readonly", "readonly");
-					modalInputReplyDate.closest("div").hide();
-					modal.find("button[id != 'modalCloseBtn']").hide();
+					var reply = {
+							reply : $("#replyInput").val(),
+							replyer :$("#replyer").val(),
+							bno : bnoValue
+					};
 					
-					modalRegisterBtn.show();
+					replyService.add(reply, function(result){
+						alert(result);
+						$("#replyInput").val("");
+						showList(-1); // 최종적으로 댓글이 달린 리스트 마지막 페이지로 이동
 					
-					$(".modal").modal("show");
+					});		
+					
 				});	
 				
 				// Ajax Spring Security Header
 				$(document).ajaxSend(function(e, xhr, options){
 					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 				});
+
 				
-				
-				//댓글 등록버튼 이벤트 처리
-				modalRegisterBtn.on("click", function(e){
-					var reply = {
-							reply : modalInputReply.val(),
-							replyer : modalInputReplyer.val(),
-							bno : bnoValue
-					};
+				// 댓글 수정 버튼 클릭 시
+			    $(".chat").on("click", ".modalModBtn", function(e) {
+			        e.preventDefault();
+			        var replyContent = $(this).siblings(".replyContent");
+			        var rno = $(this).data("rno");
+			        var originalReply = replyContent.text();
+			        console.log(originalReply);
+			        replyContent.html("<input type='text' class='form-control replyInput' value='" + originalReply + "' /><button id='modalRegisterBtn' type='button' class='btn btn-primary'>Register</button>");
+
+			        // 등록 버튼 클릭 시 수정된 댓글을 서버로 전송
+			         $("#modalRegisterBtn").on("click",function(e) {
+			        	 //e.preventDefault();
+			            var updatedReply = $(this).siblings(".replyInput").val();
+			            console.log(updatedReply+" aa"+rno)
+			            var reply = {
+			                rno: rno,
+			                reply: updatedReply,
+			                replyer: replyer
+			            };
 					
-					replyService.add(reply, function(result){
-						alert(result);
-						modal.find("input").val("");
-						modal.modal("hide");
-						//showList(1); // 최종적으로 리스트 1페이지로 이동
-						showList(-1); // 최종적으로 댓글이 달린 리스트 마지막 페이지로 이동
-					});					
-				});	
-				
-				//댓글조회창 이벤트 처리
-				$(".chat").on("click", "li", function(e){
-					var rno = $(this).data("rno");
-					
-					replyService.get(rno, function(reply){
-						modalInputReply.val(reply.reply);
-						modalInputReplyer.val(reply.replyer);
-						modalInputReplyDate.val(replyService.displaytime(reply.replyDate)).attr("readonly","readonly");						
-						modal.data("rno", reply.rno);
-						
-						modal.find("button[id != 'modalCloseBtn']").hide();
-						modalModBtn.show();
-						modalRemoveBtn.show();
-						
-						//$(".modal").modal("show");
-						modal.modal("show");
-					});
-				});
-				
-				//댓글 수정버튼 이벤트처리
-				modalModBtn.on("click", function(e){
-					var originalReplyer = modalInputReplyer.val();
-					
-					var reply = {
-							rno : modal.data("rno"),
-							reply : modalInputReply.val(),
-							replyer :originalReplyer
-					};
-					
-					console.log("------originalReplyer : "+originalReplyer);
-					
-					if(replyer != originalReplyer){
-						alert("본인이 작성한 댓글만 수정이 가능합니다.");
-						modal.modal("hide");
-						return;
-					}
-					
-					replyService.update(reply, function(result){
+				    replyService.update(reply, function(result){
 						alert(result);						
-						modal.modal("hide");
+						
 						showList(pageNum);
-					});					
+					});		
+					
+			        });			
 				});	
 				
 				//댓글 삭제버튼 이벤트처리
-				modalRemoveBtn.on("click", function(e){
-					var rno = modal.data("rno");
+				$(".chat").on("click", "#modalRemoveBtn", function(e){
+					var rno = $(this).data("rno");
 					console.log("------------------RNO : "+rno);
 					console.log("--------------Replyer : "+replyer);
 					
 					/* 삭제버튼이 안먹음 */
 					if(!replyer){
 						alert("로그인 후 삭제가 가능합니다.");
-						modal.modal("hide");
+						
 						return;
 					}
 					
-					var originalReplyer = modalInputReplyer.val();
+					var originalReplyer = replyer;
 					console.log("------originalReplyer : "+originalReplyer);
 					
 					if(replyer != originalReplyer){
 						alert("본인이 작성한 댓글만 삭제가 가능합니다.");
-						modal.modal("hide");
+						
 						return;
 					}
 					
 					replyService.remove(rno, originalReplyer, function(result){
 						alert(result);						
-						modal.modal("hide");
+						
 						showList(pageNum);
 					});					
 				});	
@@ -487,10 +369,10 @@
 				//str+="</ul>"
 				str+="</ul></div>"
 				console.log("------"+str);
-				replyPageFooter.html(str);
+				$(".panel-footer").html(str);
 				
 				//페이지 이동 기능 구현
-				replyPageFooter.on("click","li a", function(e){
+				$(".panel-footer").on("click","li a", function(e){
 						e.preventDefault();
 						console.log("page click!!!!!!----------")
 						var targetPageNum = $(this).attr("href"); // panel-footer(prev/num/next) > href속성

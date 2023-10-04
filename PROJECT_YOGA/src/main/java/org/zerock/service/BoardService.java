@@ -8,30 +8,21 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
 public interface BoardService {
-	// interface이므로 BoardServiceImpl에서 구현함. BoardServiceTests에서는 interface의 메서드를 호출하여 테스트함.
-	// 게시글 등록 : register(BoardVO타입 >> 제목,내용,글쓴이)
 	public void register(BoardVO board);
-	
-	// 해당게시글 읽기 : get(해당게시글 PK번호)
 	public BoardVO get(Long bno);
-	
-	// 게시글 목록 읽어오기
-	//public List<BoardVO> getList();
-	
-	// 게시글 목록 읽어오기(+페이지기능)
 	public List<BoardVO> getList(Criteria cri);
 
-	// 게시글 수정(BoardVO타입 >> 제목,내용,글쓴이) : 수정여부확인(true, false)
+	// 寃뚯떆湲� �닔�젙(BoardVO���엯 >> �젣紐�,�궡�슜,湲��벖�씠) : �닔�젙�뿬遺��솗�씤(true, false)
 	public boolean modify(BoardVO board);
 	
-	// 게시글 삭제(해당게시글 PK번호) : 삭제여부확인(true, false)
+	// 寃뚯떆湲� �궘�젣(�빐�떦寃뚯떆湲� PK踰덊샇) : �궘�젣�뿬遺��솗�씤(true, false)
 	public boolean remove(Long bno);
 	
 	public int getTotal(Criteria cri);
 	
-	//첨부파일 등록
+	//泥⑤��뙆�씪 �벑濡�
 	public List<BoardAttachVO> getAttachList(Long bno);
 	
-	//조회수
+	//議고쉶�닔
 	public void setHit(@Param("bno")Long bno, @Param("hit")Long hit);
 }
