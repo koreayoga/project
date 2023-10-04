@@ -25,11 +25,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.zerock.controller"/>
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">	
-	</beans:bean>
-	
-	<context:component-scan base-package="org.zerock.controller" />
-	
-	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
-	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
+	<!-- <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/> -->	
 </beans:beans>
