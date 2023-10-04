@@ -17,3 +17,21 @@
     color: #f4623a;
   }
 }
+
+#nav.navbar-shrink {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+  }
+  #nav.navbar-shrink .navbar-brand {
+    color: #212529;
+  }
+  #nav.navbar-shrink .navbar-brand:hover {
+    color: #f4623a;
+  }
+  #nav.navbar-shrink .navbar-nav .nav-item .nav-link {
+    color: #212529;
+  }
+  #nav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
+    color: #f4623a;
+  }
+}
