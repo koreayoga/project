@@ -20,6 +20,7 @@ public class CustomLoginSuccessHandeler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth) throws IOException, ServletException{
 		log.warn("--------------------------Login Success");
 		
+
 		List<String> roleNames = new ArrayList<>();
 		auth.getAuthorities().forEach(authority -> {
 			roleNames.add(authority.getAuthority());
@@ -27,16 +28,11 @@ public class CustomLoginSuccessHandeler implements AuthenticationSuccessHandler{
 		
 		log.warn("--------------------------ROLE NAMES : "+roleNames);
 		
-		if(roleNames.contains("ROLE_ADMIN")) {
-			res.sendRedirect("/sample/admin");
+		if(roleNames.contains("ADMIN")) {
+			res.sendRedirect("/admin");
 			return;
-		}
+		}		
 		
-		if(roleNames.contains("ROLE_MEMBER")) {
-			res.sendRedirect("/sample/member");
-			return;
-		}
-		
-		res.sendRedirect("/sample/all");
+		res.sendRedirect("/");
 	}
 }

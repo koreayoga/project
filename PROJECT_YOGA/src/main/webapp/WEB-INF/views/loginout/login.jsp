@@ -40,9 +40,9 @@
 	<script type="text/javascript">
 		// 빈칸미입력 오류 
     	$(".btn-login").on("click", function(e){
-    	 	var id = document.getElementById("id").value;
-    	 	var pw = document.getElementById("pw").value;
 			e.preventDefault();
+    	 	/* var id = document.getElementById("id").value;
+    	 	var pw = document.getElementById("pw").value;
 			if(id==null || id==""){
 				alert("아이디를 입력해주세요.");				
 			}
@@ -51,7 +51,7 @@
 			}
 			if(${error} != null) {
 				alert("<c:out value="+${error}+"/>")
-			}
+			} */
 			$("form").submit();			
 		});
    </script>
