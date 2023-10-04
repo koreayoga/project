@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <% request.setCharacterEncoding("utf-8"); %> 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,20 +20,22 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../resources/css/styles.css" rel="stylesheet" />
+        <!-- Core theme js -->
+        <script src="../resources/js/scripts.js"></script>
     </head>
-    <body id="page-top">
+    <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">YOGA</a>
+                <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    	<li class="nav-item"><a class="nav-link" href="/main/login">LOGIN</a></li>
+                    	<li class="nav-item"><a class="nav-link" href="../loginout/login">LOGIN</a></li>
                         <li class="nav-item"><a class="nav-link" href="/main/member">MEMBER</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">INTRO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/board/list">NOTICE</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">CONTECT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/lesson">LESSON</a></li>
                     </ul>
                 </div>
             </div>
