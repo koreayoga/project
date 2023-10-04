@@ -21,10 +21,21 @@
 	</resultMap>	
 	
 	<select id="read" resultMap="memberMap">
+<<<<<<< HEAD
 		select mem.userid, mem.userpw, mem.name, mem.enabled,mem.regdate, mem.updatedate, auth.auth
 		From 
 			member mem left outer join member_auth auth on mem.userid = auth.userid
 				where mem.userid = #{userid}			
+=======
+
+	select userid, userpw, name, enabled, auth 
+	from member where userid=#{userid}	
+		select mem.userid, mem.userpw, mem.name, mem.enabled,mem.regdate, mem.updatedate, auth.auth
+		From 
+			member mem left outer join member_auth auth on mem.userid = auth.userid
+				where mem.userid = #{userid}
+
+>>>>>>> parent of 4a74c5b (Merge branch 'main' of https://github.com/koreayoga/project)
 	</select>
 		
 </mapper>

@@ -73,6 +73,8 @@ public class BoardController {
 		service.register(board);
 
 
+		log.info("register : " + board);
+
 	    log.info("register : " + board);
 		rttr.addFlashAttribute("result", board.getBno());
 		return "redirect:/board/list";
