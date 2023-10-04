@@ -41,19 +41,7 @@
 		</selectKey>
 		insert into tbl_board(bno, title, content, userid) values (#{bno},
 		#{title}, #{content}, #{userid})
-	</insert>-->
-	
-		<insert id="insertSelectKey">
-		
-		insert into tbl_board(title, content, userid) values (
-		#{title}, #{content}, #{userid})
-		
-		<selectKey keyProperty="bno" order="AFTER"
-			resultType="long">
-			 SELECT LAST_INSERT_ID()
-		</selectKey>
-		</insert>
-
+	</insert>-->		
 	<insert id="insertSelectKey">
 		insert into tbl_board(title, content, userid) values (
 		#{title}, #{content}, #{userid})
