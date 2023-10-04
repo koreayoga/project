@@ -34,14 +34,7 @@
 	</insert>
 
 
-	<!-- <insert id="insertSelectKey">
-		<selectKey keyProperty="bno" order="BEFORE"
-			resultType="long">
-			select seq_board.nextval from dual
-		</selectKey>
-		insert into tbl_board(bno, title, content, userid) values (#{bno},
-		#{title}, #{content}, #{userid})
-	</insert>-->		
+		
 	<insert id="insertSelectKey">
 		insert into tbl_board(title, content, userid) values (
 		#{title}, #{content}, #{userid})
@@ -49,8 +42,7 @@
 			resultType="long">
 			 SELECT LAST_INSERT_ID() 
 		</selectKey>
-	</insert>
-	
+	</insert>	
 	<select id="read" resultType="org.zerock.domain.BoardVO">
 		select * from tbl_board where bno = #{bno}
 	</select>
