@@ -57,3 +57,20 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+//footer를 항상 스크롤 제일 아랫쪽에 위치
+function updateFooterPosition() {
+    var footer = document.querySelector("footer");
+    var contentHeight = document.body.scrollHeight;
+    var windowHeight = window.innerHeight;
+
+    if (contentHeight > windowHeight) {
+        footer.style.position = "static";
+    } else {
+        footer.style.position = "fixed";
+    }
+}
+
+window.addEventListener("scroll", updateFooterPosition);
+window.addEventListener("resize", updateFooterPosition);
+window.addEventListener("load", updateFooterPosition);

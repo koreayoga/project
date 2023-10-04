@@ -15,10 +15,8 @@ private String phone;
 private Date birth;
 private String address;
 private String email;
-
 private boolean enabled;
-private char auth;
-
+private boolean reset;
 private Date regDate;
 private Date updateDate;
 
