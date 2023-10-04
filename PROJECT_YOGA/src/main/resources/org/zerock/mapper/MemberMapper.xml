@@ -24,8 +24,7 @@
 		select mem.userid, mem.userpw, mem.name, mem.enabled,mem.regdate, mem.updatedate, auth.auth
 		From 
 			member mem left outer join member_auth auth on mem.userid = auth.userid
-				where mem.userid = #{userid}
-			
+				where mem.userid = #{userid}			
 	</select>
 		
 </mapper>
