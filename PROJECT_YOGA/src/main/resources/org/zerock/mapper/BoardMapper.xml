@@ -53,15 +53,6 @@
 			 SELECT LAST_INSERT_ID()
 		</selectKey>
 		</insert>
-
-	<insert id="insertSelectKey">
-		insert into tbl_board(title, content, userid) values (
-		#{title}, #{content}, #{userid})
-		<selectKey keyProperty="bno" order="AFTER"
-			resultType="long">
-			 SELECT LAST_INSERT_ID() 
-		</selectKey>
-	</insert>
 	
 	<select id="read" resultType="org.zerock.domain.BoardVO">
 		select * from tbl_board where bno = #{bno}
