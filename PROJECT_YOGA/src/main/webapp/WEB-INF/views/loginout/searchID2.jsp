@@ -25,25 +25,35 @@
 	<script src="../resources/js/scripts.js"></script>
 	<!-- jQuery -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
-	<title>아이디찾기</title>    	
+	<title>아이디 찾기</title>    	
 </head>
 <body>
 <div class="search">
 		<div>
 		<h3>Search ID</h3>		
-		</div>		
-			<form role="form" method="post" action="searchID2.jsp" name="find">				
-				<!-- 필요 정보입력 -->
-				<div>   				
-					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" required autofocus>	<p/>
-					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요" required>
-				</div>
-				<!--아이디찾기버튼 -->
+		</div>
+			<!-- 이름과 전화번호가 일치하지 않을 때-->
+			<c:if test="${check == 1}">
+				<script>
+					opener.document.find.name.value = "";
+					opener.document.find.email.value = "";
+				</script>
+				<label>일치하는 정보가 존재하지 않습니다.</label>
+			</c:if>
+	
+			<!-- 이름과 비밀번호가 일치하지 않을 때 -->
+			<c:if test="${check == 0 }">
+				<label>찾으시는 아이디는' ${id}'입니다.</label>
 				<div>
-					<input type="submit" class="btn btn-third btn-m" value="Search">
+					<input class="btn btn-lg btn-secondary btn-block text-uppercase" type="button" value="OK" onclick="close()">
 				</div>
-			</form>
-		</div>		
+			</c:if>			
+		</div>
+		<script type="text/javascript">
+			function close(){
+				self.close();
+			}
+		</script>
 	</body>
 </html>
 

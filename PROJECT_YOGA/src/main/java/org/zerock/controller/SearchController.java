@@ -26,7 +26,7 @@ public class SearchController {
 	//아이디찾기
 	@GetMapping("/searchID")
     public void searchID() {
-		log.info("access searchID page--------");
+		log.info("access searchID page Stage1--------");
     }
 	
 	@PostMapping("/searchID")
@@ -40,13 +40,17 @@ public class SearchController {
 			model.addAttribute("id", member.getUserid());
 		}
 		
-		return "/loginout/findID";
+		return "/loginout/searchID2";
 	}
+	@GetMapping("/searchID2")
+    public void searchID2() {
+		log.info("access searchID page Stage2--------");
+    }
 	
 	// 비밀번호 초기화
     @GetMapping("/resetPW")
     public void resetPW() {
-    	log.info("access resetPW page--------");
+    	log.info("access resetPW page Stage1--------");
     }
     
     @PostMapping("/resetPW")
@@ -54,8 +58,13 @@ public class SearchController {
 		vo.setUserid(id);
 		System.out.println(vo);
 		service.resetPw1(vo);
-		return "/loginout/resetPW";
+		return "/loginout/resetPW2";
 	}
+    
+    @GetMapping("/resetPW2")
+    public void resetPW2() {
+    	log.info("access resetPW page Stage2--------");
+    }
     
     // 비밀번호 바꾸기 성공시 업데이트 페이지 이동
  	@PostMapping("/updatePW")

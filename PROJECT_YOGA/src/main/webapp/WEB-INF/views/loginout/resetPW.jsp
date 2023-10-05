@@ -34,7 +34,7 @@
 		<div>
 		<h3>Reset PW</h3>		
 		</div>		
-			<form role="form" method="post">				
+			<form role="form" action="/resetPW2" method="post" name="resetPW">				
 				<!-- 로그인 정보입력 -->
 				<div>
 					<input class="searchInput" id="id" name="userid" placeholder="아이디를 적어주세요" required autofocus>	<p/>   				
@@ -43,7 +43,7 @@
 				</div>
 				<!-- 로그인 버튼 생성 -->
 				<div>
-					<a class="btn btn-third btn-m" href="" onclick="">Reset!!</a>
+					<input type="submit" class="btn btn-third btn-m" value="Reset">
 				</div>								
 			</form>
 		</div>
