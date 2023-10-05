@@ -55,7 +55,8 @@ public class BoardController {
 		});
 	}
 
-	@GetMapping("/list") 
+	@GetMapping("/list")
+	@PreAuthorize("isAuthenticated()") 
 	public void list(Criteria cri, Model model) {		
 		log.info("list  --  "+cri);
 		int total = service.getTotal(cri);
