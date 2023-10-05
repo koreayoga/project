@@ -37,22 +37,80 @@
     </head>
     
     <body id="page-top">
-        <!-- Navigation-->
+         <!-- 비회원/미로그인상태 Navigation-->
+      <sec:authorize access="isAnonymous()">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/main/home">YOGA</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">                    	
+                    	<li class="nav-item"><a class="nav-link" href="/loginout/login">LOGIN</a></li>
+                       	<li class="nav-item"><a class="nav-link" href="/member/insert">MEMBER</a></li>
+                       	<li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main/lesson">LESSON</a></li>                    
+                    </ul>
+                </div>
+            </div>
+        </nav>  
+      </sec:authorize>
+      <!-- 회원 Navigation-->
+      <sec:authorize access="isAuthenticated()">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    	<li class="nav-item"><a class="nav-link" href="/loginout/login">LOGIN</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/member/insert">MEMBER</a></li>
+                       	<li class="nav-item"><a class="nav-link" href="/loginout/logout">LOGOUT</a></li>
+                       	<!-- 아직 마이페이지 경로가 없기때문에 임시로 insert로 매핑 -->
+                       	<li class="nav-item"><a class="nav-link" href="/member/insert">임시MYPAGE</a></li>
                         <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
                         <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/main/lesson">LESSON</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main/lesson">LESSON</a></li>                    
                     </ul>
                 </div>
             </div>
-        </nav> 
+        </nav>  
+      </sec:authorize>
+      <!-- 회원등급 : 일반회원, 강사 Navigation-->
+      <%-- <sec:authorize access="hasAnyRole('MEMBER','TUTOR')">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/main/home">YOGA</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                       	<li class="nav-item"><a class="nav-link" href="/loginout/logout">LOGOUT</a></li>
+                       	<!-- 아직 마이페이지 경로가 없기때문에 임시로 insert로 매핑 -->
+                       	<li class="nav-item"><a class="nav-link" href="/member/insert">MYPAGE</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main/lesson">LESSON</a></li>                    
+                    </ul>
+                </div>
+            </div>
+        </nav>  
+      </sec:authorize> --%>
+      <!-- 회원등급 : 관리자 Navigation-->
+     <%--  <sec:authorize access="hasRole('ADMIN')">      	 
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/main/home">YOGA</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">                    	                    	
+                       	<li class="nav-item"><a class="nav-link" href="/loginout/logout">LOGOUT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin">ADMIN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main/lesson">LESSON</a></li>                    
+                    </ul>
+                </div>
+            </div>
+        </nav>  
+      </sec:authorize> --%>
         
         <div id="page-wrapper">
 		<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> 
