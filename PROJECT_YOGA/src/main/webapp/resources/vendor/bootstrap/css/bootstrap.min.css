@@ -1502,7 +1502,7 @@ hr {
 }
 
 p {
-	margin: 0 0 10px
+	margin: 0 0 10px;
 }
 
 .lead {
@@ -7485,6 +7485,50 @@ button.close {
 .col-lg-12-table{
 	padding-right: 200px;
     padding-left: 200px;
+}
+
+/* .reply{
+	display: block;
+} */
+
+.panel-heading-reply {
+	padding: 10px 15px;
+	border-bottom: 1px solid transparent;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+/* 	display:flex;
+	justify-content: space-between;
+	align-items: center; */
+}
+
+.panel-default>.panel-heading-reply {
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd
+}
+
+.reply{
+	height: 100px;
+}
+
+.reply-input{
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+textarea{
+	width: 500px;
+	height: 60px;
+}
+
+#addReplyBtn{
+	position:relative;
+	top: 40px;
+}
+
+.modalModBtn{
+	position: relative;
+	left: 87%;
 }
 	
 /*# sourceMappingURL=bootstrap.min.css.map */
