@@ -5,10 +5,27 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
 	<sql id="criteria">
-		<trim prefix="(" suffix=") AND ">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<foreach item='type' collection="typeArr" separator="OR">
 				<!-- <trim prefix="(" suffix=") AND " prefixOverrides="OR"> <foreach 
 					item='type' collection="typeArr"> <trim prefix="OR"> -->
+				<choose>
+					<when test="type == 'T'.toString()">
+						  title like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'C'.toString()">
+						  content like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'W'.toString()">
+						  userid like CONCAT('%', #{keyword}, '%')
+					</when>
+				</choose>
+				<!-- </trim> -->
+			</foreach>
+		</trim>
+		</sql>
+		<!--  <trim prefix="(" suffix=") AND ">
+			<foreach item='type' collection="typeArr" separator="OR">
 				<choose>
 					<when test="type == 'T'.toString()">
 						title like '%'||#{keyword}||'%'
@@ -20,10 +37,9 @@
 						userid like '%'||#{keyword}||'%'
 					</when>
 				</choose>
-				<!-- </trim> -->
 			</foreach>
-		</trim>
-	</sql>
+		</trim>-->
+	
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
 		<![CDATA[select * from tbl_board where bno > 0 order by bno desc]]>
 	</select>
@@ -89,18 +105,19 @@
        LIMIT #{startRow}, #{amount}
       ) AS temp
     )ORDER BY bno desc
-  ]]>
+   ]]>
 </select>
 
 	<select id="getTotalCount" resultType="int">
-		select count(*) from tbl_board where 
+		select count(*) from tbl_board  
 		<include refid="criteria"></include>		
-		bno>0
+		<![CDATA[order by bno>0]]>
 	</select>
 	
 	<select id="searchTest" resultType="org.zerock.domain.BoardVO"> 
-		<![CDATA[select * from tbl_board where]]>  
-		<trim prefix="where (" suffix=")" prefixOverrides="OR">
+		<![CDATA[select * from tbl_board where]]>
+		  
+		 <trim prefix="where (" suffix=")" prefixOverrides="OR">
 			<foreach item="val" index="key" collection="map">
 				<trim prefix = "OR">
 					<if test="key == C.toString()">
