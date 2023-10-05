@@ -19,14 +19,16 @@
 		<security:intercept-url pattern="/sample/admin" access="hasRole('ADMIN')"/>
 		<!-- <security:access-denied-handler error-page="/accessError"/> -->
 		<security:access-denied-handler ref="customAD"/>
-		<security:form-login login-page="/customLogin"/>
+		<security:intercept-url pattern="/board/register" access="isAuthenticated()" />
+		
+		<security:form-login login-page="/loginout/login"/>
 		<!-- <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLS"/> -->				
 		<!-- 로그인시 자동로그인 설정 -->
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 		<!-- 기본 로그아웃 -->
 		<!-- <security:logout logout-url="/customLogout" invalidate-session="true"/> -->
 		<!-- 로그아웃시 자동로그인 종료 -->
-		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me, JSESSION_ID"/>
+		<security:logout logout-url="/loginout/logout" invalidate-session="true" delete-cookies="remember-me, JSESSION_ID"/>
 	</security:http>
 	
 	<security:authentication-manager>
