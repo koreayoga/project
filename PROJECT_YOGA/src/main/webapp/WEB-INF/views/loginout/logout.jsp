@@ -35,9 +35,9 @@
 				<h3 class="panel-title">Logout Page</h3>
 			</div>
 			<div class="panel-body">
-				<form role="form" action="/customLogout" method="post">
+				<form role="form" action="/loginout/logout" method="post">
 					<fieldset>
-						<a href="index.html" class="btn btn-lg btn-success btn-block">Logout</a>
+						<a href="/main/home" class="btn btn-lg btn-success btn-block">Logout</a>
 					</fieldset>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</form>

@@ -1,4 +1,4 @@
-<%@include file="../includes/header.jsp"%>
+<%@include file="/WEB-INF/views/includes/header.jsp"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 
@@ -86,11 +86,11 @@
     </script>
 
 <!-- logout성공 기능구현 -->
-<c:if test="${param.logout != null}">
+<%-- <c:if test="${param.logout != null}">
 	<script>
     		$(document).ready(function(){
     			alert("로그아웃하였습니다.");
     		});
     	</script>
-</c:if>
-<%@include file="../includes/footer.jsp"%>
+</c:if> --%>
+<%@include file="/WEB-INF/views/includes/footer.jsp"%>
