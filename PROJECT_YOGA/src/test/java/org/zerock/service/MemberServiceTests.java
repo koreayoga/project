@@ -69,5 +69,9 @@ public class MemberServiceTests {
 	}
 	
 
+	@Test
+	public void testCheckId() {
+		log.info("IDcheck................." + service.checkId("user"));
+	}
 
 }

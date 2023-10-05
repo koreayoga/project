@@ -96,5 +96,6 @@ public class MemberControllerTests {
 				.andReturn().getModelAndView().getViewName();
 		log.info("resultPage");
 	}
+
 	
 }

@@ -50,5 +50,12 @@ public boolean updateMem(MemberVO member) {
 	log.info("updateMember......................"+ member);
 	return mapper.updateMem(member) == 1;
 }
-	
+
+@Override
+public int checkId(String userid) {
+	log.info("USERIDUSER....................."+ userid);
+	return mapper.checkId(userid);
+
+}
+
 }

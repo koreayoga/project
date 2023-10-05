@@ -11,4 +11,5 @@ public interface MemberService {
 	public MemberVO getMem(String userid);
 	public boolean deleteMem(String userid);
 	public boolean updateMem(MemberVO member);
+	public int checkId(String userid);
 }

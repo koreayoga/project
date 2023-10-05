@@ -29,7 +29,7 @@ public class MemberMapperTests {
 	@Test
 	public void testInsertMem() {
 	    MemberVO member = new MemberVO();
-	    member.setUserid("test15");
+	    member.setUserid("test20");
 	    member.setUserpw("12345");
 	    member.setName("박씨");
 	    member.setGender('F');
@@ -37,7 +37,7 @@ public class MemberMapperTests {
 	    Date birthDate = java.sql.Date.valueOf("1990-05-15");
 	    member.setBirth(birthDate);
 	    member.setAddress("서울");
-	    member.setEmail("user01@email.com");    
+	    member.setEmail("user01@email.com");  
 	    mapper.insertMem(member);
 	    log.info(member);
 	}
@@ -67,6 +67,11 @@ public class MemberMapperTests {
 	}
 
 
-
+	@Test
+	public void testCheckId() {
+		mapper.checkId("user");
+		
+		log.info("IDcheck....................."+ mapper.checkId("user"));
+	}
 
 }

@@ -12,4 +12,5 @@ public interface MemberMapper {
 	public MemberVO getMem (String userid);
 	public int deleteMem (String userid);
 	public int updateMem (MemberVO member);
+	public int checkId (String userid);
 }

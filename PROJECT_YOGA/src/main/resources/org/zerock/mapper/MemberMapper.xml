@@ -28,5 +28,36 @@
 				where mem.userid = #{userid}			
 
 	</select>
+	
+	
+	<select id="getListMem" resultType="org.zerock.domain.MemberVO">
+		<![CDATA[
+			select * from member where userid > '0'
+		]]>
+	</select>	
 		
+	<insert id="insertMem">
+	insert into member (userid, userpw, name, gender, phone, birth, address, email)
+	values (#{userid},#{userpw},#{name},#{gender},#{phone},#{birth},#{address},#{email})
+	</insert>	
+	
+	<select id="getMem" resultType="org.zerock.domain.MemberVO">
+	select userid, userpw, name, gender, phone, birth, address, email
+	from member where userid=#{userid}
+	</select>
+	
+	<select id="checkId" resultType="int">
+	    select count(*) from member where userid = #{userid}
+	</select>
+
+	
+	<delete id="deleteMem">
+	delete from member where userid=#{userid}
+	</delete>
+	
+	<update id="updateMem">
+	update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
+	</update>
+
+
 </mapper>
