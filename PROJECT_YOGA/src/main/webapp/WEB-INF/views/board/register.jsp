@@ -31,7 +31,7 @@
 
 					<!-- File Upload -->
 					<div class="headFile">
-						<label>파일첨부</label>
+						<label>첨부파일</label>
 						<div class="form-group-uploadDiv">
 							<label class="inputFile-button" for="inputFile">내 PC</label>
 							<input type="file" id="inputFile" name="uploadFile" style="display:none;" multiple>
@@ -61,8 +61,7 @@
 
 
 					<!-- Button -->
-					<button type="submit" class="btn btn-default">Submit
-						Button</button>
+					<button type="submit" class="btn btn-default">Submit Button</button>
 					<button type="reset" class="btn btn-default">Reset Button</button>
 
 				</form>
