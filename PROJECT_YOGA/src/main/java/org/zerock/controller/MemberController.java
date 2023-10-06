@@ -46,34 +46,18 @@ public class MemberController {
 	}
 	
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
 	public int checkId(@RequestParam("userid") String userid) throws Exception {
 	    int result = service.checkId(userid);
 	    return result;
-	}
-	
+	}*/
 	@PostMapping("/insert")
-	public String insertMem(MemberVO member, 
-			@RequestParam("userid") String userid,
-			@RequestParam("name") String name,
-			@RequestParam("userpw") String userpw,
-			@RequestParam("gender") String gender,
-			@RequestParam("phone") String phone,
-			@RequestParam("birth") String birth,
-			@RequestParam("address") String address,
-			@RequestParam("email") String email,
-			
-	RedirectAttributes rttr) {
-			log.info("INSERT+++++++++++++++++");	
-			member.setName(userid);
-			member.setName(name);
-			member.setName(pwencoder.encode(userpw));
-			member.setName(gender);
-			member.setName(phone);
-			member.setName(birth);
-			member.setAddress(address);
-			member.setName(email);
+	public String insertMem(MemberVO member, RedirectAttributes rttr) {
+			log.info("INSERT+++++++++++++++++" + member);
+			//MemberVO insertMember = new MemberVO();
+			member.setUserpw(pwencoder.encode(member.getUserpw()));
+			log.info(member);
 		service.insertMem(member);
 		
 		log.info("insertMember" + member);
