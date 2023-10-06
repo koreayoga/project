@@ -19,6 +19,6 @@ public class CustomAccessDeniedHandeler implements AccessDeniedHandler{
 		log.error("--------------------------Access Denied Handler");
 		log.error("---------------------------------------Redirect");
 		
-		res.sendRedirect("/accessError");
+		res.sendRedirect("/loginout/accessError");
 	}
 }
