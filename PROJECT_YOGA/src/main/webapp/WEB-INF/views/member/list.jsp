@@ -43,6 +43,8 @@
 							<td><c:out value="${member.birth}" /></td>
 							<td><c:out value="${member.address}" /></td>
 							<td><c:out value="${member.email}" /></td>
+							<td><button onclick="openModal()">수정</button></td>
+							<td><button>삭제</button></td>
 						</tr>
 						
 						<a class='move' href='<c:out value="${member.phone}"/>'>
@@ -90,5 +92,67 @@
 	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+<!-- 모달 창 내용 -->
+<div id="myModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+        <form id="updateForm">
+            <!-- 멤버 정보 입력 폼 -->
+            <input type="text" id="name" name="name" placeholder="이름">
+            <input type="text" id="email" name="email" placeholder="이메일">
+            <!-- 기타 필요한 입력 필드 추가 -->
+            <button type="button" id="updateBtn">업데이트</button>
+        </form>
+    </div>
+</div>
+
+<!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->	
+
+<script>
+// 모달 창 열기 함수
+function openModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+}
+
+// 모달 창 닫기 함수
+function closeModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'none';
+}
+
+// 모달 닫기 버튼에 이벤트 리스너 추가
+var closeModalBtn = document.getElementById('closeModalBtn');
+closeModalBtn.addEventListener('click', closeModal);
+
+// 업데이트 버튼 클릭 시 처리
+var updateBtn = document.getElementById('updateBtn');
+updateBtn.addEventListener('click', function() {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+console.log(name + email)
+
+    $.ajax({
+        type: 'POST',
+        url: '/member/update',
+        data: { name: name, email: email },
+        success: function(response) {
+            // 서버에서의 업데이트 성공 여부에 따라 적절한 처리를 수행
+            if (response.result === 'success') {
+                alert('업데이트 성공');
+                closeModal();
+            } else {
+                alert('업데이트 실패');
+            }
+        },
+        error: function() {
+            alert('서버와 통신 중 오류 발생');
+        }
+    });
+});
+</script>
+				
+
 
 <%@include file="../includes/footer.jsp"%>
