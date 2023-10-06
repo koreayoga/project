@@ -30,7 +30,7 @@
 				</tr>
 				<tr>
 				    <td>이름</td>
-				    <td><input id="name" name="name" value='<c:out value="${member.username}"/>' readonly="readonly"> </td>
+				    <td><input id="name" name="name" value='<c:out value="${member.name}"/>' readonly="readonly"> </td>
 				</tr>
 				<tr>
 					<td>연락처</td>
