@@ -5,11 +5,18 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">A Healing Place for<br/> your Body and Mind</h1>
+                        <h1 class="text-white font-weight-bold">A Healing Place <br/> for your Body and Mind</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
+                        <sec:authorize access="isAuthenticated()">
+		                        <p class="text-white-75 mb-5"><sec:authentication property="principal" var="pinfo"/>
+		                        	<a style="text-decoration: none;">${pinfo.username}</a>님 환영합니다.
+		                        </p>
+                        </sec:authorize>
+                        <sec:authorize access="isAnonymous()">
+		                        <p class="text-white-75 mb-5"><sec:authentication property="principal" var="pinfo"/>회원가입 하시면 더욱 다양한 정보를 확인하실수 있습니다.</p>
+                        </sec:authorize>
                         <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
                     </div>
                 </div>
@@ -97,7 +104,7 @@
                      <h2 class="mt-0" style="color:#609966">Time Table</h2>
                      <hr class="divider" />
              	</div>
-				<table class="text-center" style="width: 555px; height: 350px;">
+				<table class="text-center" style="width: 650px; height: 350px;">
 					<tr>
 						<th>시간</th>	<th>강의실</th><th>강사</th><th>월</th>	<th>화</th><th>수</th><th>목</th><th>금</th>
 					</tr>
@@ -128,7 +135,7 @@
                         <h2 class="mt-0" style="color:#609966">Contact Us</h2>
                         <hr class="divider" />
                     </div>
-                    <div style="width: 555px; height: 350px;" id="map"></div>
+                    <div style="width: 650px; height: 350px;" id="map"></div>
                 </div>
          </div>
         </section>
@@ -150,8 +157,7 @@
  			var content= '<div class="wrap" style="background-color: white; width: 60px; height: 26px;border-radius: 3px; text-align:center; border: 1px solid rgb(224, 219, 219);">'+
  						 '<a style="text-decoration: none; font-size: 15px;" href="https://map.kakao.com/?urlX=608977&urlY=873987&itemId=968661366&q=%ED%95%9C%EA%B5%AD%EC%95%84%EC%9D%B4%ED%8B%B0%EC%A0%84%EB%AC%B8%ED%95%99%EC%9B%90&srcid=968661366&map_type=TYPE_MAP&from=roughmap">'+
  						 '<b>YOGA</b>'+
- 						 '</a>'+
- 						 '</div>';
+ 						 '</a>'+'</div>';
  		   
  		   var overlay = new kakao.maps.CustomOverlay({
  			   content: content,

@@ -10903,6 +10903,7 @@ html {
 body {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 
 .page-section {
@@ -11095,15 +11096,15 @@ header.masthead h1, header.masthead .h1 {
     padding-bottom: 0;
   }
   header.masthead p {
-    font-size: 1.15rem;
+    font-size: 1.5rem;
   }
   header.masthead h1, header.masthead .h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 @media (min-width: 1200px) {
   header.masthead h1, header.masthead .h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 }
 
