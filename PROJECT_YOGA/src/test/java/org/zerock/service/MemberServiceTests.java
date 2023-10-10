@@ -68,6 +68,17 @@ public class MemberServiceTests {
 		log.info("updateMember..............." + service.updateMem(member));
 	}
 	
+	
+	@Test
+	public void testUpdateAdmin() {
+		MemberVO member = service.getMem("user");
+		if (member == null) {
+			return;
+		}
+		member.setAuth(4);
+		log.info("updateMember..............." + service.updateMem(member));
+	}
+	
 
 	@Test
 	public void testCheckId() {

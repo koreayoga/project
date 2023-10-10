@@ -15,10 +15,6 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Board</button>
-			</div>
 			
 			<!-- /.panel-heading -->
 			<div class="panel-body">
@@ -43,16 +39,16 @@
 							<td><c:out value="${member.birth}" /></td>
 							<td><c:out value="${member.address}" /></td>
 							<td><c:out value="${member.email}" /></td>
+							<td><c:out value="${member.auth}" /></td>
 							<td><button onclick="openModal()">수정</button></td>
 							<td><button>삭제</button></td>
 						</tr>
 						
-						<a class='move' href='<c:out value="${member.phone}"/>'>
-							</a>
+				
 					</c:forEach>
 				</table>
 
-				<%-- <p>${pageMaker}</p> --%>
+<%-- 				<p>${pageMaker}</p>
 				<div class='pull-right'>
 					<ul class='pagination'>
 						<c:if test="${pageMaker.prev}">
@@ -73,17 +69,9 @@
 								href="${pageMaker.endPage +1}">Next ▶</a></li>
 						</c:if>
 					</ul>
-				</div>
+				</div> --%>
 				
-				<form id="actionForm" action="/board/list" method="get">
-					<input type='hidden' name='pageNum'
-						value='${pageMaker.cri.pageNum}'> <input type='hidden'
-						name='amount' value='${pageMaker.cri.amount}'> <input
-						type='hidden' name='type'
-						value='<c:out value="${pageMaker.cri.type}"/>' /> <input
-						type="hidden" name="keyword"
-						value='<c:out value="${pageMaker.cri.keyword}"/>' />
-				</form>
+
 			</div>
 			<!-- /end panel-body -->
 		</div>
@@ -99,8 +87,9 @@
         <span class="close" id="closeModalBtn">&times;</span>
         <form id="updateForm">
             <!-- 멤버 정보 입력 폼 -->
-            <input type="text" id="name" name="name" placeholder="이름">
-            <input type="text" id="email" name="email" placeholder="이메일">
+            <input type="text" id="userid" name="userid" >
+            <input type="text" id="auth" name="auth" placeholder="권한">
+            <input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}'>
             <!-- 기타 필요한 입력 필드 추가 -->
             <button type="button" id="updateBtn">업데이트</button>
         </form>
@@ -127,19 +116,25 @@ var closeModalBtn = document.getElementById('closeModalBtn');
 closeModalBtn.addEventListener('click', closeModal);
 
 // 업데이트 버튼 클릭 시 처리
+var csrfHeaderName = "<c:out value='${_csrf.headerName}'/>";
+var csrfTokenValue = "<c:out value='${_csrf.token}'/>";
 var updateBtn = document.getElementById('updateBtn');
 updateBtn.addEventListener('click', function() {
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-console.log(name + email)
+    var userid = document.getElementById('userid').value;
+    var auth = document.getElementById('auth').value;
 
+    console.log(userid + auth);
+
+    // AJAX 요청
     $.ajax({
         type: 'POST',
-        url: '/member/update',
-        data: { name: name, email: email },
+        url: '/member/updateAdmin',
+        contentType: 'application/json',
+        data: { userid: userid, auth: auth },
         success: function(response) {
+        	console.log(response)
             // 서버에서의 업데이트 성공 여부에 따라 적절한 처리를 수행
-            if (response.result === 'success') {
+            if (response === 'success') {
                 alert('업데이트 성공');
                 closeModal();
             } else {
@@ -150,9 +145,37 @@ console.log(name + email)
             alert('서버와 통신 중 오류 발생');
         }
     });
+
+/* 	$.ajax({
+		url : '/uploadAjaxAction',
+		processData : false,
+		contentType : false,
+		data : formData, 
+		type : 'POST',
+		dataType : 'json',
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		},
+		success : function(result){
+			console.log(result);	
+			showUploadResult(result);
+		}
+	});	
+}); */
+    
+    
+    
+    
+    
+    
+    
+    
 });
+    //Ajax Spring Security Header
+    $(document).ajaxSend(function(e, xhr, options){
+       xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+    });
 </script>
-				
 
 
 <%@include file="../includes/footer.jsp"%>

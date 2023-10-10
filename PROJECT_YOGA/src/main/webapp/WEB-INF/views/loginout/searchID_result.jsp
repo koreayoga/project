@@ -33,26 +33,51 @@
 		<h3>Search ID</h3>		
 		</div>
 			<!-- 이름과 전화번호가 일치하지 않을 때-->
-			<c:if test="${check == 1}">
+			<%-- <c:if test="${check == 1}">
 				<script>
 					opener.document.find.name.value = "";
 					opener.document.find.email.value = "";
 				</script>
 				<label>일치하는 정보가 존재하지 않습니다.</label>
-			</c:if>
+			</c:if> --%>
 	
 			<!-- 이름과 비밀번호가 일치하지 않을 때 -->
-			<c:if test="${check == 0 }">
-				<label>찾으시는 아이디는' ${id}'입니다.</label>
+			<%-- <c:if test="${check == 0 }">
+				<h2>찾으시는 아이디는 '${id}' 입니다.</h2>
+				<br>
 				<div>
 					<input class="btn btn-lg btn-secondary btn-block text-uppercase" type="button" value="OK" onclick="close()">
+					<!-- 비밀번호 암호화 -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</div>
-			</c:if>			
+			</c:if>			 --%>
+			
+			<c:choose>                                                                          
+            <c:when test="${empty vo}">                                                 
+                <h2>조회결과가 없습니다.</h2>
+                <br><br>
+                <!-- <input type="submit" class="btn btn-third btn-m" value="Search"> -->
+				<button onclick="history.go(-1)" class="btn btn-third btn-m">Back</button>
+				<!-- 비밀번호 암호화 -->
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                                        
+            </c:when>                                                                         
+            <c:otherwise>                                                                     
+                <div><h4>회원님의 아이디는</h4></div> 
+                <div style="margin-top:10px"><b style="font-size: 30px;">${vo.userid}</b><h4>입니다.</h4></div>                                              
+            	<br>
+				<!-- <input type="submit" class="btn btn-third btn-m" value="Search"> -->
+				<button onclick="window.close()" class="btn btn-third btn-m">Close</button>
+				<!-- 비밀번호 암호화 -->
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            </c:otherwise> 
+            </c:choose>
+            <div>
+			</div>  
 		</div>
 		<script type="text/javascript">
-			function close(){
-				self.close();
-			}
+			/* function close(){
+				window.close();
+			} */
 		</script>
 	</body>
 </html>

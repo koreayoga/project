@@ -81,6 +81,16 @@ public class MemberController {
 		}
 		return "redirect:/member/list";
 	}
+	
+	
+	@PostMapping("/updateAdmin")
+	public String updateAdmin(@RequestParam("userid") String userid, @RequestParam("auth") int auth, RedirectAttributes rttr) {
+		log.info("updateAdmin" + userid + auth);
+		if (service.updateAdmin(userid, auth)) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/member/list";
+	}
 
 	
 	@PostMapping("/delete")

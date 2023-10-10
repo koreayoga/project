@@ -3,6 +3,42 @@
 <% request.setCharacterEncoding("utf-8"); %> 
 <!DOCTYPE html>
 <html>
+<script>
+	$(document).ready(function() {
+		var msg = "${msg}";
+		if(msg != ""){
+			alert(msg);    
+		}
+	});
+
+	function fnSubmit() { 
+		
+		if ($("#name").val() == null || $("#name").val() == "") {
+			alert("회원님의 이름을 입력해주세요.");
+			$("#name").focus(); 
+			return false;
+		}
+	 
+		if ($("#email").val() == null || $("#email").val() == "") {
+			alert("회원님의 이메일을 입력해주세요.");
+			$("#email").focus(); 
+			return false;
+		}
+	 
+		var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if(!email_rule.test($("#email").val())){
+			alert("메일형식에 맞게 입력해주세요.");
+			return false;
+		}
+	 
+	 
+		if (confirm("아이디를 찾으시겠습니까?")) {			 
+			$("#search").submit();				 
+			return false;
+		}
+	}		 
+</script>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -25,25 +61,30 @@
 	<script src="../resources/js/scripts.js"></script>
 	<!-- jQuery -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
-	<title>아이디찾기</title>    	
+	<title>아이디찾기</title>   
+	 	
 </head>
 <body>
 <div class="search">
 		<div>
 		<h3>Search ID</h3>		
 		</div>		
-			<form role="form" method="post" action="searchID2.jsp" name="find">				
+			<form role="form" method="post" action="/loginout/searchID" id="search">
 				<!-- 필요 정보입력 -->
 				<div>   				
-					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" required autofocus>	<p/>
-					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요" required>
+					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" autofocus>	<p/>
+					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요">
 				</div>
 				<!--아이디찾기버튼 -->
 				<div>
-					<input type="submit" class="btn btn-third btn-m" value="Search">
+					<!-- <input type="submit" class="btn btn-third btn-m" value="Search"> -->
+					<a href="javascript:void(0)" onclick="fnSubmit(); return false;" class="btn btn-third btn-m">Search</a>
+					<!-- 비밀번호 암호화 -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</div>
 			</form>
 		</div>		
+		
 	</body>
 </html>
 

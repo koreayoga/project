@@ -19,6 +19,7 @@ private boolean enabled;
 private boolean reset;
 private Date regDate;
 private Date updateDate;
+private int auth;
 
 private List<AuthVO> authList;
 

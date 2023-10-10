@@ -39,6 +39,7 @@
 	</select>	
 		
 	<insert id="insertMem">
+	
 	insert into member (userid, userpw, name, gender, phone, birth, address, email)
 	values (#{userid},#{userpw},#{name},#{gender},#{phone},#{birth},#{address},#{email})
 	</insert>	
@@ -61,5 +62,10 @@
 	update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
 	</update>
 
+
+	<update id="updateAdmin">
+	update member set auth=#{auth} where userid=#{userid}
+	</update>
+	
 
 </mapper>

@@ -5,6 +5,47 @@
 <% request.setCharacterEncoding("utf-8"); %> 
 <!DOCTYPE html>
 <html>
+<script>
+	$(document).ready(function() {
+		var msg = "${msg}";
+		if(msg != ""){
+			alert(msg);    
+		}
+	});
+
+	function fnSubmit() { 
+		if ($("#id").val() == null || $("#id").val() == "") {
+			alert("회원님의 아이디를 입력해주세요.");
+			$("#id").focus(); 
+			return false;
+		}
+		
+		if ($("#name").val() == null || $("#name").val() == "") {
+			alert("회원님의 이름을 입력해주세요.");
+			$("#name").focus(); 
+			return false;
+		}
+	 
+		if ($("#email").val() == null || $("#email").val() == "") {
+			alert("회원님의 이메일을 입력해주세요.");
+			$("#email").focus(); 
+			return false;
+		}
+	 
+		var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if(!email_rule.test($("#email").val())){
+			alert("메일형식에 맞게 입력해주세요.");
+			return false;
+		}
+	 
+	 
+		if (confirm("비밀번호를 초기화하시겠습니까?")) {			 
+			$("#search").submit();				 
+			return false;
+		}
+	}		 
+</script>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -34,16 +75,18 @@
 		<div>
 		<h3>Reset PW</h3>		
 		</div>		
-			<form role="form" action="/resetPW2" method="post" name="resetPW">				
+			<form role="form" action="/loginout/resetPW" method="post" id="search">				
 				<!-- 로그인 정보입력 -->
 				<div>
-					<input class="searchInput" id="id" name="userid" placeholder="아이디를 적어주세요" required autofocus>	<p/>   				
-					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" required>
-					<input class="searchInput" type="email" id="mail" name="mail" placeholder="이메일주소를 입력해주세요" required>
+					<input class="searchInput" id="id" name="id" placeholder="아이디를 적어주세요" autofocus>	<p/>   				
+					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요">
+					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요">
 				</div>
 				<!-- 로그인 버튼 생성 -->
 				<div>
-					<input type="submit" class="btn btn-third btn-m" value="Reset">
+					<a href="javascript:void(0)" onclick="fnSubmit(); return false;" class="btn btn-third btn-m">Search</a>
+					<!-- 비밀번호 암호화 -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</div>								
 			</form>
 		</div>
