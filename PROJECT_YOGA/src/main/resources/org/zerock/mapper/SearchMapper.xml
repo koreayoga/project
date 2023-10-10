@@ -3,22 +3,13 @@
 	PUBLIC "-//mybatis.ofg//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.SearchMapper">	
-	<select id="loginMember" resultType="org.zerock.domain.MemberVO">
-		select * from member where userid = #{userid} and userpw = #{userpw}	
-	</select>
-	
 	<select id="searchId" resultType="org.zerock.domain.MemberVO">
-		select userid from users where name=#{name} and email=#{email} 
+		select userid from member where name=#{name} and email=#{email} 
+	</select>	
+	<select id="memberPwdCheck" parameterType="org.zerock.domain.MemberVO" resultType="java.lang.Integer">
+		select count(*) from member where userid=#{userid} and name=#{name} and email=#{email}  
 	</select>
-	
- 	<!-- <select id="resetPw" resultType="org.zerock.domain.MemberVO">
-		select * from member where id=#{id} and name=#{name} and email=#{email}
-	</select> -->
-	<update id="resetPw1">
-		update member set userpw='yoga1234', reset='Y' where userid=#{userid} and name=#{name} and email=#{email}  
+	<update id="passwordUpdate" parameterType="org.zerock.domain.MemberVO" >
+		update member set userpw=#{userpw}, reset='N', updateDate = current_timestamp() where userid=#{userid} and name=#{name} and email=#{email} and reset='Y'    
 	</update>
-	
-	<update id="resetPw2">
-		update member set userpw=#{userpw}, reset='N', updateDate = current_timestamp() where reset='Y' and userpw='yoga1234'
-	</update>		
 </mapper>

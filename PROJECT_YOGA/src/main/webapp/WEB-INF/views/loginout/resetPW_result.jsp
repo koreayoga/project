@@ -25,37 +25,22 @@
 	<script src="../resources/js/scripts.js"></script>
 	<!-- jQuery -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
-	<title>아이디 찾기</title>    	
+	<title>비밀번호 재설정</title>    	
 </head>
 <body>
-<div class="search">
-		<div>
-		<h3>Search ID</h3>		
+	<div class="search">
+		<div><h3>Reset PW</h3></div>			
+		<div>         		
+			<p>임시비밀번호가 발급되었습니다.</p>
+			<p>반드시 마이페이지에서 비밀번호를 변경해주시기 바랍니다.</p>    
+			<br><br>
+			<p class="mb-4">임시비밀번호는 <b>${newPwd}</b> 입니다.</p>
+			<button onclick="history.go(-1)" class="btn btn-third btn-m">Back</button>
+			<button onclick="window.close()" class="btn btn-third btn-m">Close</button>
+			<!-- 비밀번호 암호화 -->
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                                        
 		</div>
-			<!-- 이름과 전화번호가 일치하지 않을 때-->
-			<c:if test="${check == 1}">
-				<script>
-					opener.document.find.name.value = "";
-					opener.document.find.email.value = "";
-				</script>
-				<label>일치하는 정보가 존재하지 않습니다.</label>
-			</c:if>
-	
-			<!-- 이름과 비밀번호가 일치하지 않을 때 -->
-			<c:if test="${check == 0 }">
-				<label>찾으시는 아이디는' ${id}'입니다.</label>
-				<div>
-					<input class="btn btn-lg btn-secondary btn-block text-uppercase" type="button" value="OK" onclick="close()">
-					<!-- 비밀번호 암호화 -->
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-				</div>
-			</c:if>			
-		</div>
-		<script type="text/javascript">
-			function close(){
-				self.close();
-			}
-		</script>
-	</body>
+	</div>			
+</body>
 </html>
 

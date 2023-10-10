@@ -15,18 +15,19 @@ public class SearchServiceImpl implements SearchService {
 	@Setter(onMethod_=@Autowired)
 	private SearchMapper mapper;	
 	
+	@Override
 	public MemberVO searchId(MemberVO vo) {
 		log.info("search member ID-------------"+vo.getName()+" ["+vo.getEmail()+"]");	
 		return mapper.searchId(vo);
 	}
-	
-	public void resetPw1(MemberVO vo) {
-		log.info("reset member PW Stage 1------------- ID_"+vo.getUserid());
-		mapper.resetPw1(vo);
+		
+	@Override
+	public int memberPwdCheck(MemberVO vo) {
+	    return mapper.memberPwdCheck(vo);
 	}
-	
-	public void resetPw2(MemberVO vo) {
-		log.info("reset member PW Stage 2------------- ID_"+vo.getUserid());
-		mapper.resetPw2(vo);
+	 
+	@Override
+	public void passwordUpdate(MemberVO vo) {
+	    mapper.passwordUpdate(vo);
 	}
 }
