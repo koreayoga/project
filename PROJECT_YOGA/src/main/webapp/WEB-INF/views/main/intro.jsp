@@ -19,7 +19,7 @@
 		}
 		
 		h1{
-			margin-top: 150px;
+			margin-top: 100px;
 		}
 		
 		th, td {
@@ -128,29 +128,63 @@
        
        <h1>오시는 길</h1>
        <hr class="divider-md">
-       <section style="margin-top: 40px; margin-left: 25%" 
-			 class="avia_codeblock_section  av-small-hide av-mini-hide avia_code_block_0"
-			 itemscope="itemscope" itemtype="https://schema.org/CreativeWork">
-		<div class='avia_codeblock' itemprop="text"">        			
-		<!-- * 카카오맵 - 약도서비스
-			 * 한 페이지 내에 약도를 2개 이상 넣을 경우에는
-			 * 약도의 수 만큼 소스를 새로 생성, 삽입해야 합니다.-->
-			 
-			<!-- 1. 약도 노드 -->
-			<div id="daumRoughmapContainer1630559081873" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-
-			<!-- 2. 설치 스크립트 -->
-			<script charset="UTF-8" class="daum_roughmap_loader_script"	src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-
-			<!-- 3. 실행 스크립트 -->
-			<script charset="UTF-8">
-				new daum.roughmap.Lander({
-					"timestamp" : "1630559081873",
-					"key" : "27873",
-					"mapWidth" : "640",
-					"mapHeight" : "360"
-				}).render();
-			</script>
+	   <div class='avia_codeblock' itemprop="text">        			
+			<div class="contactFlex">
+                <div class="contactMap">
+                    <div style="width: 650px; height: 350px;" id="map"></div>
+                </div>
+                <div class="contactMap">
+                	<div class="mapContainer">
+			         	<ul>
+							<li>주소 : 청주시 상당구 사직대로 361번길 158-10, YOGA</li>
+							<li>전화 : 043-259-2800</li>
+							<li>팩스 : 043-259-2900</li>
+						</ul>
+						<hr/>
+						<p><strong>주변 정류장 :</strong><br />
+						<em>방아다리 도보 4분</em><br /></p>
+						<hr/>
+						<p><strong>주변 버스:</strong><br />
+						008, 011, 012, 018, 019, 40-2, 111, 112, 113, 115, 115-1, 117,
+						211, 211-1, 211-2, 212, 212-1, 212-2, 212-3, 213, 214, 215, 216, 
+						216-1, 218, 412, 413, 414, 415, 416, 416-1, 417, 417-1, 417-2, 418, 
+						419, 511, 512, 512-1, 512-2, 512-3, 513-2, 516, 517, 711, 712, 712-1, 713, 
+						713-1, 715, 715-1, 716, 718, 719, 720, 720-1, 721, 722, 722-1, 832, 841,
+						841-1, 843, 871, 872, 913, 914, 915, 916-2, 918-1, 920, 921, 921-1, 922<br /></p>
+					</div>
+				</div>
+         	</div>
 		</div>
-	</section>			
+					
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9531572ad5a526f8e3b9abf79a0038e"></script>
+ 		
+ 		<script>
+ 			var container = document.getElementById('map'),
+	 		option = { 
+	 			center: new kakao.maps.LatLng(36.64381054056646, 127.48745627405158), 
+	 			level: 3,
+	 		};
+ 			
+	 		var map = new kakao.maps.Map(container, option);
+	 		
+ 			var marker = new kakao.maps.Marker({
+ 					map: map,
+	 			    position: new kakao.maps.LatLng(36.64381054056646, 127.48745627405158)
+	 		});
+ 			
+ 			var content= '<div class="wrap" style="background-color: white; width: 60px; height: 26px;border-radius: 3px; text-align:center; border: 1px solid rgb(224, 219, 219);">'+
+ 						 '<a style="text-decoration: none; font-size: 15px;" href="https://map.kakao.com/?urlX=608977&urlY=873987&itemId=968661366&q=%ED%95%9C%EA%B5%AD%EC%95%84%EC%9D%B4%ED%8B%B0%EC%A0%84%EB%AC%B8%ED%95%99%EC%9B%90&srcid=968661366&map_type=TYPE_MAP&from=roughmap">'+
+ 						 '<b>YOGA</b>'+
+ 						 '</a>'+'</div>';
+ 		   
+ 		   var overlay = new kakao.maps.CustomOverlay({
+ 			   content: content,
+ 			   map: map,
+ 			   position: marker.getPosition(),
+ 		   	   yAnchor: 2.7
+ 		   });
+ 		   
+ 		   overlay.setMap(map);	
+ 		</script>
+ 		
 <%@include file="../includes/footer.jsp"%>		
