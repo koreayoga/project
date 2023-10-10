@@ -10,6 +10,6 @@
 		select count(*) from member where userid=#{userid} and name=#{name} and email=#{email} 
 	</select>
 	<update id="passwordUpdate" parameterType="org.zerock.domain.MemberVO" >
-		update member set userpw=#{userpw}, reset='N', updateDate = current_timestamp() where userid=#{userid} and name=#{name} and email=#{email} and reset='Y'    
+		update member set userpw=#{userpw}, updateDate = current_timestamp() where userid=#{userid} and name=#{name} and email=#{email}    
 	</update>
 </mapper>

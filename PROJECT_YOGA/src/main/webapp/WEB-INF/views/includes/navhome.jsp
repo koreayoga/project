@@ -43,7 +43,7 @@
         </nav>  
       </sec:authorize>
       <!-- 회원 Navigation-->
-      <sec:authorize access="isAuthenticated()">
+      <sec:authorize access="isAuthenticated() and principal.username!='admin'" >
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
@@ -81,7 +81,7 @@
         </nav>  
       </sec:authorize> --%>
       <!-- 회원등급 : 관리자 Navigation-->
-     <%--  <sec:authorize access="hasRole('ADMIN')">      	 
+      <sec:authorize access="isAuthenticated() and principal.username=='admin'" >      	 
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
@@ -97,5 +97,5 @@
                 </div>
             </div>
         </nav>  
-      </sec:authorize> --%>
+      </sec:authorize>
       <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
