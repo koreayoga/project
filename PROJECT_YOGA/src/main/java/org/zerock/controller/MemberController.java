@@ -3,6 +3,8 @@ package org.zerock.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.zerock.domain.MemberVO;
 import org.zerock.service.MemberService;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -24,6 +27,10 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class MemberController {
 	
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder pwencoder;
+	
+	@Setter(onMethod_ =@Autowired)
 	private MemberService service;
 	
 	
@@ -37,38 +44,31 @@ public class MemberController {
 	public void insertMem() {
 		log.info("insert");
 	}
+	
+	
+	/*@ResponseBody
+	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
+	public int checkId(@RequestParam("userid") String userid) throws Exception {
+	    int result = service.checkId(userid);
+	    return result;
+	}*/
 	@PostMapping("/insert")
-	public String insertMem(MemberVO member, 
-			@RequestParam("userid") String userid,
-			@RequestParam("name") String name,
-			@RequestParam("userpw") String userpw,
-			@RequestParam("gender") String gender,
-			@RequestParam("phone") String phone,
-			@RequestParam("birth") String birth,
-			@RequestParam("address") String address,
-			@RequestParam("email") String email,
-			
-	RedirectAttributes rttr) {
-			log.info("INSERT+++++++++++++++++");	
-			member.setName(userid);
-			member.setName(name);
-			member.setName(userpw);
-			member.setName(gender);
-			member.setName(phone);
-			member.setName(birth);
-			member.setAddress(address);
-			member.setName(email);
+	public String insertMem(MemberVO member, RedirectAttributes rttr) {
+			log.info("INSERT+++++++++++++++++" + member);
+			//MemberVO insertMember = new MemberVO();
+			member.setUserpw(pwencoder.encode(member.getUserpw()));
+			log.info(member);
 		service.insertMem(member);
 		
 		log.info("insertMember" + member);
 		rttr.addFlashAttribute("result", member.getUserid());
-		return "redirect:/main/login";
+		return "redirect:/main/home";
 	}
 	
 	
-	@GetMapping("/get")
+	@GetMapping("/mypage")
 	public void getMem(@RequestParam("userid") String userid, Model model) {
-		log.info("/get");
+		log.info("/mypage");
 		model.addAttribute("member", service.getMem(userid));
 	}
 	
@@ -123,12 +123,7 @@ public class MemberController {
 	 */
 	
 	
-	@ResponseBody
-	@RequestMapping(value="/checkId", method = RequestMethod.POST)
-	public int idChk(String member) throws Exception {
-		int result = service.checkId(member);
-		return result;
-	}
+
 	
 }	
 

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %> 
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../resources/css/footerStyles.css" rel="stylesheet" />
+<link href="../resources/css/footerstyles.css" rel="stylesheet" />
 <!-- header / footer js-->
 <script src="../resources/js/scripts.js"></script>
+		</div>
 		<!-- Footer-->
         <footer class="bg-light py-3 fixed-bottom">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>

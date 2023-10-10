@@ -25,42 +25,9 @@ public class MemberTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
+	
 	/*
-	// �궗�슜�옄 �깮�꽦 _ id/pw/name
-	@Test
-	public void testInsertMember() {
-		String sql = "insert into tbl_member(userid, userpw, username) values (?,?,?)";
-		
-		for(int i=0; i<100; i++) {
-			Connection con = null; 
-			PreparedStatement pstmt = null;
-			try {
-				con = ds.getConnection();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(2, pwencoder.encode("pw"+i));
-				
-				if(i<80) {					
-					pstmt.setString(1, "user"+i);
-					pstmt.setString(3, "�씪諛섏궗�슜�옄"+i);
-				} else if(i<90) {
-					pstmt.setString(1, "manager"+i);
-					pstmt.setString(3, "�슫�쁺�옄"+i);
-				} else {
-					pstmt.setString(1, "admin"+i);
-					pstmt.setString(3, "愿�由ъ옄"+i);
-				}				
-				pstmt.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if(pstmt != null) { try{pstmt.close();} catch(Exception e){}}
-				if(con != null) { try{con.close();} catch(Exception e){}}
-			}
-		}
-	}
-	*/
-	/*
-	// id蹂� 沅뚰븳 遺��뿬
+	// id癰귨옙 亦낅슦釉� �겫占쏙옙肉�
 	@Test
 	public void testInsertMember() {
 		String sql = "insert into tbl_member_auth(userid, auth) values (?,?)";
@@ -112,6 +79,27 @@ public class MemberTests {
 				pstmt.setString(6, "청주시 금천동");
 				pstmt.setString(7, "3");
 				pstmt.setString(8, "yoga@gmail.com");
+				
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt != null) { try{pstmt.close();} catch(Exception e){}}
+				if(con != null) { try{con.close();} catch(Exception e){}}
+			}
+		
+	}
+	@Test
+	public void testupdateMember() {
+		String sql = "UPDATE member SET userpw = ? WHERE userid = ?";
+		
+			Connection con = null; 
+			PreparedStatement pstmt = null;
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pwencoder.encode("yoga"));
+				pstmt.setString(2, "admin");									
 				
 				pstmt.executeUpdate();
 			} catch (Exception e) {

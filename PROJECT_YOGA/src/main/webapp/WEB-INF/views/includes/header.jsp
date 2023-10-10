@@ -19,27 +19,24 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../resources/css/styles.css" rel="stylesheet" />
-    
-    	<!-- Bootstrap Core CSS -->
-		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<!-- MetisMenu CSS -->
+        <link href="../resources/css/pageStyle.css" rel="stylesheet" />
+        <link href="../resources/css/footerstyles.css" rel="stylesheet" />
+        <link href="../resources/css/navstyletest.css" rel="stylesheet" />
+    	 
+    	<!-- Bootstrap Core CSS (BookCSS CORE/Menu/DB/DB-response/Custom CSS/Custom Font -->
+		<!-- <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-		<!-- DataTables CSS -->
 		<link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-		<!-- DataTables Responsive CSS -->
 		<link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-		<!-- Custom CSS -->
 		<link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
-		<!-- Custom Fonts -->
-		<link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<!-- Project CSS -->
-		<link href="/resources/css/footerstyles.css" rel="stylesheet" type="text/css">
+		<link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+				
     </head>
-    
-    <body id="page-top">
+<!--     <body id="page-top">     -->
+    <body>
          <!-- 비회원/미로그인상태 Navigation-->
       <sec:authorize access="isAnonymous()">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -57,7 +54,7 @@
       </sec:authorize>
       <!-- 회원 Navigation-->
       <sec:authorize access="isAuthenticated()">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">        
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -74,6 +71,7 @@
             </div>
         </nav>  
       </sec:authorize>
+      
       <!-- 회원등급 : 일반회원, 강사 Navigation-->
       <%-- <sec:authorize access="hasAnyRole('MEMBER','TUTOR')">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">

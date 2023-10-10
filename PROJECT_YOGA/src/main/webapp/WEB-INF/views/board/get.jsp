@@ -37,11 +37,37 @@
 			.bigPicture{
 				position: relative;
 				display: flex;
-				justify-content: center;
-				align-items: center; 
+				 align-items: stretch; /* 세로 방향으로 확장시킵니다 (높이를 부모와 동일하게 유지합니다) */
+   				 justify-content: space-between;
 			}			
 			.bigPicture img{
 				width: 600px;
+			}
+			
+			.modalModBtn{
+			border: none; margin-right : 10px;  float:left;
+			}
+			
+			.reply {
+			    display: flex;
+			    align-items: center; /* 세로 중앙 정렬 */
+			}
+			
+			#replyInput {
+			    flex: 1; /* 남은 공간을 모두 채웁니다 */
+			    margin-right: 10px;
+			    
+			}
+			#replyInput,input{
+			border: none; /* 테두리 없애기 */
+			    outline: none; /* 아웃라인 없애기 */
+			    resize: none; /* 크기 조절 비활성화 */
+			}
+			#addReplyBtn {
+			    flex: 0 0 auto; /* 고정된 너비를 가지도록 설정 (자동으로 크기가 조정되지 않음) */
+			}
+			#replyer{
+				margin-right : 10px;
 			}
 		</style>
 		
@@ -129,13 +155,13 @@
 						<sec:authentication property="principal" var="pinfo"/>
 						<sec:authorize access="isAuthenticated()">
 						<div class="reply">
-							<div class="reply-input"><input readonly="readonly"  id="replyer" name= "replyer" value="${pinfo.username}"></div>
-							<div class="reply-input"><textarea type="text" id="replyInput" name="reply"></textarea>
-								<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New</button>
+							<!-- <div class="reply-input"> --><input readonly="readonly"  id="replyer" name= "replyer" value="${pinfo.username}" size="8"><!-- </div> -->
+							<textarea  id="replyInput" name="reply"></textarea>
+								<button id='addReplyBtn' class='btn'>New</button>
 							</div>
 							
-						</div>	
 						</sec:authorize>
+					</div>	
 					</div>					
 					<div class="panel-body">
 						<ul class="chat">
@@ -208,15 +234,15 @@
 							var buttons = '';
 							console.log(list[i].replyer + " )" +replyer);
 					        if (list[i].replyer === replyer) {
-					            buttons += '<button data-rno="' + list[i].rno + '" type="button" class="btn btn-warning modalModBtn">Modify</button>';
-					            buttons += '<button id="modalRemoveBtn" data-rno="' + list[i].rno + '" type="button" class="btn btn-danger modalModBtn">Remove</button>';
+					            buttons += '<button id="modalModBtn" data-rno="' + list[i].rno + '" type="button" class="modalModBtn">Modify</button>';
+					            buttons += '<button id="modalRemoveBtn" data-rno="' + list[i].rno + '" type="button" class="modalModBtn">Remove</button>';
 					        } 
 							str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";							
 							str += "	<div><div class='header'><strong class='primary-font'>["+list[i].rno+"] "+list[i].replyer+"</strong>";
 							str += "		<small class='pull-right text-muted'>"+replyService.displaytime(list[i].replyDate)+"</small></div>";
 							str += "		</div><div class='replyContent'>"+list[i].reply;
-							str += "<sec:authorize access='isAuthenticated()'>"+buttons;
-			    	  	    str += "</sec:authorize>"+"</div>"+"</li>";
+							str += "</div><sec:authorize access='isAuthenticated()'>"+buttons;
+			    	  	    str += "</sec:authorize>"+""+"</li>";
 						}
 						replyUL.html(str);
 						showReplyPage(replyCnt);
@@ -261,12 +287,13 @@
 
 				
 				// 댓글 수정 버튼 클릭 시
-			    $(".chat").on("click", ".modalModBtn", function(e) {
+			    $(".chat").on("click", "#modalModBtn", function(e) {
 			        e.preventDefault();
+			        //console.log("clickclick");
 			        var replyContent = $(this).siblings(".replyContent");
 			        var rno = $(this).data("rno");
 			        var originalReply = replyContent.text();
-			        console.log(originalReply);
+			        console.log("기본 댓글"+originalReply);
 			        replyContent.html("<input type='text' class='form-control replyInput' value='" + originalReply + "' /><button id='modalRegisterBtn' type='button' class='btn btn-primary'>Register</button>");
 
 			        // 등록 버튼 클릭 시 수정된 댓글을 서버로 전송
