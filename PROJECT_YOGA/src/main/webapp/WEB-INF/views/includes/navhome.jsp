@@ -53,6 +53,7 @@
                        	<li class="nav-item"><a class="nav-link" href="/loginout/logout">LOGOUT</a></li>
                        	<!-- 아직 마이페이지 경로가 없기때문에 임시로 insert로 매핑 -->
                        	<li class="nav-item"><a class="nav-link" href="/member/insert">임시MYPAGE</a></li>
+                       	<li class="nav-item"><a class="nav-link" href="/member/list">LIST</a></li>
                         <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
                         <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
                         <li class="nav-item"><a class="nav-link" href="/main/lesson">LESSON</a></li>                    

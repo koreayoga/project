@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.MemberVO;
 import org.zerock.mapper.MemberMapper;
 
@@ -58,4 +59,11 @@ public int checkId(String userid) {
 
 }
 
+@Override
+public boolean updateAdmin(@RequestParam("userid") String userid, @RequestParam("auth") int auth) {
+	log.info("updateMember......................"+ userid + auth);
+	return mapper.updateAdmin(userid, auth) == 1;
 }
+
+}
+

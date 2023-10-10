@@ -66,6 +66,14 @@ public class MemberMapperTests {
 	log.info("updateMember......................" + mem);
 	}
 
+	@Test
+	public void testUpdateAdmin() {
+	
+	int mem = mapper.updateAdmin("user01",2);
+	log.info("updateMember......................" + mem);
+	}
+
+	
 
 	@Test
 	public void testCheckId() {
