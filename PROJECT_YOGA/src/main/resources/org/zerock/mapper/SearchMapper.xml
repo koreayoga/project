@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="searchId" resultType="org.zerock.domain.MemberVO">
-		select userid from users where name=#{name} and email=#{email} 
+		select userid from member where name=#{name} and email=#{email} 
 	</select>
 	
  	<!-- <select id="resetPw" resultType="org.zerock.domain.MemberVO">

@@ -32,7 +32,7 @@
 		<div>
 		<h3>Search ID</h3>		
 		</div>		
-			<form role="form" method="post" action="/loginout/searchID2" name="find">				
+			<form role="form" method="post" action="/loginout/searchID" name="find">				
 				<!-- 필요 정보입력 -->
 				<div>   				
 					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" required autofocus>	<p/>
