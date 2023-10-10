@@ -46,6 +46,8 @@
 				<label>찾으시는 아이디는' ${id}'입니다.</label>
 				<div>
 					<input class="btn btn-lg btn-secondary btn-block text-uppercase" type="button" value="OK" onclick="close()">
+					<!-- 비밀번호 암호화 -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</div>
 			</c:if>			
 		</div>

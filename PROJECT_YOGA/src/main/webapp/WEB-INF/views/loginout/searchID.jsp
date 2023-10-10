@@ -32,7 +32,7 @@
 		<div>
 		<h3>Search ID</h3>		
 		</div>		
-			<form role="form" method="post" action="searchID2.jsp" name="find">				
+			<form role="form" method="post" action="/loginout/searchID2" name="find">				
 				<!-- 필요 정보입력 -->
 				<div>   				
 					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" required autofocus>	<p/>
@@ -41,6 +41,8 @@
 				<!--아이디찾기버튼 -->
 				<div>
 					<input type="submit" class="btn btn-third btn-m" value="Search">
+					<!-- 비밀번호 암호화 -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</div>
 			</form>
 		</div>		
