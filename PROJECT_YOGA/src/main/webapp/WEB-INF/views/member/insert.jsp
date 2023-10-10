@@ -5,11 +5,11 @@
 <head>
 <%@include file="../includes/header.jsp"%>
 <title>MEMBER</title>
-<!-- <link href="../resources/css/pageStyle.css" rel="stylesheet" /> -->
+<link href="../resources/css/insert.css" rel="stylesheet" />
 
 </head>
 <body>
-	<div class="test">
+	<div class="testBox">
 		<form name="regForm" method="post" action="/member/insert">
 			<table style="width: 500px">
 				<tr>
@@ -54,8 +54,7 @@
 				
 				<tr>
 					<td>개인정보 및 약관동의서</td>
-					<td><textarea>ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
-						ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</textarea></td>
+					<td><textarea>개인정보 이전에 동의합니다.</textarea></td>
 				</tr>
 				<tr>
 					<td><input type="hidden"></td>
@@ -80,7 +79,7 @@ function checkId() {
 		alert("아이디를 입력하세요.");
 		return;
 	}else if(!reg_id.test($("#userid").val())){
-		alert("4~6자의 영문자로 시작하는 아이디를 입력하세요.");
+		alert("6~8자의 영문자로 시작하는 아이디를 입력하세요.");
 		return;
 	}
 	    $.ajax({
