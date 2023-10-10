@@ -39,12 +39,11 @@
 							<td><c:out value="${board.bno}" /></td>
 							<td>
 								<%-- <a href='/board/get?bno=<c:out value="${board.bno}"/>'>
-									<c:out value="${board.title}" />
-								</a> --%> <a class='move' href='<c:out value="${board.bno}"/>'>
-									<c:out value="${board.title}" /> <b>[<c:out
-											value="${board.replyCnt}" />]
-								</b>
-							</a>
+									<c:out value="${board.title}" /></a> --%> 
+									<a class='move' href='<c:out value="${board.bno}"/>'>
+									<c:out value="${board.title}" /> 
+									<b>[<c:out value="${board.replyCnt}" />]</b>
+								</a>
 							</td>
 							<td><c:out value="${board.userid}" /></td>
 							<td><c:out value="${board.hit}" /></td>

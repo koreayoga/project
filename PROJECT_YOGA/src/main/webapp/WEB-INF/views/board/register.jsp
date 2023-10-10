@@ -24,7 +24,8 @@
 						value="${_csrf.token}">
 
 					<div class="form-group">
-						<label>작성자</label> <input class="form-control" name="userid"
+						<label>작성자</label> 
+						<input class="form-control" name="userid"
 							value='<sec:authentication property="principal.username"/>'
 							readonly="readonly">
 					</div>
@@ -58,7 +59,6 @@
 						<textarea class="form-control" rows="10" name="content"
 							placeholder="내용을 입력하세요."></textarea>
 					</div>
-
 
 					<!-- Button -->
 					<button type="submit" class="btn btn-default">Submit Button</button>
