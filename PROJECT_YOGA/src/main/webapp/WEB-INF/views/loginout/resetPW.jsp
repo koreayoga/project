@@ -75,16 +75,16 @@
 		<div>
 		<h3>Reset PW</h3>		
 		</div>		
-			<form role="form" action="/loginout/resetPW" method="post" name="resetPW">				
+			<form role="form" action="/loginout/resetPW" method="post" id="search">				
 				<!-- 로그인 정보입력 -->
 				<div>
-					<input class="searchInput" id="id" name="id" placeholder="아이디를 적어주세요" required autofocus>	<p/>   				
-					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" required>
-					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요" required>
+					<input class="searchInput" id="id" name="id" placeholder="아이디를 적어주세요" autofocus>	<p/>   				
+					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요">
+					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요">
 				</div>
 				<!-- 로그인 버튼 생성 -->
 				<div>
-					<input type="submit" class="btn btn-third btn-m" value="Reset">
+					<a href="javascript:void(0)" onclick="fnSubmit(); return false;" class="btn btn-third btn-m">Search</a>
 					<!-- 비밀번호 암호화 -->
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</div>								

@@ -72,8 +72,8 @@
 			<form role="form" method="post" action="/loginout/searchID" id="search">
 				<!-- 필요 정보입력 -->
 				<div>   				
-					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" required autofocus>	<p/>
-					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요" required>
+					<input class="searchInput" id="name" name="name" placeholder="이름을 적어주세요" autofocus>	<p/>
+					<input class="searchInput" type="email" id="email" name="email" placeholder="이메일주소를 입력해주세요">
 				</div>
 				<!--아이디찾기버튼 -->
 				<div>
