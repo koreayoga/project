@@ -36,7 +36,7 @@
                        	<li class="nav-item"><a class="nav-link" href="/member/insert">MEMBER</a></li>
                        	<li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
                         <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/main/lesson">LESSON</a></li>                    
+                        <li class="nav-item"><a class="nav-link" href="/Lesson/lesson">LESSON</a></li>                    
                     </ul>
                 </div>
             </div>
