@@ -24,7 +24,7 @@
     <!-- 여기에 개인정보 수정 폼 등을 추가할 수 있습니다. -->
 </body>
 </html>
-<%-- 
+ 
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -44,4 +44,4 @@
         </div>
     </div>
 </body>
-</html> --%>
+</html>
