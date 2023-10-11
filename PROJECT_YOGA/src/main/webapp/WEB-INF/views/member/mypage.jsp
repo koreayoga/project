@@ -1,71 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
-<%@ include file="../includes/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>개인정보 수정 페이지</title>
+</head>
+<body>
 
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">mypage</h1>
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading"> 00 <c:out value="${member.userid}"/></div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">						
-						
-							
-				
-		<form name="myForm" method="get" action="member/get">
-			<table style="width: 500px">
-				<tr>
-				    <td>아이디</td>
-				    <td>
-				    <input id="userid" name="userid" value='<c:out value="${member.userid}"/>' readonly="readonly"> </td>
-				</tr>
-				<tr>
-				    <td>이름</td>
-				    <td><input id="name" name="name" value='<c:out value="${member.name}"/>' readonly="readonly"> </td>
-				</tr>
-				<tr>
-					<td>연락처</td>
-					<td><input id="phone" name="phone" value='<c:out value="${member.phone}"/>' readonly="readonly"> </td>
-				</tr>
-				<tr>
-					<td>생년월일</td>
-					<td><input type="date" id="birth" name="birth" value='<c:out value="${member.birth}"/>' readonly="readonly"> </td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td><input id="address" name="address" value='<c:out value="${member.address}"/>' readonly="readonly"> </td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input type="email" id="email" name="email" value='<c:out value="${member.email}"/>' readonly="readonly"> </td>
-				</tr>	
-
-				<tr>
-				<td> <input type="button" value="내 정보수정" > </td>
-				<td> <input type="reset" value="회원 탈퇴 "> </td>
-				</tr>
-			</table>
-		</form>
-	
-							
-					</div>
-					<!-- /end panel-body -->
-				</div>
-				<!-- /end panel -->
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
-		
-		
-	
-<%@ include file="../includes/footer.jsp"%>
+<h1> 개인정보 수정 홈페이지 </h1>
+<%--     <%
+        // 스프링 시큐리티의 Principal 객체를 얻어옵니다.
+        org.springframework.security.core.Authentication auth =
+            org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+        
+        // Principal 객체에서 사용자 아이디를 추출합니다.
+        String userId = auth.getName();
+    %>
+    
+    <!-- 사용자 아이디와 메시지를 출력합니다. -->
+    <h1><%= userId %>님의 개인정보 수정 페이지</h1> --%>
+    
+    <!-- 여기에 개인정보 수정 폼 등을 추가할 수 있습니다. -->
+</body>
+</html>
+<%-- 
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">User Profile</div>
+                <div class="panel-body">
+                    <table style="width: 500px">
+                        <tr>
+                            <td>아이디</td>
+                            <td>
+                                <input id="userid" name="userid" value='<c:out value="${member.userid}"/>' readonly="readonly">
+                            </td>
+                        </tr>
+                        <!-- Add more fields as needed -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> --%>

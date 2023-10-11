@@ -1,9 +1,11 @@
 package org.zerock.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +46,10 @@ public class MemberController {
 	public void insertMem() {
 		log.info("insert");
 	}
+ 
+	
+	
+
 	
 	
 	/*@ResponseBody
@@ -66,11 +72,28 @@ public class MemberController {
 	}
 	
 	
-	@GetMapping("/mypage")
-	public void getMem(@RequestParam("userid") String userid, Model model) {
-		log.info("/mypage");
-		model.addAttribute("member", service.getMem(userid));
-	}
+	
+	/*
+	 * @GetMapping("/userID")
+	 * 
+	 * @ResponseBody public String currentUserName(Principal principal) { return
+	 * principal.getName(); }
+	 * 
+	 * @GetMapping("/mypage")
+	 */
+	 @GetMapping("/mypage")
+    public String getMem(Model model, Authentication authentication) {
+        // Authentication 객체를 사용하여 Principal을 얻어옵니다.
+        String userId = authentication.getName();
+
+        // userId를 사용하여 필요한 작업을 수행합니다.
+        // 예: service.getMem(userId)
+
+        log.info("/mypage");
+        model.addAttribute("member", service.getMem(userId));
+
+        return "mypage"; // 반환하는 문자열은 해당 JSP 뷰 이름입니다.
+    }
 	
 
 	@PostMapping("/update")
