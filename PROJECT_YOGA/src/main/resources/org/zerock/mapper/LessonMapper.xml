@@ -11,6 +11,10 @@
 	<select id="getLessonList" resultType="org.zerock.domain.LessonVO">
 	select * 
 		from lesson where userid = #{userid} 
+	</select>
+	<select id="getLessonCodeList" resultType="org.zerock.domain.LessonVO">
+	select * 
+		from lesson where ccode = #{ccode} 
 	</select>	
 	<insert id="lessonInsert">
 	
