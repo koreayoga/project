@@ -1,7 +1,9 @@
 package org.zerock.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,6 +77,15 @@ public class MemberController {
 	 * 
 	 * @GetMapping("/mypage")
 	 */
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/mypage")
+    public void getMem(Principal principal, Model model) {        
+        log.info("access mypage-----------");
+        String userid = principal.getName();
+        MemberVO vo = service.getMem(userid);
+        model.addAttribute("user", vo);
+    }
+/*
 	@GetMapping("/mypage")
     public String getMem(Model model, Authentication authentication) {
         // Authentication 객체를 사용하여 Principal을 얻어옵니다.
@@ -88,7 +99,7 @@ public class MemberController {
 
         return "/member/mypage"; // 반환하는 문자열은 해당 JSP 뷰 이름입니다.
     }
-	
+*/	
 
 	@PostMapping("/update")
 	public String updateMem(MemberVO member, RedirectAttributes rttr) {
