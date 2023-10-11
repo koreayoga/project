@@ -20,7 +20,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
-
+	/*
+	@Setter(onMethod_ = @Autowired)
+	private BoardMapper bmap;
+	
+	@Setter(onMethod_ = @Autowired)
+	private BoardAttachMapper BAmap;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyMapper Rmap;
+	
+	@Setter(onMethod_ = @Autowired)
+	private LessonMapper Lmap;
+	*/
+	
 	
 @Override	
 public List<MemberVO> getListMem(){
@@ -45,7 +58,16 @@ public boolean deleteMem(String userid) {
 	log.info("deleteMember......................"+ userid);
 	return mapper.deleteMem(userid) == 1;
 }
-
+/*
+@Transactional
+@Override
+public void quitMem(MemberVO vo){
+	mapper.deleteMem(vo.getUserid()); // 회원삭제
+	 //게시글삭제
+	  //댓글삭제
+	  //
+}
+*/
 @Override
 public int updateMem(MemberVO vo) {
 	log.info("updateMember......................"+ vo);

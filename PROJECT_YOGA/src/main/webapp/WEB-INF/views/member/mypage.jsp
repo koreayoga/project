@@ -16,7 +16,17 @@
 				    <td>이름</td>				<td>${user.name}</td>
 				</tr>							
 				<tr>						
-					<td>성별</td>				<td>${user.gender}</td>					
+					<td>성별</td>				<td>${user.gender}</td>			
+					<%-- <td>
+						<c:choose>							
+							<c:when test='${user.gender eq "F"}'>
+								여자
+							</c:when>
+							<c:otherwise>
+								남자
+							</c:otherwise>
+						</c:choose>	
+					</td> --%>					
 				</tr>
 				<tr>
 					<td>연락처</td>			<td>${user.phone}</td>
