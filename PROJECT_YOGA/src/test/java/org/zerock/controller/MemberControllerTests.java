@@ -70,7 +70,7 @@ public class MemberControllerTests {
 	@Test
 	public void testGetMem() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/member/get")
-				.param("userid","test10"))
+				.param("userid","a123456"))
 				.andReturn()
 				.getModelAndView().getModelMap());
 	}
