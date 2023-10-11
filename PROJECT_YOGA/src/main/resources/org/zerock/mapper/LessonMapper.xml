@@ -8,13 +8,18 @@
 	select * 
 		from course 
 	</select>
-		
-	<!-- <insert id="insertMem">
+	<select id="getLessonList" resultType="org.zerock.domain.LessonVO">
+	select * 
+		from lesson where userid = #{userid} 
+	</select>	
+	<insert id="lessonInsert">
 	
-	insert into member (userid, userpw, name, gender, phone, birth, address, email)
-	values (#{userid},#{userpw},#{name},#{gender},#{phone},#{birth},#{address},#{email})
+	insert into lesson (userid, ccode)
+	values (#{userid},#{ccode})
 	</insert>	
 	
+	
+	<!--  
 	<select id="getMem" resultType="org.zerock.domain.MemberVO">
 	select userid, userpw, name, gender, phone, birth, address, email
 	from member where userid=#{userid}
