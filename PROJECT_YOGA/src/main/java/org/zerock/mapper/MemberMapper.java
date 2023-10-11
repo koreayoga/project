@@ -12,7 +12,7 @@ public interface MemberMapper {
 	public void insertMem (MemberVO member);
 	public MemberVO getMem (String userid);
 	public int deleteMem (String userid);
-	public int updateMem (MemberVO member);
+	public int updateMem (MemberVO vo);
 	public int checkId (String userid);
 	public int updateAdmin (@RequestParam("userid") String userid, @RequestParam("auth") int auth);
 }

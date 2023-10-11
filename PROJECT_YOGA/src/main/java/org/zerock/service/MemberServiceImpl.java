@@ -47,9 +47,9 @@ public boolean deleteMem(String userid) {
 }
 
 @Override
-public boolean updateMem(MemberVO member) {
-	log.info("updateMember......................"+ member);
-	return mapper.updateMem(member) == 1;
+public int updateMem(MemberVO vo) {
+	log.info("updateMember......................"+ vo);
+	return mapper.updateMem(vo);
 }
 
 @Override
