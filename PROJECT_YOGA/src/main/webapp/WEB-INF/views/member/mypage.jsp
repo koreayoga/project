@@ -1,12 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>개인정보 수정 페이지</title>
-</head>
-<body>
+<%@include file="../includes/header.jsp"%>
+<title>MYPAGE</title>
+
 
 <h1> 개인정보 수정 홈페이지 </h1>
 <%--     <%
@@ -22,8 +17,8 @@
     <h1><%= userId %>님의 개인정보 수정 페이지</h1> --%>
     
     <!-- 여기에 개인정보 수정 폼 등을 추가할 수 있습니다. -->
-</body>
-</html>
+
+
 <%-- 
     <div class="row">
         <div class="col-lg-12">
@@ -45,3 +40,4 @@
     </div>
 </body>
 </html> --%>
+<%@include file="../includes/footer.jsp"%>
