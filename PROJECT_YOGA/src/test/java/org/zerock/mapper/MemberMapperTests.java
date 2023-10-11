@@ -44,7 +44,7 @@ public class MemberMapperTests {
 	
 	@Test
 	public void testGetMem() {
-	MemberVO member = mapper.getMem("user");
+	MemberVO member = mapper.getMem("a123456");
 	log.info(member);
 	}
 
