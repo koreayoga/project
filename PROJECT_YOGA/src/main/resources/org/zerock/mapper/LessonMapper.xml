@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.ofg//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.LessonMapper">
+	
+	<select id="getList" resultType="org.zerock.domain.CourseVO">
+	select * 
+		from course 
+	</select>
+	<select id="getLessonList" resultType="org.zerock.domain.LessonVO">
+	select * 
+		from lesson where userid = #{userid} 
+	</select>
+	<select id="getLessonCodeList" resultType="org.zerock.domain.LessonVO">
+	select * 
+		from lesson where ccode = #{ccode} 
+	</select>	
+	<insert id="lessonInsert">
+	
+	insert into lesson (userid, ccode)
+	values (#{userid},#{ccode})
+	</insert>	
+	<delete id="deleteLesson">
+	delete from lesson where lnum=#{lnum}
+	</delete>
+
+</mapper>
