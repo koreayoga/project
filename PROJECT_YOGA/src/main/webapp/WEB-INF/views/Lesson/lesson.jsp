@@ -8,7 +8,8 @@
 <style type="text/css">
 
 #lessonFullContainer{
-	position: absolute; margin-top : 100px; margin-left : 50px;
+	position: absolute; margin-top : 100px; margin-left : 30%; padding-bottom : 100px;
+    
 }
 
 .lessonmiddelContainer{
