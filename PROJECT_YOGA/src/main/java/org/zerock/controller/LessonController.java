@@ -12,11 +12,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.domain.CourseVO;
 import org.zerock.domain.LessonVO;
 import org.zerock.service.LessonService;
 import org.zerock.service.MemberService;
+
+import com.mchange.v2.cfg.PropertiesConfigSource.Parse;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -63,6 +66,12 @@ public class LessonController {
 		}else {
 			return ResponseEntity.ok("Fail");
 		}
+	}
+	
+	@PostMapping("/deleteLesson")
+	public String DeleteLesson(String input) {
+		Long lnum = Long.parseLong(input);
+		if(service.deleteLesson(lnum)) return "redirect:/admin/lessonList"; else return "Fail";
 	}
 	
 	

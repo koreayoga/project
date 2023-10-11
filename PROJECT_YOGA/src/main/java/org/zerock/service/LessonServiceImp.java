@@ -38,5 +38,11 @@ public class LessonServiceImp implements LessonService{
 		// TODO Auto-generated method stub
 		return mapper.getLessonCodeList(ccode);
 	}
+
+	@Override
+	public boolean deleteLesson(Long lnum) {
+		
+		return mapper.deleteLesson(lnum);
+	}
 	
 }

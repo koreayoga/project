@@ -13,4 +13,6 @@ public interface LessonService {
 	public int lessonInsert(String ccode, String userid);
 
 	public List<LessonVO> getLessonCodeList(String ccode);
+
+	public boolean deleteLesson(Long lnum);
 }
