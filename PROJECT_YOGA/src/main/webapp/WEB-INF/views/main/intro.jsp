@@ -34,91 +34,94 @@
 			margin-bottom: 0;
 			font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 		}
-	</style>
+	</style>	
 </head>
 
 	<h1>시간표</h1>
 	<hr class="divider-sh">
-	<table>
+	<table  style="width:60%; height: 500px">
 		<tr>
-			<th>시간</th>	<th>강의실</th><th>강사</th><th>월</th>	<th>화</th><th>수</th><th>목</th>	<th>금</th>
+			<th style="width:15%">시간</th><th style="width:10%">강의실</th><th style="width:15%">강의명</th><th style="width:10%">강사</th> <th style="width:10%">월</th> <th style="width:10%">화</th> <th style="width:10%">수</th> <th style="width:10%">목</th> <th style="width:10%">금</th>
 		<tr>
 		<tr>
-			<td rowspan="2">10시~11시</td><td>A</td><td>김**</td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td>
+			<td rowspan="2">10시~11시</td>
+			<td>A</td><td>아쉬탕가_초급</td><td>김**</td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td>
 		</tr>
 		<tr>
-			<td>B</td><td>이**</td><td></td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ; color: rgb(255, 255, 255);"></td><td></td>
+			<td>B</td><td>아헹가</td><td>이**</td><td></td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ; color: rgb(255, 255, 255);"></td><td></td>
 		</tr>
 		<tr>
-			<td rowspan="2">15시~16시</td><td>A</td><td>김**</td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td>
+			<td rowspan="2">15시~16시</td>
+			<td>A</td><td>아쉬탕가_중급</td><td>김**</td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td>
 		</tr>
 		<tr>
-			<td>B</td><td>박**</td><td></td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ; color: rgb(255, 255, 255);"></td><td></td>
+			<td>B</td><td>비크람</td><td>박**</td><td></td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ; color: rgb(255, 255, 255);"></td><td></td>
 		</tr>
 		<tr>
-			<td rowspan="2">20시~21시</td><td>A</td><td>이**</td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td>
+			<td rowspan="2">20시~21시</td>
+			<td>A</td><td>빈야샤</td><td>이**</td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ;"></td>
 		</tr>
 		<tr>
-			<td>B</td><td>박**</td><td></td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ; color: rgb(255, 255, 255);"></td><td></td>
+			<td>B</td><td>플라잉요가</td><td>박**</td><td></td>	<td style="background-color: #edf1d6 ;"></td><td></td><td style="background-color: #edf1d6 ; color: rgb(255, 255, 255);"></td><td></td>
 		</tr>			
 	</table>
 	
-	<h1>강사/클래스 소개</h1>
+	<h1>강의 소개</h1>
 	<hr class="divider-lg">		
-       <div id="portfolio">
+       <div id="portfolio"  style="margin-top: 50px">
            <div class="container-fluid p-0">
-               <div class="row g-0">
+               <div class="row g-0">                  
                    <div class="col-lg-4 col-sm-6">
-                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/yoga7.jpg" title="Project Name">
-                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/yoga7.jpg" alt="..." />
+                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/class1.JPG" title="[A스튜디오] 월수금 10~11시 김OO 아쉬탕가 초급반">
+                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/class1.JPG" alt="..." />
                            <div class="portfolio-box-caption">
                                <div class="project-category text-sig-brownD-50">Click me!</div>
-                               <div class="project-name">Class A</div>
+                               <div class="project-name">Class_Ashtanga A</div>
                            </div>
                        </a>
                    </div>
                    <div class="col-lg-4 col-sm-6">
-                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/yoga1.jpg" title="Project Name">
-                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/yoga1.jpg" alt="..." />
+                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/class3.JPG" title="[A스튜디오] 월수금 15~16시 김OO 아쉬탕가 중급반">
+                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/class3.JPG" alt="..." />
                            <div class="portfolio-box-caption">
                                <div class="project-category text-sig-brownD-50">Click me!</div>
-                               <div class="project-name">Class A</div>
+                               <div class="project-name">Class_Ashtanga B</div>
                            </div>
                        </a>
                    </div>
                    <div class="col-lg-4 col-sm-6">
-                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/yoga2.jpg" title="Project Name">
-                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/yoga2.jpg" alt="..." />
+                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/class5.JPG" title="[A스튜디오] 월수금 20~21시 이OO 빈야샤">
+                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/class5.JPG" alt="..." />
                            <div class="portfolio-box-caption">
                                <div class="project-category text-sig-brownD-50">Click me!</div>
-                               <div class="project-name">Class A</div>
+                               <div class="project-name">Class_Vinyasa</div>
+                           </div>
+                       </a>
+                   </div>
+                    <div class="col-lg-4 col-sm-6">
+                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/class2.jpg" title="[B스튜디오] 화목 10~11시 이OO 아헹가">
+                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/class2.jpg" alt="..." />
+                           <div class="portfolio-box-caption">
+                               <div class="project-category text-sig-brownD-50">Click me!</div>
+                               <div class="project-name">Class_Iyengar</div>
                            </div>
                        </a>
                    </div>
                    <div class="col-lg-4 col-sm-6">
-                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/yoga3.jpg" title="Project Name">
-                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/yoga3.jpg" alt="..." />
+                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/class4.JPG" title="[B스튜디오] 화목 15~16시 박OO 비크람(핫요가)">
+                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/class4.JPG" alt="..." />
                            <div class="portfolio-box-caption">
                                <div class="project-category text-sig-brownD-50">Click me!</div>
-                               <div class="project-name">Class B</div>
+                               <div class="project-name">Class_Bikram</div>
                            </div>
                        </a>
                    </div>
                    <div class="col-lg-4 col-sm-6">
-                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/yoga5.jpg" title="Project Name">
-                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/yoga5.jpg" alt="..." />
-                           <div class="portfolio-box-caption">
-                               <div class="project-category text-sig-brownD-50">Click me!</div>
-                               <div class="project-name">Class B</div>
-                           </div>
-                       </a>
-                   </div>
-                   <div class="col-lg-4 col-sm-6">
-                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/yoga6.jpg" title="Project Name">
-                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/yoga6.jpg" alt="..." />
+                       <a class="portfolio-box" href="../resources/assets/img/portfolio/fullsize/class6.jpg" title="[B스튜디오] 화목 20~21시 박OO 플라잉요가">
+                           <img class="img-fluid" src="../resources/assets/img/portfolio/thumbnails/class6.jpg" alt="..." />
                            <div class="portfolio-box-caption p-3">
                                <div class="project-category text-sig-brownD-50">Click me!</div>
-                               <div class="project-name">Class B</div>
+                               <div class="project-name">Class_Anti grabity</div>
                            </div>
                        </a>
                    </div>
@@ -185,6 +188,5 @@
  		   });
  		   
  		   overlay.setMap(map);	
- 		</script>
- 		
+ 		</script>		
 <%@include file="../includes/footer.jsp"%>		
