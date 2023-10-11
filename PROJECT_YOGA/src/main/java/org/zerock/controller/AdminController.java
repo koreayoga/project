@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.domain.CourseVO;
 import org.zerock.domain.LessonVO;
-import org.zerock.domain.MemberVO;
+import org.zerock.service.CourseService;
 import org.zerock.service.LessonService;
 import org.zerock.service.MemberService;
 
@@ -31,6 +31,9 @@ public class AdminController {
 	
 	@Autowired
 	private LessonService lessonService;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	@GetMapping("/list")
 	public void getListMem(Model model) {
@@ -57,5 +60,26 @@ public class AdminController {
         //model.addAttribute("list", lessonList);
         return lessonList;
     }
+	
+	@GetMapping("/course")
+	public void getListCourse(Model model) {
+		log.info("course list");
+		model.addAttribute("courseList", courseService.getList());
+	}
+	
+	@GetMapping("/ccontext")   //이게 modify
+	public void ccontext(String ccode, Model model) {
+		log.info("courseContext");
+		model.addAttribute("course", courseService.get(ccode));
+	}
+	
+	@PostMapping("/ccontext")  //이게 modify
+	public String ccontext(CourseVO course, RedirectAttributes rttr) {
+		log.info("modify : " + course);
+		if (courseService.modify(course)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/admin/course";
+	}
 	
 }
