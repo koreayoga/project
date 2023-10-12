@@ -42,8 +42,23 @@ table#info{
 	height: 800px;
 }
 
+.testBox input{
+	width:200px;
+	text-align: center;
+	color : graytext;
+	background-color: #e0e0e0; 
+}
+
 #userpw, #repw{
-	width:200px; 
+	color : black;
+	background-color: white;
+} 
+
+#address, #email{
+	width:400px;
+	text-align: center;
+	color : black;
+	background-color: white;
 }
 
 .testBox table, td, th{
