@@ -11,7 +11,7 @@
                     <div class="col-lg-8 align-self-baseline">
                         <sec:authorize access="isAuthenticated()">
 		                        <p class="text-white-75 mb-5"><sec:authentication property="principal" var="pinfo"/>
-		                        	<a style="text-decoration: none;">${pinfo.username}</a>님 환영합니다.
+		                        	<a style="text-decoration: none;"> ${user.name}</a>님 환영합니다.
 		                        </p>
                         </sec:authorize>
                         <sec:authorize access="isAnonymous()">

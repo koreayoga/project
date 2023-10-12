@@ -54,6 +54,7 @@ public class AdminController {
 	 */
 	
 	@GetMapping(value="/lessonList")
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
 	public void getLessonList(Model model) {
 		model.addAttribute("list",lessonService.getLessonCodeList("A1000"));
 	}
@@ -71,7 +72,7 @@ public class AdminController {
 		model.addAttribute("courseList", courseService.getList());
 	}
 	
-	@GetMapping("/ccontext")   //이게 modify
+	@GetMapping("/ccontext")   //�씠寃� modify
 	public void ccontext(String ccode, Model model) {
 		System.out.println("ccontext" + ccode);
 		log.info("courseContext");
@@ -79,7 +80,7 @@ public class AdminController {
 		model.addAttribute("teacher", courseService.teacher());
 	}
 	
-	@PostMapping("/ccontext")  //이게 modify
+	@PostMapping("/ccontext")  //�씠寃� modify
 	public String ccontext(CourseVO course, RedirectAttributes rttr) {
 		System.out.println("course" + course);
 		log.info("modify : " + course);

@@ -79,38 +79,91 @@ public class MemberController {
 	 */
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/mypage")
-    public void getMem(Principal principal, Model model) {        
+    public void getMem(Principal principal, Model model) {  
+		log.info("access mypage-----------");
+		String userid = principal.getName();
+		MemberVO vo = service.getMem(userid);
+		model.addAttribute("user", vo);
+		System.out.println(vo.getGender());		
+	}
+	
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/update")
+	public void updateMem(Principal principal, Model model) {        
         log.info("access mypage-----------");
         String userid = principal.getName();
         MemberVO vo = service.getMem(userid);
         model.addAttribute("user", vo);
     }
-/*
-	@GetMapping("/mypage")
-    public String getMem(Model model, Authentication authentication) {
-        // Authentication 객체를 사용하여 Principal을 얻어옵니다.
-        String userId = authentication.getName();
-
-        // userId를 사용하여 필요한 작업을 수행합니다.
-        // 예: service.getMem(userId)
-
-        log.info("/mypage");
-        model.addAttribute("member", service.getMem(userId));
-
-        return "/member/mypage"; // 반환하는 문자열은 해당 JSP 뷰 이름입니다.
-    }
-*/	
-
+	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/update")
-	public String updateMem(MemberVO member, RedirectAttributes rttr) {
-		log.info("updateMember" + member);
-		if (service.updateMem(member)) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
+	public String updateMem(MemberVO vo, Model model, RedirectAttributes rttr) {
+		vo.setUserpw(pwencoder.encode(vo.getUserpw()));
+		int result = service.updateMem(vo);		
+        if(result>0) {        	
+            rttr.addFlashAttribute("result","success");
+        }
+		return "redirect:/member/mypage";
 	}
+	/*
+	//탈퇴
+	@PreAuthorize("isAuthenticated() and principal.username = #{userid}")
+	@RequestMapping("/deleteMember.do")
+	public String deleteMember (@RequestParam("userid") String userid,
+								RedirectAttributes redirectAttr, 
+	                            SessionStatus sessionStatus) {
+	                            
+		boolean result = service.deleteMem(userid);
+
+		if(result) {
+			redirectAttr.addFlashAttribute("msg", "성공적으로 회원정보를 삭제했습니다.");
+			SecurityContextHolder.clearContext();
+		}
+		else 
+			redirectAttr.addFlashAttribute("msg", "회원정보삭제에 실패했습니다.");
+
+		return "redirect:/";
+	}
+	*/
 	
-	
+	/*
+	//탈퇴 페이지 요청
+	@GetMapping("/quit")
+	public void remove() {
+		
+	}
+	*/
+	/*
+	@PostMapping("/withdrawal")
+	public String withdrawal(@RequestBody MemberVO vo, HttpSession session) throws Exception {
+		
+		//비밀번호 맞는지 확인
+		String result = checkPw(vo.getUserpw(), session);
+		
+		if(result.equals("pwConfirmOK")) {
+			//탈퇴 시키고
+			service.deleteMem(vo);
+			
+			//로그인세션 삭제
+			Object object = session.getAttribute("login");
+			if(object != null) {
+				session.removeAttribute("login");
+				session.invalidate();
+			}
+			
+			result = "Success";
+		} else {
+			//비번 틀림
+			result ="Fail";
+		}
+		
+		return result;	
+	}
+	*/
+	//나중에 ADMINCONTROLLER로 옮길 예정
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
 	@PostMapping("/updateAdmin")
 	public String updateAdmin(@RequestParam("userid") String userid, @RequestParam("auth") int auth, RedirectAttributes rttr) {
 		log.info("updateAdmin" + userid + auth);
@@ -120,7 +173,8 @@ public class MemberController {
 		return "redirect:/member/list";
 	}
 
-	
+	//나중에 ADMINCONTROLLER로 옮길 예정
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
 	@PostMapping("/delete")
 	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
 		log.info("delete" + userid);
