@@ -31,12 +31,12 @@ public class MemberMapperTests {
 	    MemberVO member = new MemberVO();
 	    member.setUserid("test20");
 	    member.setUserpw("12345");
-	    member.setName("박씨");
-	    member.setGender('F');
+	    member.setName("諛뺤뵪");
+	    member.setGender("F");
 	    member.setPhone("02213456");
 	    Date birthDate = java.sql.Date.valueOf("1990-05-15");
 	    member.setBirth(birthDate);
-	    member.setAddress("서울");
+	    member.setAddress("�꽌�슱");
 	    member.setEmail("user01@email.com");  
 	    mapper.insertMem(member);
 	    log.info(member);
@@ -59,7 +59,7 @@ public class MemberMapperTests {
 	member.setUserid("user00");
 	member.setUserpw("up1234");
 	member.setPhone("up010000");
-	member.setAddress("up서울");
+	member.setAddress("up�꽌�슱");
 	member.setEmail("update@email.com");	
 	
 	int mem = mapper.updateMem(member);
@@ -70,7 +70,7 @@ public class MemberMapperTests {
 	public void testUpdateAdmin() {
 	MemberVO member = new MemberVO();
 	member.setUserid("user00");
-	member.setAuth(4);
+	member.setAuth("4");
 	
 	int mem = mapper.updateAdmin(member);
 	log.info("updateMember......................" + mem);
