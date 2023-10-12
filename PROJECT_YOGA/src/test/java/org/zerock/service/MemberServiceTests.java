@@ -34,7 +34,7 @@ public class MemberServiceTests {
 	member.setUserid("user05");
 	member.setUserpw("1234");
 	member.setName("김씨");
-	member.setGender('F');
+	member.setGender("F");
 	member.setPhone("010123456");
 	Date birthDate = java.sql.Date.valueOf("1990-05-15");
 	member.setBirth(birthDate);
@@ -75,7 +75,7 @@ public class MemberServiceTests {
 		if (member == null) {
 			return;
 		}
-		member.setAuth(4);
+		member.setAuth("4");
 		log.info("updateMemberADMIN..............." + service.updateAdmin(member));
 	}
 	
