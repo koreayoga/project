@@ -2,13 +2,28 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.ofg//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.zerock.mapper.BoardMapper">
+<mapper namespace="org.zerock.mapper.CourseMapper">
 
-	<sql id="criteria">
+	<select id="getList" resultType="org.zerock.domain.CourseVO">
+		select * from course
+	</select>
+	
+	<select id="read" resultType="org.zerock.domain.CourseVO">
+		select * from course where ccode = #{ccode}
+	</select> 
+	
+	<update id="update">
+		update course set cteacher=#{cteacher}, ccontext=#{ccontext},
+		cname=#{cname}, camount=#{camount} where ccode=#{ccode}
+	</update>
+	
+	<!-- sql 문 뭐지??? -->
+	<!-- 검색 (보류) -->
+<!-- 	<sql id="criteria">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<foreach item='type' collection="typeArr" separator="OR">
-				<!-- <trim prefix="(" suffix=") AND " prefixOverrides="OR"> <foreach 
-					item='type' collection="typeArr"> <trim prefix="OR"> -->
+				<trim prefix="(" suffix=") AND " prefixOverrides="OR"> <foreach 
+					item='type' collection="typeArr"> <trim prefix="OR">
 				<choose>
 					<when test="type == 'T'.toString()">
 						  title like CONCAT('%', #{keyword}, '%')
@@ -19,11 +34,11 @@
 					<when test="type == 'W'.toString()">
 						  userid like CONCAT('%', #{keyword}, '%')
 					</when>
-				</choose>
+				</choose> -->
 				<!-- </trim> -->
-			</foreach>
+<!-- 			</foreach>
 		</trim>
-		</sql>
+		</sql> -->
 		<!--  <trim prefix="(" suffix=") AND ">
 			<foreach item='type' collection="typeArr" separator="OR">
 				<choose>
@@ -40,38 +55,26 @@
 			</foreach>
 		</trim>-->
 	
-	<select id="getList" resultType="org.zerock.domain.BoardVO">
-		<![CDATA[select * from tbl_board where bno > 0 order by bno desc]]>
-	</select>
 
-	<insert id="insert">
+<!-- 	<insert id="insert">
 		insert into tbl_board(bno, title, content, userid)
 		values (seq_board.nextval, #{title}, #{content}, #{userid})
-	</insert>
+	</insert> -->
 
-
-		
-	<insert id="insertSelectKey">
+<!-- 	<insert id="insertSelectKey">
 		insert into tbl_board(title, content, userid) values (
 		#{title}, #{content}, #{userid})
 		<selectKey keyProperty="bno" order="AFTER"
 			resultType="long">
 			 SELECT LAST_INSERT_ID() 
 		</selectKey>
-	</insert>	
-	<select id="read" resultType="org.zerock.domain.BoardVO">
-		select * from tbl_board where bno = #{bno}
-	</select>
+	</insert>-->	
+	
 
-	<delete id="delete">
+<!-- 	<delete id="delete">
 		delete from tbl_board where bno = #{bno}
-	</delete>
+	</delete> -->
 
-	<update id="update">
-		update tbl_board set title=#{title},
-		content=#{content}, userid=#{userid}, updateDate=NOW() where
-		bno=#{bno}
-	</update>
 
 <!--  <select id="getListWithPaging"
 		resultType="org.zerock.domain.BoardVO">
@@ -89,7 +92,7 @@
 			where rn > (#{pageNum}-1) * #{amount}
 		]]>
 	</select> -->
-<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+<!-- <select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
   <![CDATA[
     SELECT bno, title, content, userid, regdate, updatedate, replycnt, hit
     FROM tbl_board
@@ -107,8 +110,8 @@
     )ORDER BY bno desc
    ]]>
 </select>
-
-	<select id="getTotalCount" resultType="int">
+ -->
+<!-- 	<select id="getTotalCount" resultType="int">
 		select count(*) from tbl_board  
 		<include refid="criteria"></include>		
 		<![CDATA[order by bno>0]]>
@@ -140,6 +143,6 @@
 	
 	<update id="updateHit">
 		update tbl_board set hit = hit + #{hit} where bno = #{bno} 
-	</update>
+	</update> -->
 	
 </mapper>

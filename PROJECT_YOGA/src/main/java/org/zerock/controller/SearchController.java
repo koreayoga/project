@@ -42,8 +42,8 @@ public class SearchController {
 		try {	    
 			vo.setName(name);
 			vo.setEmail(email);
-			MemberVO ID = service.searchId(vo);		    
-			model.addAttribute("vo", ID);		 
+			MemberVO member = service.searchId(vo);		    
+			model.addAttribute("vo", member);		 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			model.addAttribute("msg", "오류가 발생되었습니다.");
@@ -66,15 +66,12 @@ public class SearchController {
 						    MemberVO vo) {
     
 	    try {    
+	    	vo.setUserid(id);
 		    vo.setName(name);
 		    vo.setEmail(email);
-		    vo.setUserid(id);
-		    int memberSearch = service.memberPwdCheck(vo);
-		
-		    if(memberSearch == 0) {
-		        model.addAttribute("msg", "기입된 정보가 잘못되었습니다. 다시 입력해주세요.");
-		        return "/loginout/resetPW";
-		    }
+		    int cnt = service.memberPwdCheck(vo);
+		    System.out.println(cnt);
+		    model.addAttribute("cnt", cnt); 			
 		    		    
 		    String newPwd = RandomStringUtils.randomAlphanumeric(10);
 		    String enpassword = encodePw.encode(newPwd);		    

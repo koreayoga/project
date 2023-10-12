@@ -7,10 +7,8 @@ public class CourseVO {
 	private String ccode;
 	private String cname;
 	private int camount;
-	private char ccontext;
-	private char croom;
+	private String ccontext;
+	private String croom;
 	private String ctime;
 	private String cteacher;
-
-
 }

@@ -28,6 +28,8 @@
 							<th>생일</th>
 							<th>주소</th>
 							<th>이메일</th>
+							<th>회원등급</th>
+							<th rowspan="2" style="text-align: center;">수정</th>
 						</tr>
 					</thead>
 					<c:forEach items="${list}" var="member">

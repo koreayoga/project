@@ -72,6 +72,7 @@
                        	<li class="nav-item"><a class="nav-link" href="/loginout/logout">LOGOUT</a></li>
                        	<!-- 임시 : memberlist >> admin.list로 바꿔야함 -->
                         <li class="nav-item"><a class="nav-link" href="/member/list">ADMIN</a></li>
+                         <li class="nav-item"><a class="nav-link" href="/admin/lessonList">ADMINLESSON</a></li>
                         <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
                         <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Lesson/lesson">LESSON</a></li>                    

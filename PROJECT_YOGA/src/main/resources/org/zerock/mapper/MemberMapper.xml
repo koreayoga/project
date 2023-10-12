@@ -38,15 +38,13 @@
 		]]>
 	</select>	
 		
-	<insert id="insertMem">
-	
-	insert into member (userid, userpw, name, gender, phone, birth, address, email)
-	values (#{userid},#{userpw},#{name},#{gender},#{phone},#{birth},#{address},#{email})
+	<insert id="insertMem">	
+		insert into member (userid, userpw, name, gender, phone, birth, address, email)
+		values (#{userid}, #{userpw}, #{name}, #{gender}, #{phone}, #{birth}, #{address}, #{email})
 	</insert>	
 	
 	<select id="getMem" resultType="org.zerock.domain.MemberVO">
-	select userid, userpw, name, gender, phone, birth, address, email
-	from member where userid=#{userid}
+		select userid, userpw, name, gender, phone, birth, address, email from member where userid=#{userid}
 	</select>
 	
 	<select id="checkId" resultType="int">
@@ -59,7 +57,8 @@
 	</delete>
 	
 	<update id="updateMem">
-	update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
+		<!-- update member set userpw=#{userpw}, name=#{name}, birth=#{birth}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid} -->
+		update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
 	</update>
 
 

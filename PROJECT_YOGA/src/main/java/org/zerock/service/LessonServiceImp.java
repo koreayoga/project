@@ -32,5 +32,17 @@ public class LessonServiceImp implements LessonService{
 		
 		return mapper.lessonInsert(ccode, userid);
 	}
+
+	@Override
+	public List<LessonVO> getLessonCodeList(String ccode) {
+		// TODO Auto-generated method stub
+		return mapper.getLessonCodeList(ccode);
+	}
+
+	@Override
+	public boolean deleteLesson(Long lnum) {
+		
+		return mapper.deleteLesson(lnum);
+	}
 	
 }

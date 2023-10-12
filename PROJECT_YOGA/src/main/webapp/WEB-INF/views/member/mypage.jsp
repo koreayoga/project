@@ -1,55 +1,62 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../includes/header.jsp"%>
 <title>MYPAGE</title>
-
 <link href="../resources/css/insert.css" rel="stylesheet" />
-</head>
-<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&family=Jua&family=Orbit&display=swap" rel="stylesheet">
+
+
 	<div class="testBox" style="text-align: center;">		
-		<h1> MYPAGE </h1>
-			<table class="testBox" style="width: 500px">
+		<form id="userInfo" action="/member/update" method="get">
+			<table id="info">
 				<tr>
-				    <td>아이디</td>
-				    <td><c:out value="${user.userid}"/></td>
+					<td colspan="3" style="padding-left: 20px"><h1> MYPAGE </h1><hr></td>					
+				</tr>						
+				<tr>
+				    <th>아 이 디</th><td id="second">||</td><td>${user.userid}</td>
 				</tr>
 				<tr>
-				    <td>이름</td>	 
-				    <td><c:out value="${user.name}"/></td>
-				</tr>								
+				    <th>이 름</th><td id="second">||</td><td>${user.name}</td>
+				</tr>							
 				<tr>						
-					<td>성별</td>
-					<td><c:out value="${user.gender}"/></td>					
+					<th>성 별</th><td id="second">||</td><td>${user.gender}</td>			
+					<%-- <td>
+						<c:choose>							
+							<c:when test='${user.gender eq "F"}'>
+								여자
+							</c:when>
+							<c:otherwise>
+								남자
+							</c:otherwise>
+						</c:choose>	
+					</td> --%>					
 				</tr>
 				<tr>
-					<td>연락처</td>
-					<td><c:out value="${user.phone}"/></td>
+					<th>연 락 처</th><td id="second">||</td><td>${user.phone}</td>
 				</tr>
 				<tr>
-					<td>생년월일</td>
-					<td><c:out value="${user.birth}"/></td>
+					<th>생 년 월 일</th><td id="second">||</td><td>${user.birth}</td>
 				</tr>
 				<tr>
-					<td>주소</td>
-					<td><c:out value="${user.address}"/></td>
+					<th>주 소</th><td id="second">||</td><td>${user.address}</td>
 				</tr>
 				<tr>
-					<td>이메일</td>
-					<td><c:out value="${user.email}"/></td>
+					<th>이 메 일</th><td id="second">||</td><td>${user.email}</td>
 				</tr>
 				<tr>
-					<td>수강중인 강의</td>
-					<td><c:out value="강의가없다....."/></td>
-				</tr>	
+					<th>수 강 중 인&nbsp;&nbsp;강 의</th><td id="second">||</td><td><c:out value="강의가없다....."/></td>
+				</tr>				
 				<tr>
-					<td colspan="2"> 
-						<button onclick="window.location.href='/member/update'" class="btn btn-third btn-m">회원정보수정</button>
-						<button onclick="history.go(-1)" class="btn btn-third btn-m">뒤로가기</button>				 					 		
+					<td colspan="3" id="buttonBox_2">						
+        				<button type="submit" id="update" class="btn btn-third btn-xl2">수&nbsp;정&nbsp;하&nbsp;기</button>						
+						<button onclick="history.go(-1)" class="btn btn-third btn-xl2">뒤&nbsp;로&nbsp;가&nbsp;기</button>				 					 		
 				 	</td>
 				</tr>
 			</table>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }">		
-	</div>
-	
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }">
+			</form>					
+	</div>	
 <%@include file="../includes/footer.jsp"%>		
 

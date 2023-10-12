@@ -11,37 +11,18 @@
 	<select id="getLessonList" resultType="org.zerock.domain.LessonVO">
 	select * 
 		from lesson where userid = #{userid} 
+	</select>
+	<select id="getLessonCodeList" resultType="org.zerock.domain.LessonVO">
+	select * 
+		from lesson where ccode = #{ccode} 
 	</select>	
 	<insert id="lessonInsert">
 	
 	insert into lesson (userid, ccode)
 	values (#{userid},#{ccode})
 	</insert>	
-	
-	
-	<!--  
-	<select id="getMem" resultType="org.zerock.domain.MemberVO">
-	select userid, userpw, name, gender, phone, birth, address, email
-	from member where userid=#{userid}
-	</select>
-	
-	<select id="checkId" resultType="int">
-	    select count(*) from member where userid = #{userid}
-	</select>
-
-	
-	<delete id="deleteMem">
-	delete from member where userid=#{userid}
+	<delete id="deleteLesson">
+	delete from lesson where lnum=#{lnum}
 	</delete>
-	
-	<update id="updateMem">
-	update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
-	</update>
-
-
-	<update id="updateAdmin">
-	update member set auth=#{auth} where userid=#{userid}
-	</update> -->
-	
 
 </mapper>

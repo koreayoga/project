@@ -87,7 +87,6 @@ public class BoardController {
 		
 	}
 	
-	
 	@GetMapping({"/get"}) 
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, Long hit) {
 		log.info("/get");

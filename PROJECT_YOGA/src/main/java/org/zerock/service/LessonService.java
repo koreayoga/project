@@ -11,4 +11,8 @@ public interface LessonService {
 	public List<LessonVO> getLessonList(String username);
 
 	public int lessonInsert(String ccode, String userid);
+
+	public List<LessonVO> getLessonCodeList(String ccode);
+
+	public boolean deleteLesson(Long lnum);
 }

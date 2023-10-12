@@ -243,7 +243,7 @@
 				
 				formObj.empty();
 				
-				formObj.append(pageNumTag);
+				formObj.append(pageNumTag);zz
 				formObj.append(amountTag);
 				formObj.append(keywordTag);
 				formObj.append(typeTag);
@@ -263,7 +263,6 @@
 				formObj.append(str);
 				console.log(str);
 				formObj.attr("action", "/board/modify").attr("method", "post");
-				
 			}			
 			formObj.submit();			
 		});
