@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,6 +51,7 @@ public class AdminController {
 	 */
 	
 	@GetMapping(value="/lessonList")
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
 	public void getLessonList(Model model) {
 		model.addAttribute("list",lessonService.getLessonCodeList("A1000"));
 	}
@@ -67,13 +69,13 @@ public class AdminController {
 		model.addAttribute("courseList", courseService.getList());
 	}
 	
-	@GetMapping("/ccontext")   //이게 modify
+	@GetMapping("/ccontext")   //�씠寃� modify
 	public void ccontext(String ccode, Model model) {
 		log.info("courseContext");
 		model.addAttribute("course", courseService.get(ccode));
 	}
 	
-	@PostMapping("/ccontext")  //이게 modify
+	@PostMapping("/ccontext")  //�씠寃� modify
 	public String ccontext(CourseVO course, RedirectAttributes rttr) {
 		log.info("modify : " + course);
 		if (courseService.modify(course)) {
