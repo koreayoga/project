@@ -3,7 +3,6 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.zerock.domain.CourseVO;
-import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
 
 public interface CourseMapper {
@@ -19,4 +18,6 @@ public interface CourseMapper {
 	//강사 가져오기
 	public List<MemberVO> teacher();
 	
+	//강의 이름 가져오기
+	public CourseVO getCourse(String userid);	
 }

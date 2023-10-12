@@ -45,4 +45,10 @@ public class CourseServiceImpl implements CourseService {
 		System.out.println("teacher");
 		return mapper.teacher();
 	}
+	
+	@Override
+	public CourseVO getCourse(String userid) {
+		System.out.println("course name------");
+		return mapper.getCourse(userid);
+	}
 }

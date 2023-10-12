@@ -22,16 +22,7 @@
 				</tr>							
 				<tr>						
 					<th>성 별</th><td id="second">||</td>			
-					<td>
-						<c:choose>							
-							<c:when test='${user.gender eq "F"}'>
-								여자
-							</c:when>
-							<c:otherwise>
-								남자
-							</c:otherwise>
-						</c:choose>	
-					</td>					
+					<td>${user.gender=='F'?'여자':'남자'}</td>					
 				</tr>
 				<tr>
 					<th>연 락 처</th><td id="second">||</td><td>${user.phone}</td>
@@ -46,12 +37,12 @@
 					<th>이 메 일</th><td id="second">||</td><td>${user.email}</td>
 				</tr>
 				<tr>
-					<th>수 강 중 인&nbsp;&nbsp;강 의</th><td id="second">||</td><td><c:out value="강의가없다....."/></td>
+					<th>수 강 중 인&nbsp;&nbsp;강 의</th><td id="second">||</td><td>[${course.ccode}]${course.ctime}_${course.croom}&nbsp;<b>${course.cname}클래스</b></td>
 				</tr>				
 				<tr>
 					<td colspan="3" id="buttonBox_2">						
         				<button type="submit" id="update" class="btn btn-third btn-xl2">수&nbsp;정&nbsp;하&nbsp;기</button>						
-						<button onclick="history.go(-1)" class="btn btn-third btn-xl2">뒤&nbsp;로&nbsp;가&nbsp;기</button>				 					 		
+						<a href="/" class="btn btn-third btn-xl2">메&nbsp;인&nbsp;으&nbsp;로</a>				 					 		
 				 	</td>
 				</tr>
 			</table>

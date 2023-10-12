@@ -4,15 +4,19 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.domain.CourseVO;
 import org.zerock.domain.MemberVO;
+import org.zerock.security.CustomUserDetails;
+import org.zerock.service.CourseService;
 import org.zerock.service.MemberService;
 
 import lombok.AllArgsConstructor;
@@ -31,6 +35,8 @@ public class MemberController {
 	@Setter(onMethod_ =@Autowired)
 	private MemberService service;
 	
+	@Setter(onMethod_ =@Autowired)
+	private CourseService Cservice;
 	
 	@GetMapping("/list")
 	public void getListMem(Model model) {
@@ -83,8 +89,10 @@ public class MemberController {
 		log.info("access mypage-----------");
 		String userid = principal.getName();
 		MemberVO vo = service.getMem(userid);
+		CourseVO cvo = Cservice.getCourse(userid);
 		model.addAttribute("user", vo);
-		System.out.println(vo.getGender());		
+		model.addAttribute("course", cvo);
+		System.out.println(cvo);		
 	}
 	
 	
@@ -120,76 +128,58 @@ public class MemberController {
 		}
 		return "redirect:/member/list";
 	}
-
+/*
 	//나중에 ADMINCONTROLLER로 옮길 예정
 	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
 	@PostMapping("/delete")
 	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
 		log.info("delete" + userid);
-		if (service.deleteMem(userid)) {
+		if (service.deleteMem(userid) == 1) {
 			rttr.addFlashAttribute("result","success");
 		}
 		return "redirect:/member/list";
 	}
-	
-	
-	
+*/
+
 	/*
 	//탈퇴
-	@PreAuthorize("isAuthenticated() and principal.username = #{userid}")
-	@RequestMapping("/deleteMember.do")
-	public String deleteMember (@RequestParam("userid") String userid,
-								RedirectAttributes redirectAttr, 
-	                            SessionStatus sessionStatus) {
-	                            
-		boolean result = service.deleteMem(userid);
-
-		if(result) {
+	@PreAuthorize("isAuthenticated() and principal.username = #userid")
+	@RequestMapping("/delete")
+	public String deleteMember (@RequestParam("userid") String userid, RedirectAttributes redirectAttr, SessionStatus sessionStatus) {	                            
+		
+		if(service.deleteMem(userid) == 1) {
 			redirectAttr.addFlashAttribute("msg", "성공적으로 회원정보를 삭제했습니다.");
 			SecurityContextHolder.clearContext();
-		}
-		else 
+		} else {
 			redirectAttr.addFlashAttribute("msg", "회원정보삭제에 실패했습니다.");
-
+		}
 		return "redirect:/";
 	}
 	*/
+	@GetMapping("/delete")
+	public void delete() {
+		System.out.println("would you delete your account?-------------------");
+	};
 	
-	/*
-	//탈퇴 페이지 요청
-	@GetMapping("/quit")
-	public void remove() {
-		
+	@PostMapping("/delete")
+	@PreAuthorize("principal.username == #userid") 
+	public String delete(@AuthenticationPrincipal CustomUserDetails cud, String userpw, RedirectAttributes rttr) {
+	    MemberVO vo = service.getMem(cud.getUsername());
+	    vo.setUserpw(pwencoder.encode(userpw));
+	    
+	    if (pwencoder.matches(userpw, vo.getUserpw())) {	    	
+	    	// 비밀번호 확인이 맞으면 탈퇴
+	        service.deleteMem(vo.getUserid());
+	        // 로그아웃 처리(세션만료)
+	        SecurityContextHolder.clearContext();
+	        rttr.addFlashAttribute("result", "success");
+	        return "redirect:/";
+	    } else {
+	        // 비밀번호가 틀렸을 때
+	    	rttr.addFlashAttribute("result", "fail");
+	        return "redirect:/member/delete";
+	    }
 	}
-	*/
-	/*
-	@PostMapping("/withdrawal")
-	public String withdrawal(@RequestBody MemberVO vo, HttpSession session) throws Exception {
-		
-		//비밀번호 맞는지 확인
-		String result = checkPw(vo.getUserpw(), session);
-		
-		if(result.equals("pwConfirmOK")) {
-			//탈퇴 시키고
-			service.deleteMem(vo);
-			
-			//로그인세션 삭제
-			Object object = session.getAttribute("login");
-			if(object != null) {
-				session.removeAttribute("login");
-				session.invalidate();
-			}
-			
-			result = "Success";
-		} else {
-			//비번 틀림
-			result ="Fail";
-		}
-		
-		return result;	
-	}
-	*/
-
 
 /*
  * @GetMapping("/checkId") public String checkId(@RequestParam("userid") String
