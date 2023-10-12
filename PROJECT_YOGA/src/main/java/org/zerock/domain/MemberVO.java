@@ -10,16 +10,15 @@ public class MemberVO {
 private String userid;
 private String userpw;
 private String name;
-private char gender;
+private String gender;
 private String phone;
 private Date birth;
 private String address;
 private String email;
 private boolean enabled;
-private boolean reset;
 private Date regDate;
 private Date updateDate;
-private int auth;
+private String auth;
 
 private List<AuthVO> authList;
 

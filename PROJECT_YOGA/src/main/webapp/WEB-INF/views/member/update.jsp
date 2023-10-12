@@ -27,7 +27,7 @@
 				    <th>비 밀 번 호 확 인</th><td id="second">||</td><td><input type="password" id="repw" name="repw" value="${user.userpw}"></td>
 				</tr>
 				<tr>
-					<th>성 별</th><td id="second">||</td><td><input id="name" name="name" value="${user.gender}" readonly></td>
+					<th>성 별</th><td id="second">||</td><td><input id="gender" name="gender" value="	${user.gender=='F'?'여자':'남자'}" readonly></td>
 				</tr>
 				<tr>
 					<th>연 락 처</th><td id="second">||</td><td><input id="phone" name="phone" value="${user.phone}"></td>

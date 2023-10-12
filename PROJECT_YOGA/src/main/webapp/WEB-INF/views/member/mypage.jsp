@@ -21,8 +21,8 @@
 				    <th>이 름</th><td id="second">||</td><td>${user.name}</td>
 				</tr>							
 				<tr>						
-					<th>성 별</th><td id="second">||</td><td>${user.gender}</td>			
-					<%-- <td>
+					<th>성 별</th><td id="second">||</td>			
+					<td>
 						<c:choose>							
 							<c:when test='${user.gender eq "F"}'>
 								여자
@@ -31,7 +31,7 @@
 								남자
 							</c:otherwise>
 						</c:choose>	
-					</td> --%>					
+					</td>					
 				</tr>
 				<tr>
 					<th>연 락 처</th><td id="second">||</td><td>${user.phone}</td>
