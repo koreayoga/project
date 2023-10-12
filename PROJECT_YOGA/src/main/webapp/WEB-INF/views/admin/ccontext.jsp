@@ -32,6 +32,7 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<form role="form" action="/admin/ccontext" method="post">
+					<input type="hidden" name="ccode" value="<c:out value="${course.ccode}"/>">
 					<div class="form-group">
 						<label>강의명</label> 
 						<input class="form-control" name='cname' value='<c:out value="${course.cname}"/>'>
@@ -39,21 +40,19 @@
 					<div class="form-group">
 						<label>강사</label> 
 						<select class="form-control" name='cteacher'>
-							<option value="김**" ${course.cteacher == '김**' ? 'selected' : ''}>김**</option>
-							<option value="정**" ${course.cteacher == '정**' ? 'selected' : ''}>정**</option>
-							<option value="유**" ${course.cteacher == '유**' ? 'selected' : ''}>유**</option>
-							<option value="이**" ${course.cteacher == '이**' ? 'selected' : ''}>이**</option>
-							<option value="라**" ${course.cteacher == '라**' ? 'selected' : ''}>라**</option>
-							<option value="박**" ${course.cteacher == '박**' ? 'selected' : ''}>박**</option>
+							<c:forEach items="${teacher}" var="teacher">
+								<option value="${teacher.name}" ${teacher.name == course.cteacher ? 'selected' : '' }>
+								<c:out value="${teacher.name}"/></option>
+							</c:forEach>
 						</select> 
 					</div>
 					<div class="form-group">
-						<label>인원</label> <input class="form-control" name='camount'
-							value='<c:out value="${course.camount}"/>'>
+						<label>인원</label> 
+						<input class="form-control" name='camount' value='<c:out value="${course.camount}"/>'>
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea class="form-control" rows="10" name='content'>
+						<textarea class="form-control" rows="10" name='ccontext'>
 							<c:out value="${course.ccontext}" />
 						</textarea>
 					</div>
@@ -61,6 +60,8 @@
 					<!-- button -->
 					<button data-oper="modify" class="btn btn-default">Modify</button>
 					<button data-oper="list" class="btn btn-info">List</button>
+					
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</form>
 			</div>
 			<!-- /end panel-body -->
@@ -82,10 +83,15 @@
 			if (operation === "list") {
 				formObj.attr("action", "/admin/course").attr("method", "get");
 				formObj.empty();
-			}
+				
+			} else if(operation === 'modify') {
+				console.log("submit clicked");
+				formObj.attr("action", "/admin/ccontext").attr("method", "post");
+			}	
 			formObj.submit();
 		});
 	});
+	
 </script>
 
 <%@ include file="../includes/footer.jsp"%>
