@@ -46,7 +46,7 @@ public class SearchController {
 			model.addAttribute("vo", member);		 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			model.addAttribute("msg", "오류가 발생되었습니다.");
+			model.addAttribute("msg", "오류가 발생하였습니다.");
 		}		 
 		return "/loginout/searchID_result";
 	}

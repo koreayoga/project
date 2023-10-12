@@ -50,7 +50,6 @@
 	<select id="checkId" resultType="int">
 	    select count(*) from member where userid = #{userid}
 	</select>
-
 	
 	<delete id="deleteMem">
 		delete from member where userid=#{userid}
@@ -62,7 +61,6 @@
 	</update>
 
 	<update id="updateAdmin">
-	update member set auth=#{auth} where userid=#{userid}
-	</update>
-	
+		update member set auth=#{auth} where userid=#{userid}
+	</update>	
 </mapper>

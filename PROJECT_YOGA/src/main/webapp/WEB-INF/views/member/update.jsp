@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&family=Jua&family=Orbit&display=swap" rel="stylesheet">
 
 	<div class="testBox">
-		<form role="form" name="regForm" method="post" action="/member/update" id="userInfo">			
+		<form role="form" name="regForm" method="post" action="/member/update">			
 			<table id="info">
 				<tr>
 					<td colspan="3" style="height:0px; padding-left: 20px"><h1> MY&nbsp;&nbsp;INFO </h1><hr></td>					
@@ -44,13 +44,13 @@
 				</tr>
 				<tr>
 					<td id="buttonBox_3" colspan="3"> 
-						<button id="update" class="btn btn-third btn-xl2" onclick="inputCheck()" data-oper="update">수정완료</button>
+						<button id="update" class="btn btn-third btn-xl2" onclick="inputCheck()">수정완료</button>
 						<button class="btn btn-third btn-xl2" onclick="history.go(-1)">뒤로가기</button>	 
-						<button id="quit" class="btn btn-third btn-xl2" >탈퇴하기</button> 
+						<a href="javascript:void(0);" id="delete" class="btn btn-third btn-xl2" onclick="newWindow('/member/delete', '회원탈퇴', 430, 300);">탈퇴하기</a>						
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</div>
 	
@@ -92,7 +92,7 @@ $(document).ready(function(){
 	    document.regForm.submit();
 	} 
 	
-
+/*
 	var formObj = $("form[role='form']");
 	//완료 버튼 클릭시 수정 진행==========================================================
 	$("button[id='update']").on("click", function(e){
@@ -104,6 +104,16 @@ $(document).ready(function(){
         formObj.submit();
             
 	});
+*/	
+	<!-- 아이디찾기/비밀번호재설정 새 창 띄우기-->
+    function newWindow(url, name, width, height) {
+		var left = (window.innerWidth - width) / 2;
+        var top = (window.innerHeight - height) / 2;
+        var options = 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left;
+        window.open(url, name, options);
+    }
+
+
  /*
 	var csrfHeaderName ="${_csrf.headerName}";
     var csrfTokenValue ="${_csrf.token}"; 
