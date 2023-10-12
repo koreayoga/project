@@ -71,12 +71,12 @@ public class MemberServiceTests {
 	
 	@Test
 	public void testUpdateAdmin() {
-		MemberVO member = service.getMem("user");
+		MemberVO member = service.getMem("a123456");
 		if (member == null) {
 			return;
 		}
 		member.setAuth(4);
-		log.info("updateMember..............." + service.updateMem(member));
+		log.info("updateMemberADMIN..............." + service.updateAdmin(member));
 	}
 	
 
