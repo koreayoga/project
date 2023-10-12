@@ -82,9 +82,9 @@ public int checkId(String userid) {
 }
 
 @Override
-public boolean updateAdmin(@RequestParam("userid") String userid, @RequestParam("auth") int auth) {
-	log.info("updateMember......................"+ userid + auth);
-	return mapper.updateAdmin(userid, auth) == 1;
+public int updateAdmin(MemberVO vo) {
+	log.info("updateMember......................"+ vo);
+	return mapper.updateAdmin(vo);
 }
 
 }

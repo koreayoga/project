@@ -79,7 +79,7 @@ public class MemberControllerTests {
 	@Test
 	public void testUpdateMem() throws Exception {
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/member/update")
-				.param("userid", "test10")
+				.param("userid", "a123456")
 				.param("userpw", "updatepw")
 				.param("phone", "00000000")
 				.param("address", "updateadd")

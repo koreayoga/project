@@ -68,8 +68,11 @@ public class MemberMapperTests {
 
 	@Test
 	public void testUpdateAdmin() {
+	MemberVO member = new MemberVO();
+	member.setUserid("user00");
+	member.setAuth(4);
 	
-	int mem = mapper.updateAdmin("user01",2);
+	int mem = mapper.updateAdmin(member);
 	log.info("updateMember......................" + mem);
 	}
 

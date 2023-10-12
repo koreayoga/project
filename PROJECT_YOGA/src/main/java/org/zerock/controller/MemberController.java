@@ -107,6 +107,33 @@ public class MemberController {
         }
 		return "redirect:/member/mypage";
 	}
+	
+	
+	//나중에 ADMINCONTROLLER로 옮길 예정
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
+	@PostMapping("/updateAdmin")
+	public String updateAdmin(MemberVO vo, Model model, RedirectAttributes rttr) {
+		/* vo.setUserpw(pwencoder.encode(vo.getUserpw())); */
+		int result = service.updateAdmin(vo);
+		if (result>0) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/member/list";
+	}
+
+	//나중에 ADMINCONTROLLER로 옮길 예정
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
+	@PostMapping("/delete")
+	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
+		log.info("delete" + userid);
+		if (service.deleteMem(userid)) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/member/list";
+	}
+	
+	
+	
 	/*
 	//탈퇴
 	@PreAuthorize("isAuthenticated() and principal.username = #{userid}")
@@ -162,28 +189,7 @@ public class MemberController {
 		return result;	
 	}
 	*/
-	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
-	@PostMapping("/updateAdmin")
-	public String updateAdmin(@RequestParam("userid") String userid, @RequestParam("auth") int auth, RedirectAttributes rttr) {
-		log.info("updateAdmin" + userid + auth);
-		if (service.updateAdmin(userid, auth)) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
-	}
 
-	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
-	@PostMapping("/delete")
-	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
-		log.info("delete" + userid);
-		if (service.deleteMem(userid)) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
-	}
-	
 
 /*
  * @GetMapping("/checkId") public String checkId(@RequestParam("userid") String

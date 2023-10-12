@@ -14,5 +14,5 @@ public interface MemberService {
 	//public void quitMem(MemberVO vo);
 	public int updateMem(MemberVO vo);
 	public int checkId(String userid);
-	public boolean updateAdmin(@RequestParam("userid") String userid, @RequestParam("auth") int auth);
+	public int updateAdmin(MemberVO vo);
 }

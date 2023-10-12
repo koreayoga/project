@@ -53,7 +53,7 @@
 
 	
 	<delete id="deleteMem">
-	delete from member where userid=#{userid}
+		delete from member where userid=#{userid}
 	</delete>
 	
 	<update id="updateMem">
@@ -61,10 +61,8 @@
 		update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
 	</update>
 
-
 	<update id="updateAdmin">
 	update member set auth=#{auth} where userid=#{userid}
 	</update>
 	
-
 </mapper>
