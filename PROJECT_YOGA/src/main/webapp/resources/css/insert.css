@@ -1,27 +1,104 @@
-@charset "EUC-KR";
+@charset "UTF-8";
+
+/*
+ signature color
+green
+D   #40513b    64, 81, 59
+B   #609966    96, 153, 102
+M  #9dc08b    157, 192, 139
+L   #edf1d6     237, 241, 214
+
+brown
+D   #403a34   64, 58, 52
+B   #675d50   103, 93, 80
+M  #a9907e   169, 144, 126
+L   #faedcd     250, 237, 205
+ */
 
 .testBox{
-	position:absolute; margin-top: 100px; text-align: center; top: 40%; /* ºÎ¸ğ ¿ä¼ÒÀÇ ¼¼·Î Áß¾Ó Á¤·ÄÀ» À§ÇØ topÀ» 50%·Î ¼³Á¤ */
-    left: 50%; /* ºÎ¸ğ ¿ä¼ÒÀÇ °¡·Î Áß¾Ó Á¤·ÄÀ» À§ÇØ left¸¦ 50%·Î ¼³Á¤ */
-    transform: translate(-50%, -50%); /* Å×ÀÌºíÀÇ °¡·Î ¼¼·Î Å©±âÀÇ Àı¹İ¸¸Å­ ÀÌµ¿ÇÏ¿© Á¤È®ÇÑ °¡¿îµ¥ Á¤·Ä */
+	position:absolute; margin-top: 100px; text-align: center; top: 40%; /* ë¶€ëª¨ ìš”ì†Œì˜ ì„¸ë¡œ ì¤‘ì•™ ì •ë ¬ì„ ìœ„í•´ topì„ 50%ë¡œ ì„¤ì • */
+    left: 50%; /* ë¶€ëª¨ ìš”ì†Œì˜ ê°€ë¡œ ì¤‘ì•™ ì •ë ¬ì„ ìœ„í•´ leftë¥¼ 50%ë¡œ ì„¤ì • */
+    transform: translate(-50%, -50%); /* í…Œì´ë¸”ì˜ ê°€ë¡œ ì„¸ë¡œ í¬ê¸°ì˜ ì ˆë°˜ë§Œí¼ ì´ë™í•˜ì—¬ ì •í™•í•œ ê°€ìš´ë° ì •ë ¬ */
     /* text-align: center; */
+    font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: 'Gaegu', sans-serif, 'Jua', sans-serif, 'Orbit', sans-serif;
 }
-table {
-	/* margin: 0 auto;
-	margin-top: 0px; */
+
+.testBox div{		
+	margin-top: 0px;
+}
+
+.testBox table{
+	margin: 0 auto;
+	margin-top: 30px;
 	font-size: 20px;
-	width: 900px;
-	height: 300px;
+	width: 800px;
+	height: 600px;
 	text-align: center;
-	justify-content: center;
+	justify-content: center;	
 }
 
-table, td{
-	border: 1px solid black
+table#info{
+	height: 800px;
 }
 
-h5{
+#userpw, #repw{
+	width:200px; 
+}
+
+.testBox table, td, th{
+	border: 1px solid transparent;	
+	text-align: left;	
+	font-family: 'Orbit', sans-serif;
+}
+
+.testBox td{
+	padding-left: 20px;	 
+}
+
+.testBox hr{	
+	border: 3px #a9907e solid;
+	width: 750px;
+	margin: 0px;	  	 
+}
+
+/* <th>ê¸€ì ê· ë“±ë¶„í•  */
+.testBox th {
+	padding: 10px 20px;
+	text-align: justify;
+	line-height: 0;
+	width : 30%;	
+}
+.testBox th:after {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+.testBox th:before {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+
+.testBox td#second{
+	padding:0px;
+	text-align:center;
+	width:5%;
+	color:#9dc08b;
+}
+
+.testBox h1, h2, h3, h4, h5, h6{
 	position: relative;
-	right: 0;
-	
+	right: 0;	
 }
+
+td#buttonBox_2 {
+	padding-left: 30%;
+	padding-top: 10px;
+}
+
+td#buttonBox_3 {
+	padding-left: 25%;
+	padding-top: 10px;
+}
+
