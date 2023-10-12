@@ -22,7 +22,7 @@ public class MemberServiceTests {
 		@Setter(onMethod_ = {@Autowired})
 		private MemberService service;
 
-	@Test //객체주입확인
+	@Test //媛앹껜二쇱엯�솗�씤
 	public void testExist() {
 	log.info(service);
 	assertNotNull(service);
@@ -38,10 +38,10 @@ public class MemberServiceTests {
 	member.setPhone("010123456");
 	Date birthDate = java.sql.Date.valueOf("1990-05-15");
 	member.setBirth(birthDate);
-	member.setAddress("서울시");
+	member.setAddress("�꽌�슱�떆");
 	member.setEmail("user@email.com");
 	service.insertMem(member);
-	log.info("생성된 멤버................."+ member.getUserid());
+	log.info("�깮�꽦�맂 硫ㅻ쾭................."+ member.getUserid());
 	}
 
 	@Test
@@ -63,7 +63,7 @@ public class MemberServiceTests {
 		}
 		member.setUserpw("up1234");
 		member.setPhone("up010000");
-		member.setAddress("up서울");
+		member.setAddress("up�꽌�슱");
 		member.setEmail("update@email.com");	
 		log.info("updateMember..............." + service.updateMem(member));
 	}
