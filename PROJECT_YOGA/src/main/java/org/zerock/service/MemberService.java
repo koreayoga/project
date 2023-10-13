@@ -13,4 +13,5 @@ public interface MemberService {
 	public int updateMem(MemberVO vo);
 	public int checkId(String userid);
 	public int updateAdmin(MemberVO vo);
+	public int deleteAdmin(String userid);
 }

@@ -55,6 +55,10 @@
 		delete from member where userid=#{userid}
 	</delete>
 	
+	<delete id="deleteAdmin">
+		delete from member where userid=#{userid}
+	</delete>
+	
 	<update id="updateMem">
 		<!-- update member set userpw=#{userpw}, name=#{name}, birth=#{birth}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid} -->
 		update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
