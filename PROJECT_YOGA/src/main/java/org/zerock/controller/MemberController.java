@@ -38,6 +38,7 @@ public class MemberController {
 	@Setter(onMethod_ =@Autowired)
 	private CourseService Cservice;
 	
+	@PreAuthorize("principal.username == 'admin'")
 	@GetMapping("/list")
 	public void getListMem(Model model) {
 		log.info("list");
@@ -48,13 +49,6 @@ public class MemberController {
 	public void insertMem() {
 		log.info("insert");
 	}
-	
-	/*@ResponseBody
-	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
-	public int checkId(@RequestParam("userid") String userid) throws Exception {
-	    int result = service.checkId(userid);
-	    return result;
-	}*/
  
 	@PostMapping("/insert")
 	public String insertMem(MemberVO member, RedirectAttributes rttr) {
@@ -112,18 +106,18 @@ public class MemberController {
 		}
 		return "redirect:/member/list";
 	}
-	
+/*
 	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
-	@PostMapping("/deleteAdmin")	 
-	public String deleteAdmin(@RequestParam("userid") String userid, RedirectAttributes rttr) {
-		int result = service.deleteAdmin(userid);
-		System.out.println(result);
-		if(result>0) {
-			rttr.addFlashAttribute("result", "success");
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
+	@PostMapping("/delete")
+	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
+		log.info("delete" + userid);
+		if (service.deleteMem(userid) == 1) {
+			rttr.addFlashAttribute("result","success");
 		}
 		return "redirect:/member/list";
 	}
+*/
 	
 	@GetMapping("/delete")
 	public void delete(Principal principal) {
@@ -144,7 +138,7 @@ public class MemberController {
 	        service.deleteMem(vo.getUserid());
 	        // 로그아웃 처리(세션만료)
 	        SecurityContextHolder.clearContext();
-	        rttr.addFlashAttribute("result", "success");
+	        rttr.addFlashAttribute("result", "success");	        
 	        return "redirect:/";
 	    } else {
 	        // 비밀번호가 틀렸을 때
@@ -152,7 +146,6 @@ public class MemberController {
 	        return "redirect:/member/delete";
 	    }
 	}
-	
 }	
 
 	
