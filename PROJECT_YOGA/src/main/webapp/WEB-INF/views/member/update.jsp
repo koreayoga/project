@@ -20,11 +20,11 @@
 				    <th>이 름</th><td id="second">||</td><td><input id="name" name="name" value="${user.name}" readonly></td>
 				</tr>				
 				<tr>
-				    <th>비 밀 번 호</th><td id="second">||</td><td><input type="password" id="userpw" name="userpw" value="${user.userpw}"> 
+				    <th>비 밀 번 호</th><td id="second">||</td><td><input type="password" id="userpw" name="userpw" placeholder="${user.userpw}"> 
 				    <label for="userpw" style="font-size:small; color: red">*숫자,영문자,특수문자(@,#,$,%) 포함 6~8자</label></td>
 				</tr>
 				<tr>
-				    <th>비 밀 번 호 확 인</th><td id="second">||</td><td><input type="password" id="repw" name="repw" value="${user.userpw}"></td>
+				    <th>비 밀 번 호 확 인</th><td id="second">||</td><td><input type="password" id="repw" name="repw" placeholder="${user.userpw}"></td>
 				</tr>
 				<tr>
 					<th>성 별</th><td id="second">||</td><td><input id="gender" name="gender" value="	${user.gender=='F'?'여자':'남자'}" readonly></td>

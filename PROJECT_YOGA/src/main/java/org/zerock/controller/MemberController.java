@@ -4,18 +4,18 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.CourseVO;
 import org.zerock.domain.MemberVO;
-import org.zerock.security.CustomUserDetails;
 import org.zerock.service.CourseService;
 import org.zerock.service.MemberService;
 
@@ -105,6 +105,7 @@ public class MemberController {
         model.addAttribute("user", vo);
     }
 	
+	@Transactional
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/update")
 	public String updateMem(MemberVO vo, Model model, RedirectAttributes rttr) {
@@ -157,17 +158,20 @@ public class MemberController {
 	}
 	*/
 	@GetMapping("/delete")
-	public void delete() {
-		System.out.println("would you delete your account?-------------------");
+	public void delete(Principal principal) {
+		MemberVO vo = service.getMem(principal.getName());
+		System.out.println("-------------------"+vo.getName()+"회원님 계정을 삭제하시겠습니까?");		
 	};
 	
-	@PostMapping("/delete")
-	@PreAuthorize("principal.username == #userid") 
-	public String delete(@AuthenticationPrincipal CustomUserDetails cud, String userpw, RedirectAttributes rttr) {
-	    MemberVO vo = service.getMem(cud.getUsername());
+	@PostMapping("/delete")	 
+	public String delete(Principal principal, @RequestParam("userpw") String userpw, RedirectAttributes rttr) {
+		
+		MemberVO vo = service.getMem(principal.getName());
+		System.out.println(vo);
 	    vo.setUserpw(pwencoder.encode(userpw));
 	    
-	    if (pwencoder.matches(userpw, vo.getUserpw())) {	    	
+	    if (pwencoder.matches(userpw, vo.getUserpw())) {
+	    	
 	    	// 비밀번호 확인이 맞으면 탈퇴
 	        service.deleteMem(vo.getUserid());
 	        // 로그아웃 처리(세션만료)

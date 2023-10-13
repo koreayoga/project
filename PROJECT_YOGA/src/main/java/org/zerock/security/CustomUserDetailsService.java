@@ -25,7 +25,9 @@ public class CustomUserDetailsService implements UserDetailsService{
 		/* return vo==null?null:new CustomUser(vo); */
 		if (vo == null) {
 			throw new UsernameNotFoundException("User not found");
+		} else {
+			System.out.println("login------------------");
+			return new CustomUser(vo);
 		}
-		return new CustomUser(vo);	        
 	}
 }

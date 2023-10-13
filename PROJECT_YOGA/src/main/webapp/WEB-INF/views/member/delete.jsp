@@ -5,46 +5,7 @@
 <% request.setCharacterEncoding("utf-8"); %> 
 <!DOCTYPE html>
 <html>
-<script>
-	$(document).ready(function() {
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);    
-		}
-		
-		var result = '<c:out value="${result}"/>';
-		checkAlert(result);
 
-		function checkAlert(result) {
-			if (result === '' || history.state) {
-				return;
-			}
-			if (result === 'success') {
-				alert("탈퇴가 정상적으로 처리되었습니다.");
-			} else {
-				alert("탈퇴처리에 실패하였습니다.<br>다시 시도해주십시오.");
-			}
-		}
-	});
-	
-	function fnSubmit() { 
-		if ($("#pw").val() == null || $("#pw").val() == "") {
-			alert("회원님의 비밀번호를 입력해주세요.");
-			$("#pw").focus(); 
-			return false;
-		} 
-	 
-		if (confirm("탈퇴하시겠습니까?")) {			 
-			$("#delete").submit();				 
-			return false;
-		}
-	}		 
-</script>
-<script>
-	$(document).ready(
-		
-	));
-</script>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -77,7 +38,7 @@
 			<form role="form" action="/member/delete" method="post" id="delete">				
 				<!-- 로그인 정보입력 -->
 				<div>
-					<input class="searchInput" type="password" id="pw" name="pw" placeholder="비밀번호를 적어주세요" autofocus>	<p/>
+					<input class="searchInput" type="password" id="userpw" name="userpw" placeholder="비밀번호를 적어주세요" autofocus>	<p/>
 				</div>
 				<!-- 로그인 버튼 생성 -->
 				<div>
@@ -87,35 +48,40 @@
 				</div>								
 			</form>
 		</div>
+		<script>
+			$(document).ready(function() {
+				var msg = "${msg}";
+				if(msg != ""){
+					alert(msg);    
+				}
+				
+				var result = '<c:out value="${result}"/>';
+				checkAlert(result);
+		
+				function checkAlert(result) {
+					if (result === '' || history.state) {
+						return;
+					}
+					if (result === 'success') {
+						alert("탈퇴가 정상적으로 처리되었습니다.");
+					} else {
+						alert("탈퇴처리에 실패하였습니다.<br>다시 시도해주십시오.");
+					}
+				}
+			});
+			
+			function fnSubmit() { 
+				if ($("#userpw").val() == null || $("#userpw").val() == "") {
+					alert("회원님의 비밀번호를 입력해주세요.");
+					$("#userpw").focus(); 
+					return false;
+				} 
+			 
+				if (confirm("탈퇴하시겠습니까?")) {			 
+					$("#delete").submit();				 
+					return false;
+				}
+			}		 
+		</script>
 	</body>
-</html>
-
-<%-- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/default}">
-<head>
-    <title>회원 탈퇴</title>
-    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-</head>
-<body>
-<div class="container" layout:fragment="content">
-    <form method="post">
-        <label class="form-label mt-4">회원 탈퇴</label>
-        
-        <div class="form-floating mb-3" th:if="${wrongPassword == null}">
-            <input type="password" name="password" class="form-control" id="password" required>
-            <label for="password">비밀번호</label>
-        </div>
-        
-        <div class="form-floating mb-3 has-danger" th:unless="${wrongPassword == null}">
-            <input type="password" name="password" class="form-control is-invalid" id="password" required>
-            <label for="password">비밀번호</label>
-            <div class="invalid-feedback" th:text="${wrongPassword}"></div>
-        </div>
-        <button type="submit" class="btn btn-primary">회원 탈퇴</button>
-    </form>
-</div> --%>
-
-</body>
 </html>
