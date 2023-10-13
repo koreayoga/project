@@ -5,7 +5,7 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">A Healing Place <br/> for your Body and Mind</h1>
+                        <h1 class="text-white font-weight-bold">Relaxing life</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
@@ -13,11 +13,12 @@
 		                        <p class="text-white-75 mb-5"><sec:authentication property="principal" var="pinfo"/>
 		                        	<a style="text-decoration: none;"> ${user.name}</a>님 환영합니다.
 		                        </p>
+		                        <a class="btn btn-primary btn-xl" href="main/intro">INTRO</a>
                         </sec:authorize>
                         <sec:authorize access="isAnonymous()">
 		                        <p class="text-white-75 mb-5"><sec:authentication property="principal" var="pinfo"/>회원가입 하시면 더욱 다양한 정보를 확인하실수 있습니다.</p>
+		                        <a class="btn btn-primary btn-xl" href="../member/insert" style="font-weight: 500;">MEMBER</a>
                         </sec:authorize>
-                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
                     </div>
                 </div>
             </div>
@@ -27,10 +28,10 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">We've got what you need!</h2>
+                        <h2 class="text-white mt-0">A Healing Place for your Body and Mind</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-                        <a class="btn btn-light btn-xl2" href="/Lesson/lesson" style="color:#a9907e; font-size:20px; font-weight: bolder;">수강신청하러가기</a>
+                        <p class="text-white-75 mb-4">YOGA</p>
+                        <a class="btn btn-light btn-xl2" href="/Lesson/lesson" style="color:#a9907e; font-size:20px; font-weight: bolder;">수강신청 하러가기</a>
                     </div>
                 </div>
             </div>
