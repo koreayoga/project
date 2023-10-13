@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<% request.setCharacterEncoding("utf-8"); %> 
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,7 +36,7 @@
     <body id="page-top">       
       <!-- 비회원/미로그인상태 Navigation-->
       <sec:authorize access="isAnonymous()">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -53,7 +54,7 @@
       </sec:authorize>
       <!-- 회원 Navigation-->
       <sec:authorize access="isAuthenticated() and principal.username!='admin'" >
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -72,7 +73,7 @@
       </sec:authorize>
       <!-- 회원등급 : 관리자 Navigation-->
       <sec:authorize access="isAuthenticated() and principal.username=='admin'" >      	 
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
