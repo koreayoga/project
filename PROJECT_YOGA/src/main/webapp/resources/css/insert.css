@@ -14,7 +14,7 @@ B   #675d50   103, 93, 80
 M  #a9907e   169, 144, 126
 L   #faedcd     250, 237, 205
  */
-
+/*-------------- mypage.jsp / update.jsp ----------------*/
 .testBox{
 	position:absolute; margin-top: 100px; text-align: center; top: 40%; /* 부모 요소의 세로 중앙 정렬을 위해 top을 50%로 설정 */
     left: 50%; /* 부모 요소의 가로 중앙 정렬을 위해 left를 50%로 설정 */
@@ -49,12 +49,12 @@ table#info{
 	background-color: #e0e0e0; 
 }
 
-#userpw, #repw, #phone{
+.testBox input#userpw, #repw, #phone{
 	color : black;
 	background-color: white;
 } 
 
-#address, #email{
+.testBox input#address, #email{
 	width:400px;
 	text-align: center;
 	color : black;
@@ -106,6 +106,107 @@ table#info{
 	position: relative;
 	right: 0;	
 }
+
+/*-------------- insert.jsp ----------------*/
+
+.insertBox{
+	position:absolute; margin-top: 100px; text-align: center; top: 40%; /* 부모 요소의 세로 중앙 정렬을 위해 top을 50%로 설정 */
+    left: 50%; /* 부모 요소의 가로 중앙 정렬을 위해 left를 50%로 설정 */
+    transform: translate(-50%, -50%); /* 테이블의 가로 세로 크기의 절반만큼 이동하여 정확한 가운데 정렬 */
+    /* text-align: center; */
+    font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: 'Gaegu', sans-serif, 'Jua', sans-serif, 'Orbit', sans-serif;
+}
+
+.insertBox div{		
+	margin-top: 0px;
+}
+
+.insertBox table{
+	margin: 0 auto;
+	margin-top: 30px;
+	font-size: 20px;
+	width: 900px;
+	height: 600px;
+	text-align: center;
+	justify-content: center;	
+}
+
+.insertBox input{
+	width:200px;
+	text-align: center;
+	color : graytext;
+	background-color: white; 
+}
+
+.insertBox input[type='button']#check {
+	width:100px;   
+	padding : 0.8%;
+  	border-radius: 1rem;
+  	border: 1px solid #403a34; 
+  	color: white;
+  	background-color: #a9907e;
+  	font-family: 'Orbit', sans-serif;
+  	font-size:15px;
+  	float: right;  
+}
+
+.insertBox input[type='radio'] {
+	width:30px;  
+	  
+}
+
+.insertBox table, td, th{	
+	border: 1px solid black; /* transparent; */	
+	text-align: left;	
+	vertical-align: middle;
+	font-family: 'Orbit', sans-serif;
+}
+
+.insertBox td{
+	padding-left: 20px;	 
+}
+
+.insertBox hr{	
+	border: 3px #a9907e solid;
+	width: 750px;
+	margin: 0px;	  	 
+}
+
+.insertBox input#address{
+	width: 400px;	 
+}
+
+/* <th>글자 균등분할 */
+.insertBox th {
+	padding: 10px 20px;
+	text-align: justify;
+	line-height: 0;
+	width : 30%;	
+}
+.insertBox th:after {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+.insertBox th:before {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+
+.insertBox td#second{
+	padding:0px;
+	text-align:center;
+	width:5%;
+	color:#9dc08b;
+}
+
+.insertBox h1, h2, h3, h4, h5, h6{
+	position: relative;
+	right: 0;	
+}
+
 
 td#buttonBox_2 {
 	padding-left: 30%;

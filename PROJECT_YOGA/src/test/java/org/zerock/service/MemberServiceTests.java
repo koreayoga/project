@@ -75,7 +75,7 @@ public class MemberServiceTests {
 		if (member == null) {
 			return;
 		}
-		member.setAuth("4");
+		member.setAuth(4);
 		log.info("updateMemberADMIN..............." + service.updateAdmin(member));
 	}
 	

@@ -49,21 +49,9 @@ public class MemberController {
 		log.info("insert");
 	}
  
-	
-	
-
-	
-	
-	/*@ResponseBody
-	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
-	public int checkId(@RequestParam("userid") String userid) throws Exception {
-	    int result = service.checkId(userid);
-	    return result;
-	}*/
 	@PostMapping("/insert")
 	public String insertMem(MemberVO member, RedirectAttributes rttr) {
 			log.info("INSERT+++++++++++++++++" + member);
-			//MemberVO insertMember = new MemberVO();
 			member.setUserpw(pwencoder.encode(member.getUserpw()));
 			log.info(member);
 		service.insertMem(member);
@@ -73,16 +61,6 @@ public class MemberController {
 		return "redirect:/main/home";
 	}
 	
-	
-	
-	/*
-	 * @GetMapping("/userID")
-	 * 
-	 * @ResponseBody public String currentUserName(Principal principal) { return
-	 * principal.getName(); }
-	 * 
-	 * @GetMapping("/mypage")
-	 */
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/mypage")
     public void getMem(Principal principal, Model model) {  
@@ -94,8 +72,7 @@ public class MemberController {
 		model.addAttribute("course", cvo);
 		System.out.println(cvo);		
 	}
-	
-	
+		
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/update")
 	public void updateMem(Principal principal, Model model) {        
@@ -116,8 +93,7 @@ public class MemberController {
         }
 		return "redirect:/member/mypage";
 	}
-	
-	
+		
 	//나중에 ADMINCONTROLLER로 옮길 예정
 	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
 	@PostMapping("/updateAdmin")
@@ -141,22 +117,7 @@ public class MemberController {
 		return "redirect:/member/list";
 	}
 */
-
-	/*
-	//탈퇴
-	@PreAuthorize("isAuthenticated() and principal.username = #userid")
-	@RequestMapping("/delete")
-	public String deleteMember (@RequestParam("userid") String userid, RedirectAttributes redirectAttr, SessionStatus sessionStatus) {	                            
-		
-		if(service.deleteMem(userid) == 1) {
-			redirectAttr.addFlashAttribute("msg", "성공적으로 회원정보를 삭제했습니다.");
-			SecurityContextHolder.clearContext();
-		} else {
-			redirectAttr.addFlashAttribute("msg", "회원정보삭제에 실패했습니다.");
-		}
-		return "redirect:/";
-	}
-	*/
+	
 	@GetMapping("/delete")
 	public void delete(Principal principal) {
 		MemberVO vo = service.getMem(principal.getName());
@@ -184,39 +145,6 @@ public class MemberController {
 	        return "redirect:/member/delete";
 	    }
 	}
-
-/*
- * @GetMapping("/checkId") public String checkId(@RequestParam("userid") String
- * userid, RedirectAttributes rttr) { if (service.checkId(userid) == 1) {
- * rttr.addFlashAttribute("message", "아이디가 이미 존재합니다."); return "1"; } else {
- * rttr.addFlashAttribute("message", "아이디 사용이 가능합니다."); return "0"; } }
- * 
- * 
- * @RequestMapping(value = "/member", method = RequestMethod.POST) public void
- * postRegister(MemberVO vo, RedirectAttributes rttr) throws Exception {
- * log.info(""); int result = service.checkId(vo.getUserid()); try { if (result
- * == 1) { rttr.addFlashAttribute("message", "중복된 아이디입니다.");
- * 
- * } else if (result == 0) { // 중복 아이디가 없을 경우 회원가입 로직을 수행 service.insertMem(vo);
- * // 예시: service.insertMem 메서드는 회원가입을 처리하는 메서드입니다.
- * rttr.addFlashAttribute("message", "회원가입이 완료되었습니다."); // 추가적인 메시지 설정 } } catch
- * (Exception e) { throw new RuntimeException(e); }
- * 
- * }
- */
-	/*
-	 * 
-	 * @GetMapping("checkId")
-	 * 
-	 * @ResponseBody public Map<String, String> checkId(@RequestParam("userid")
-	 * String userid) { Map<String, String> resultMap = new HashMap<>(); if
-	 * (service.checkId(userid) == 1) { resultMap.put("result", "duplicate"); } else
-	 * { resultMap.put("result", "available"); } return resultMap; }
-	 */
-	
-	
-
-	
 }	
 
 	

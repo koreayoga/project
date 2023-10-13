@@ -46,8 +46,8 @@
 					<td id="buttonBox_3" colspan="3"> 
 						<button id="update" class="btn btn-third btn-xl2" onclick="inputCheck()">수정완료</button>
 						<button class="btn btn-third btn-xl2" onclick="history.go(-1)">뒤로가기</button>	 
-						<a href="javascript:void(0);" id="delete" class="btn btn-third btn-xl2" onclick="newWindow('/member/delete', '회원탈퇴', 430, 300);">탈퇴하기</a>						
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<a href="javascript:void(0);" onclick="newWindow('delete', '회원탈퇴', 430, 300);" class="btn btn-third btn-xl2">탈퇴하기</a>						
+						<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
 					</td>
 				</tr>
 			</table>
@@ -57,7 +57,16 @@
 	
 <!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->			
 <script>
-$(document).ready(function(){
+<!-- 아이디찾기/비밀번호재설정 새 창 띄우기-->
+function newWindow(url, name, width, height) {
+	var left = (window.innerWidth - width) / 2;
+    var top = (window.innerHeight - height) / 2;
+    var options = 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left;
+    window.open(url, name, options);
+}
+</script>
+<script>
+$(document).ready(function(){    
 	var reg_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
 	var reg_pw = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*?[@#$%]).{6,8}/;
 	
@@ -105,13 +114,7 @@ $(document).ready(function(){
             
 	});
 */	
-	<!-- 아이디찾기/비밀번호재설정 새 창 띄우기-->
-    function newWindow(url, name, width, height) {
-		var left = (window.innerWidth - width) / 2;
-        var top = (window.innerHeight - height) / 2;
-        var options = 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left;
-        window.open(url, name, options);
-    }
+	
 
 
  /*
@@ -155,12 +158,5 @@ $(document).ready(function(){
         }); //End change
  */
 </script>
-
-<script type="text/javascript"> 
-
-	
- </script>
-	
-	
 	
 <%@include file="../includes/footer.jsp"%>		

@@ -18,7 +18,7 @@ private String email;
 private boolean enabled;
 private Date regDate;
 private Date updateDate;
-private String auth;
+private int auth;
 
 private List<AuthVO> authList;
 

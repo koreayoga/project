@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.zerock.domain.MemberVO;
 
@@ -34,7 +35,7 @@ public class CustomUserDetails implements UserDetails {
         return authorities;
     }
 */
-    
+    /*
     // 로그인한 사용자의 권한 리턴
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -47,6 +48,16 @@ public class CustomUserDetails implements UserDetails {
         });
         return collect;
     }
+    */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        String auth = String.valueOf(user.getAuth()); // int >> String
+        
+        authorities.add(new SimpleGrantedAuthority(auth));
+        return authorities;
+    }
+
     
 	// 계정이 만료가 되었는지 확인한다.
     @Override
