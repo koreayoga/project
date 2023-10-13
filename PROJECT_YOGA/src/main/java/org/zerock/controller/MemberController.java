@@ -48,6 +48,13 @@ public class MemberController {
 	public void insertMem() {
 		log.info("insert");
 	}
+	
+	/*@ResponseBody
+	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
+	public int checkId(@RequestParam("userid") String userid) throws Exception {
+	    int result = service.checkId(userid);
+	    return result;
+	}*/
  
 	@PostMapping("/insert")
 	public String insertMem(MemberVO member, RedirectAttributes rttr) {

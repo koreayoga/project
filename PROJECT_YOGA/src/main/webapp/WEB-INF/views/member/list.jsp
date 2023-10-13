@@ -1,6 +1,7 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -118,19 +119,17 @@
 
 <!-- Modal -->
 <div id="myModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close" id="closeModalBtn">&times;</span>  
-        <form role="form" name="updateForm" method="post" action="/member/updateAdmin">	
-        	<p>변경할 권한을 숫자로 작성해 주세요</p>
-            <input type="text" id="userid" name="userid">
-            <input type="text" id="auth" name="auth" placeholder="권한">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-            <!-- Other necessary input fields -->          
-            <button id="updateAdmin" data-oper="updateAdmin">업데이트</button>
-        </form>
-    </div>
+	<div class="modal-content">
+		<span class="close" id="closeModalBtn">&times;</span>
+		<form role="form" name="updateForm" method="post" action="/member/updateAdmin">
+			<p>변경할 권한을 숫자로 작성해 주세요</p>
+			<input type="text" id="userid" name="userid">
+			<input type="text" id="auth" name="auth" placeholder="권한"> 
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">		
+			<button id="updateAdmin" data-oper="updateAdmin">업데이트</button>
+		</form>
+	</div>
 </div>
-
 
 
 <!-- Modal -->

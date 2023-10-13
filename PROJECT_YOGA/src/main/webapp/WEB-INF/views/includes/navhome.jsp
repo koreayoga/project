@@ -24,7 +24,7 @@
         <!-- Core theme js -->
         <script src="../resources/js/scripts.js"></script>
     </head>
-    <body id="page-top">       
+    <body>       
       <!-- 비회원/미로그인상태 Navigation-->
       <sec:authorize access="isAnonymous()">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
