@@ -48,11 +48,6 @@ public class MemberController {
 	public void insertMem() {
 		log.info("insert");
 	}
- 
-	
-	
-
-	
 	
 	/*@ResponseBody
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
