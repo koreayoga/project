@@ -70,7 +70,7 @@ public class MemberMapperTests {
 	public void testUpdateAdmin() {
 	MemberVO member = new MemberVO();
 	member.setUserid("user00");
-	member.setAuth("4");
+	member.setAuth(4);
 	
 	int mem = mapper.updateAdmin(member);
 	log.info("updateMember......................" + mem);
