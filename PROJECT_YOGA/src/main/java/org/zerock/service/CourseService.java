@@ -10,4 +10,5 @@ public interface CourseService {
 	public CourseVO get(String ccode);
 	public boolean modify(CourseVO course);
 	public List<MemberVO> teacher();
+	public CourseVO getCourse(String userid);
 }

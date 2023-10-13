@@ -66,7 +66,7 @@
             <td> <input type="reset" value="다시쓰기"> </td>
             </tr>
          </table>
-         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }">
+         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       </form>
    </div>
    
@@ -74,34 +74,34 @@
 <!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->         
 
 <script type="text/javascript">
-function checkId() {
-   if($("#userid").val()==""){
-      alert("아이디를 입력하세요.");
-      return;
-   }else if(!reg_id.test($("#userid").val())){
-      alert("6~8자의 영문자로 시작하는 아이디를 입력하세요.");
-      return;
-   }
-       $.ajax({
-           url: "/insert/checkId",
-           type: "post",
-           dataType: "json",
-           data: { "userid": $("#userid").val() },
-           success: function (result) {
-               if (result == 1) {
-                   alert("중복된 아이디입니다.");
-                   //$("#join").hide();
-               }else if(result == 0)  {
-                   $("#checkId").attr("value", "Y");
-                   alert("사용 가능한 아이디입니다.");
-                   //$("#join").show();
-               }
-           },
-           error: function () {
-               alert("서버 오류가 발생했습니다."); // 오류 처리 추가
-           }
-       });
-   }
+	function checkId() {
+	   if($("#userid").val()==""){
+	      alert("아이디를 입력하세요.");
+	      return;
+	   }else if(!reg_id.test($("#userid").val())){
+	      alert("6~8자의 영문자로 시작하는 아이디를 입력하세요.");
+	      return;
+	   }
+	       $.ajax({
+	           url: "/insert/checkId",
+	           type: "post",
+	           dataType: "json",
+	           data: { "userid": $("#userid").val() },
+	           success: function (result) {
+	               if (result == 1) {
+	                   alert("중복된 아이디입니다.");
+	                   //$("#join").hide();
+	               }else if(result == 0)  {
+	                   $("#checkId").attr("value", "Y");
+	                   alert("사용 가능한 아이디입니다.");
+	                   //$("#join").show();
+	               }
+	           },
+	           error: function () {
+	               alert("서버 오류가 발생했습니다."); // 오류 처리 추가
+	           }
+	       });
+	}
 var reg_id = /^[a-zA-Z][0-9a-zA-Z].{4,6}$/; 
 var reg_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
 var reg_pw = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*?[@#$%]).{6,8}/;
@@ -146,6 +146,12 @@ function inputCheck() {
     var reg_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
     if (!reg_email.test(email)) {
         alert("이메일 작성 오류");
+        return;
+    }
+    
+    var reg_pw = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*?[@#$%]).{6,8}/;
+    if (!reg_pw.test(userpw)) {
+        alert("비밀번호 규칙 오류");
         return;
     }
 

@@ -1,5 +1,7 @@
 package org.zerock.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -11,4 +13,6 @@ public class CourseVO {
 	private String croom;
 	private String ctime;
 	private String cteacher;
+	
+	private List<LessonVO> lessonList;
 }
