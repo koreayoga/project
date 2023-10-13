@@ -82,7 +82,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register") 
-	@PreAuthorize("isAuthenticated()") 
+	@PreAuthorize("hasAnyRole(1, 2)") 
 	public void register() {		
 		
 	}
@@ -121,7 +121,7 @@ public class BoardController {
 	}
 
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #userid") 
+	@PreAuthorize("principal.username == #userid and hasAuthority('ADMIN')") 
 	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String userid) {
 		log.info("remove : " + bno);
 		/*
