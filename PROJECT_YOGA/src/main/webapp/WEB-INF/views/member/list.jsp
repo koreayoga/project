@@ -79,16 +79,16 @@
                 <table width="100%" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>아이디</th>
-                            <th>이름</th>
-                            <th>성별</th>
-                            <th>핸드폰</th>
-                            <th>생일</th>
-                            <th>주소</th>
-                            <th>이메일</th>
-                            <th>권한</th>
-                            <th>수정</th>
-                            <th>삭제</th>
+                            <th style="width: 8%">아이디</th>
+                            <th style="width: 7%">이름</th>
+                            <th style="width: 5%">성별</th>
+                            <th style="width: 10%">핸드폰</th>
+                            <th style="width: 10%">생일</th>
+                            <th style="width: 25%">주소</th>
+                            <th style="width: 20%">이메일</th>
+                            <th style="width: 5%">권한</th>
+                            <th style="width: 5%">수정</th>
+                            <th style="width: 5%">삭제</th>
                         </tr>
                     </thead>
                     <c:forEach items="${list}" var="member">

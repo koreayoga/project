@@ -10,8 +10,13 @@
 <title>Error</title>
 </head>
 <body>
-	<h1>ACCESS DENIED ERROR PAGE</h1>
-	<h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h2>
-	<h2><c:out value="${msg}"/></h2>
+	<div style="align-content: center; align-items: center">
+		<div>
+			<h1>ACCESS DENIED ERROR PAGE</h1>
+			<h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h2>
+			<h2><c:out value="${msg}"/></h2>
+			<button class="btn btn-third btn-xl2" onclick="history.go(-1)">뒤로가기</button>
+		</div>
+	</div>
 </body>
 </html>

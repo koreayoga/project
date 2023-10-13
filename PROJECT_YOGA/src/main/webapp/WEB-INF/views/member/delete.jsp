@@ -41,46 +41,41 @@
 				</div>
 				<!-- 로그인 버튼 생성 -->
 				<div>
-					<button href="javascript:void(0)" id="delete" onclick="fnSubmit(); return false;" class="btn btn-third btn-xl2">탈퇴하기</button>
+					<a href="javascript:void(0)" id="delete" onclick="fnSubmit(); return false;" class="btn btn-third btn-xl2">탈퇴하기</a>
 					<!-- 비밀번호 암호화 -->
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</div>								
 			</form>
 		</div>
 		<script>
-			$(document).ready(function() {
-				var msg = "${msg}";
-				if(msg != ""){
-					alert(msg);    
-				}
-			});
-			
-			function fnSubmit() { 
-				if ($("#userpw").val() == null || $("#userpw").val() == "") {
-					alert("회원님의 비밀번호를 입력해주세요.");
-					$("#userpw").focus(); 
-					return false;
-				} 
-			 
-				if (confirm("탈퇴하시겠습니까?")) {			 
-					$("#delete").submit();				 
-					return false;
-				}				
-				
-				var result = '<c:out value="${result}"/>';
-				checkAlert(result);
+		    var result = '${result}';
+		    
+		    function fnSubmit() { 
+		        if ($("#userpw").val() == null || $("#userpw").val() == "") {
+		            alert("회원님의 비밀번호를 입력해주세요.");
+		            $("#userpw").focus(); 
+		            return false;
+		        } 
 		
-				function checkAlert(result) {
-					if (result === '' || history.state) {
-						return;
-					}
-					if (result === 'success') {
-						alert("탈퇴가 정상적으로 처리되었습니다.");
-					} else {
-						alert("탈퇴처리에 실패하였습니다.<br>다시 시도해주십시오.");
-					}
-				}
-			}		 
+		        if (confirm("탈퇴하시겠습니까?")) { 
+		            $("#delete").submit();
+		            return false;
+		        }                
+
+		        checkAlert(result);
+	            window.close();
+		
+		        function checkAlert(result) {
+		            if (result === '' || history.state) {
+		                return;
+		            }
+		            if (result === 'success') {
+		                alert("탈퇴가 정상적으로 처리되었습니다.");
+		            } else {
+		                alert("탈퇴처리에 실패하였습니다.<br>다시 시도해주십시오.");
+		            }
+		        }
+		    }   
 		</script>
 	</body>
 </html>
