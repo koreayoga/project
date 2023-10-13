@@ -1,24 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp"%>
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setCharacterEncoding("utf-8"); %>
 <title>MEMBER</title>
 <link href="../resources/css/insert.css" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&family=Jua&family=Orbit&display=swap" rel="stylesheet">
-
-</head>
-<body>
    <div class="insertBox">
       <form name="regForm" method="post" action="/member/insert">
-         <table>
+         <table id="insert">
+         	<tr>
+				<td colspan="3" style="height:0px; padding-left: 20px"><h1 id="head"> 회 원 가 입 </h1><hr style="width: 860px"></td>					
+			</tr>
             <tr>
-                <th>아 이 디</th><td id="second">||</td><td><input id="userid" name="userid">
+                <th>아 이 디</th><td id="second">||</td><td><input id="userid" name="userid" autofocus>
+                <input type="button" id="check" class="btn-third btn-xs" onclick="checkId()" value="중복체크">
                 <label for="userid" style="font-size:small; color: red">영문자 6~8자리</label>
-                <input type="button" id="check" class="btn-third btn-xs" onclick="checkId()" value="중복체크"></td>
+                </td>                
             </tr>
             <tr>
                 <th>이 름</th><td id="second">||</td><td><input id="name" name="name"></td>
@@ -41,7 +40,7 @@
             <tr>
                <th>연 락 처</th>
                <td id="second">||</td>
-               <td><input id="phone" value="010-0000-0000" name="phone"></td>
+               <td><input id="phone" name="phone"></td>
             </tr>
             <tr>
                <th>생 년 월 일</th>
@@ -59,18 +58,18 @@
                <td><input type="email" id="email" name="email"><label for="userpw" style="font-size:small; color: red">&nbsp;&nbsp;*예) yoga@gmail.com</label></td>
             </tr>            
             <tr>
-               <td colspan="3" style="text-align: center;">개인정보 및 약관동의서<hr></td>
+               <td colspan="3" style="text-align: center;"><b>개인정보 및 약관동의서</b><hr style="width:860px; margin-top: 10px"></td>
             </tr>
             <tr>               
-               <td colspan="3"><textarea style="width: 760px; margin-left: 0px;" readonly>개인정보 이전에 동의합니다.</textarea></td>
+               <td colspan="3" style="height: 300px"><textarea style="width: 860px; height:300px; border: 0px solid transparent;" readonly><%@include file="agree.txt"%></textarea></td>
             </tr>
             <tr>
                <!-- <td><input type="hidden"></td> -->               
-               <td colspan="3" style="align-content: left;"><input type="checkbox">동의서를 확인하였으며,이에 동의합니다.</td>
+               <td colspan="3" style="text-align: center"><input type="checkbox" required><b>동의서를 확인하였으며, 이에 동의합니다.</b></td>
             </tr>
 
             <tr>
-	            <td colspan="3"> 
+	            <td id="buttonBox_2" colspan="3"> 
 		            <input id="join" type="button" value="회원가입" onclick="inputCheck()">
 	    	        <input type="reset" value="다시쓰기"> 
     	        </td>
@@ -79,7 +78,6 @@
          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       </form>
    </div>
-   
    
 <!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->         
 
@@ -169,8 +167,5 @@
 	    // 모든 검사가 통과되면 폼을 서버로 제출합니다.
 	    document.regForm.submit();
 	} 
- </script>
-   
-   
-   
-<%@include file="../includes/footer.jsp"%>      
+ </script>      
+<%@include file="../includes/footer.jsp"%>

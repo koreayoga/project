@@ -2,12 +2,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../includes/header.jsp"%>
 <title>MYPAGE</title>
-<link href="../resources/css/insert.css" rel="stylesheet" />
+<link href="../resources/css/info.css" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&family=Jua&family=Orbit&display=swap" rel="stylesheet">
-
-
 	<div class="testBox" style="text-align: center;">		
 		<form id="userInfo" action="/member/update" method="get">
 			<table id="info">
