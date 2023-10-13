@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.zerock.domain.BoardAttachVO;
+import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
 import org.zerock.mapper.MemberMapper;
 
@@ -18,6 +22,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
+	
+	/*
+	@Setter(onMethod_ = @Autowired)
+	private BoardMapper bmap;
 	
 	@Override
 	public List<MemberVO> getListMem() {
@@ -67,3 +75,53 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.deleteAdmin(userid);
 	}
 }
+	
+@Override
+public void insertMem(MemberVO member) {
+	log.info("insertMember......................"+ member);
+	mapper.insertMem(member);
+}
+
+@Override
+public MemberVO getMem(String userid) {
+	log.info("getMember......................"+ userid);
+	return mapper.getMem(userid);
+}
+
+@Override
+public boolean deleteMem(String userid) {
+	log.info("deleteMember......................"+ userid);
+	return mapper.deleteMem(userid) == 1;
+}
+/*
+@Transactional
+@Override
+public void quitMem(MemberVO vo){
+	mapper.deleteMem(vo.getUserid()); // 회원삭제
+	 //게시글삭제
+	  //댓글삭제
+	  //
+}
+*/
+@Override
+public int updateMem(MemberVO vo) {
+	log.info("updateMember......................"+ vo);
+	return mapper.updateMem(vo);
+}
+
+@Override
+public int checkId(String userid) {
+	log.info("USERIDUSER....................."+ userid);
+	return mapper.checkId(userid);
+
+}
+
+@Override
+public int updateAdmin(MemberVO vo) {
+	log.info("updateMember......................"+ vo);
+	return mapper.updateAdmin(vo);
+}
+
+
+}
+

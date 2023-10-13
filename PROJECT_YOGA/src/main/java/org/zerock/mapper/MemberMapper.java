@@ -3,6 +3,7 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.zerock.domain.MemberVO;
+import org.zerock.domain.Mriteria;
 
 public interface MemberMapper {
 	public MemberVO read(String userid);
