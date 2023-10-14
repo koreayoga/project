@@ -44,13 +44,14 @@
 				</tr>
 				<tr>
 					<td id="buttonBox_3" colspan="3"> 
-						<button id="update" class="btn btn-third btn-xl2" onclick="inputCheck()">수정완료</button>
+						<button  type="button" id="update" class="btn btn-third btn-xl2" onclick="inputCheck();">수정완료</button>
 						<button class="btn btn-third btn-xl2" onclick="history.go(-1)">뒤로가기</button>	 
 						<a href="javascript:void(0);" onclick="newWindow('delete', '회원탈퇴', 430, 300);" class="btn btn-third btn-xl2">탈퇴하기</a>						
 						<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }">
 		</form>
 	</div>
 	
@@ -69,7 +70,7 @@ function newWindow(url, name, width, height) {
 $(document).ready(function(){    
 	var reg_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
 	var reg_pw = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*?[@#$%]).{6,8}/;
-	
+})	
 	function inputCheck() {
 	    //수정한 데이터 수집(비밀번호, 연락처, 주소, 이메일)
 	    var userpw = document.getElementById("userpw").value;
@@ -89,6 +90,11 @@ $(document).ready(function(){
 	        alert("패스워드가 일치하지 않습니다.");        
 	        return;
 	    }
+		var reg_pw = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*?[@#$%]).{6,8}/;
+	    if(!reg_pw.test(userpw)){
+	    	alert("비밀번호 형식 오류");
+	    	return;
+	    }
 	
 	    //이메일의 작성규칙 확인.    
 	    var reg_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
@@ -100,7 +106,6 @@ $(document).ready(function(){
 	    //제출
 	    document.regForm.submit();
 	} 
-	
 /*
 	var formObj = $("form[role='form']");
 	//완료 버튼 클릭시 수정 진행==========================================================
