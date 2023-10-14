@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.zerock.domain.CourseVO;
 import org.zerock.domain.MemberVO;
 import org.zerock.service.CourseService;
 import org.zerock.service.MemberService;
