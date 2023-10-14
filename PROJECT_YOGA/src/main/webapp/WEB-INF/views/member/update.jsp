@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../includes/header.jsp"%>
 <title>UPDATE INFO</title>
-<link href="../resources/css/insert.css" rel="stylesheet" />
+<link href="../resources/css/info.css" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&family=Jua&family=Orbit&display=swap" rel="stylesheet">
@@ -20,11 +20,11 @@
 				    <th>이 름</th><td id="second">||</td><td><input id="name" name="name" value="${user.name}" readonly></td>
 				</tr>				
 				<tr>
-				    <th>비 밀 번 호</th><td id="second">||</td><td><input type="password" id="userpw" name="userpw" placeholder="${user.userpw}"> 
+				    <th>비 밀 번 호</th><td id="second">||</td><td><input type="password" id="userpw" name="userpw" autofocus> 
 				    <label for="userpw" style="font-size:small; color: red">*숫자,영문자,특수문자(@,#,$,%) 포함 6~8자</label></td>
 				</tr>
 				<tr>
-				    <th>비 밀 번 호 확 인</th><td id="second">||</td><td><input type="password" id="repw" name="repw" placeholder="${user.userpw}"></td>
+				    <th>비 밀 번 호 확 인</th><td id="second">||</td><td><input type="password" id="repw" name="repw"></td>
 				</tr>
 				<tr>
 					<th>성 별</th><td id="second">||</td><td><input id="gender" name="gender" value="	${user.gender=='F'?'여자':'남자'}" readonly></td>

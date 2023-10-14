@@ -20,14 +20,6 @@
 		<result property="auth" column="auth"/>
 	</resultMap>	
 	
-	<!-- <select id="read" resultMap="memberMap">
-
-		select mem.userid, mem.userpw, mem.name, mem.enabled,mem.regdate, mem.updatedate, auth.auth
-		From 
-			member mem left outer join member_auth auth on mem.userid = auth.userid
-				where mem.userid = #{userid}			
-
-	</select>-->
 	<select id="read" resultMap="memberMap">
 	select userid, userpw, name, enabled, regdate, updatedate, auth 
 		from member where userid=#{userid}
@@ -55,12 +47,18 @@
 		delete from member where userid=#{userid}
 	</delete>
 	
+	<delete id="deleteAdmin">
+		delete from member where userid=#{userid}
+	</delete>
+	
 	<update id="updateMem">
 		<!-- update member set userpw=#{userpw}, name=#{name}, birth=#{birth}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid} -->
 		update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
 	</update>
 
 	<update id="updateAdmin">
-		update member set auth=#{auth} where userid=#{userid}
-	</update>	
+	update member set auth=#{auth} where userid=#{userid}
+	</update>
+	
+	
 </mapper>

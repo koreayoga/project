@@ -1,6 +1,6 @@
 body{
-	height: 400px;
-	overflow-y:visible;
+	height: auto;
+	overflow-y:auto;
 	/* overflow-y:hidden; */
 }
 

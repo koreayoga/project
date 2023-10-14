@@ -38,6 +38,7 @@ public class MemberController {
 	@Setter(onMethod_ =@Autowired)
 	private CourseService Cservice;
 	
+	@PreAuthorize("principal.username == 'admin'")
 	@GetMapping("/list")
 	public void getListMem(Model model) {
 		log.info("list");
@@ -48,13 +49,6 @@ public class MemberController {
 	public void insertMem() {
 		log.info("insert");
 	}
-	
-	/*@ResponseBody
-	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
-	public int checkId(@RequestParam("userid") String userid) throws Exception {
-	    int result = service.checkId(userid);
-	    return result;
-	}*/
  
 	@PostMapping("/insert")
 	public String insertMem(MemberVO member, RedirectAttributes rttr) {
@@ -144,7 +138,7 @@ public class MemberController {
 	        service.deleteMem(vo.getUserid());
 	        // 로그아웃 처리(세션만료)
 	        SecurityContextHolder.clearContext();
-	        rttr.addFlashAttribute("result", "success");
+	        rttr.addFlashAttribute("result", "success");	        
 	        return "redirect:/";
 	    } else {
 	        // 비밀번호가 틀렸을 때

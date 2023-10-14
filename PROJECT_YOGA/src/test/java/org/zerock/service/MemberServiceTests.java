@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
 
 import lombok.Setter;
@@ -31,14 +32,14 @@ public class MemberServiceTests {
 	@Test
 	public void testInsertMem() {
 	MemberVO member = new MemberVO();
-	member.setUserid("user05");
+	member.setUserid("user20");
 	member.setUserpw("1234");
-	member.setName("김씨");
+	member.setName("최씨");
 	member.setGender("F");
 	member.setPhone("010123456");
 	Date birthDate = java.sql.Date.valueOf("1990-05-15");
 	member.setBirth(birthDate);
-	member.setAddress("�꽌�슱�떆");
+	member.setAddress("충북 청주");
 	member.setEmail("user@email.com");
 	service.insertMem(member);
 	log.info("�깮�꽦�맂 硫ㅻ쾭................."+ member.getUserid());
@@ -79,10 +80,25 @@ public class MemberServiceTests {
 		log.info("updateMemberADMIN..............." + service.updateAdmin(member));
 	}
 	
+	
+	
+	
+	@Test
+	public void testDeleteAdmin() {
+
+		log.info("updateMemberADMIN..............." + service.deleteAdmin("a123456"));
+	}
+	
 
 	@Test
 	public void testCheckId() {
 		log.info("IDcheck................." + service.checkId("user"));
 	}
+
+	 
+	 
+	 
+	 
+	
 
 }

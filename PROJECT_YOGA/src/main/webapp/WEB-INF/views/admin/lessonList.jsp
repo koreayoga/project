@@ -9,10 +9,7 @@
 <style>
 .ccodeList{
 	position: absolute; margin-top : 100px;
-
 }
-
-
 </style>
 </head>
 <body class = "ccodeList">

@@ -7,7 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
+import org.zerock.domain.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -76,7 +78,6 @@ public class MemberMapperTests {
 	log.info("updateMember......................" + mem);
 	}
 
-	
 
 	@Test
 	public void testCheckId() {
@@ -84,5 +85,20 @@ public class MemberMapperTests {
 		
 		log.info("IDcheck....................."+ mapper.checkId("user"));
 	}
+	
+	
+	
+//paging	
+	
+	@Test
+	public void testPageDTO() {
+		Criteria cri = new Criteria();
+		
+		cri.setPageNum(1);
+		cri.setAmount(10);
+		PageDTO p = new PageDTO(cri,100);
+		log.info("------------"+p+"------------");
+	}
+	
 
 }

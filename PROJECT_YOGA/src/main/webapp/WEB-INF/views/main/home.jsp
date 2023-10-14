@@ -136,16 +136,16 @@
 				<h2 class="mt-0" style="color: #609966">Time Table</h2>
 				<hr class="divider" />
 			</div>
-			<table class="text-center" style="width: 650px; height: 350px;">
+			<table class="text-center" style="width: 900px; height: 350px;">
 				<tr>
-					<th>시간</th>
-					<th>강의실</th>
-					<th>강사</th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
+					<th style="width:9%">시간</th>
+					<th style="width:7%">강의실</th>
+					<th style="width:9%">강사</th>
+					<th style="width:15%">월</th>
+					<th style="width:15%">화</th>
+					<th style="width:15%">수</th>
+					<th style="width:15%">목</th>
+					<th style="width:15%">금</th>
 				</tr>
 				<tr>
 					<td rowspan="2">10시~11시</td>

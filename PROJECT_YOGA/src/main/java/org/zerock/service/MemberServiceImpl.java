@@ -61,4 +61,9 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.updateAdmin(vo);
 	}
 	
+	@Override
+	public int deleteAdmin(String userid) {
+		log.info("updateMember......................" + userid);
+		return mapper.deleteAdmin(userid);
+	}
 }
