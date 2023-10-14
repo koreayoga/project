@@ -54,7 +54,7 @@ public class AdminController {
 	 */
 	
 	@GetMapping(value="/lessonList")
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
+	@PreAuthorize("isAuthenticated()" /* and principal.username=='admin' */)
 	public void getLessonList(Model model) {
 		model.addAttribute("list",lessonService.getLessonCodeList("A1000"));
 	}
