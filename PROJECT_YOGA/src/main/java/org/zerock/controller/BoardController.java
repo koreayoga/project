@@ -66,7 +66,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register") 
-	@PreAuthorize("isAuthenticated()") 
+	@PreAuthorize("hasAnyRole('ADMIN','TUTOR')") 
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		if(board.getAttachList() != null) {
 			board.getAttachList().forEach(attach -> log.info(attach));
@@ -82,7 +82,6 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register") 
-	@PreAuthorize("hasAnyRole(1, 2)") 
 	public void register() {		
 		
 	}

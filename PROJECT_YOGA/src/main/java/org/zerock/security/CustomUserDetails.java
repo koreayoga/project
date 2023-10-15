@@ -14,8 +14,7 @@ public class CustomUserDetails implements UserDetails {
 	
 	private String username;
     private String password;
-    private MemberVO user;
-    private Collection<? extends GrantedAuthority> authorities;
+    private MemberVO vo;
     
     // 아이디 리턴
     @Override
@@ -27,33 +26,13 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public String getPassword() {
     	return password;
-    }
-/*
-    // 권한 리턴
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-*/
-    /*
-    // 로그인한 사용자의 권한 리턴
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> collect = new ArrayList<>();
-        collect.add(new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return user.getAuth();
-            }
-        });
-        return collect;
-    }
-    */
+    }  
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        String auth = String.valueOf(user.getAuth()); // int >> String
-        
+		/* String auth = String.valueOf(user.getAuth()); */// int >> String
+        String auth = Integer.toString(vo.getAuth());
         authorities.add(new SimpleGrantedAuthority(auth));
         return authorities;
     }

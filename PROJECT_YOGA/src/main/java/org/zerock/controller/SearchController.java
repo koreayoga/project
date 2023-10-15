@@ -90,11 +90,4 @@ public class SearchController {
 	    return "/loginout/resetPW_result";
     }
     
-   
- 	//이메일 인증
-	/*
-	 * @RequestMapping("/cert") public String certMem(MemberVO vo) throws
-	 * MessagingException, UnsupportedEncodingException { log.info("이메일 발송"); }
-	 */
- 	
 }

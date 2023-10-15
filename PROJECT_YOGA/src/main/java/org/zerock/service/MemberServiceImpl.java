@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO getMem(String userid) {
 		log.info("getMember......................" + userid);
-		return mapper.getMem(userid);
+		return mapper.read(userid);
 	}
 
 	@Override

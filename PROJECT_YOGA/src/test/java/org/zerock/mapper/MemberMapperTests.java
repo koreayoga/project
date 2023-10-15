@@ -1,15 +1,12 @@
 package org.zerock.mapper;
 
-import java.sql.Date;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
-import org.zerock.domain.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,37 +16,41 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MemberMapperTests {
 
-		@Setter(onMethod_ = @Autowired)
-		private MemberMapper mapper;
-
-
+	@Setter(onMethod_ = @Autowired)
+	private MemberMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private BCryptPasswordEncoder pwencoder;
+	
+/*
 	@Test
 	public void testGetListMem() {
 	mapper.getListMem().forEach(member->log.info(member));
 	}
-	
+	*/
 	@Test
 	public void testInsertMem() {
 	    MemberVO member = new MemberVO();
-	    member.setUserid("test20");
-	    member.setUserpw("12345");
-	    member.setName("諛뺤뵪");
+	    member.setUserid("dyrk2345");
+	    String pw = "Aa1234@";	    
+	    member.setUserpw(pwencoder.encode(pw));
+	    member.setName("요가2");
 	    member.setGender("F");
 	    member.setPhone("02213456");
-	    Date birthDate = java.sql.Date.valueOf("1990-05-15");
-	    member.setBirth(birthDate);
-	    member.setAddress("�꽌�슱");
+	    java.sql.Date birth = java.sql.Date.valueOf("1990-05-15");
+	    member.setBirth(birth);
+	    member.setAddress("요가숲");
 	    member.setEmail("user01@email.com");  
 	    mapper.insertMem(member);
 	    log.info(member);
 	}
-	
+	/*
 	@Test
 	public void testGetMem() {
-	MemberVO member = mapper.getMem("a123456");
+	MemberVO member = mapper.getMem("admin");
 	log.info(member);
-	}
-
+	}	
+	
 	@Test
 	public void testDeleteMem() {
 	log.info("deleteMember......................" + mapper.deleteMem("user"));
@@ -99,6 +100,12 @@ public class MemberMapperTests {
 		PageDTO p = new PageDTO(cri,100);
 		log.info("------------"+p+"------------");
 	}
-	
 
+		
+		@Test
+		public void testReadMem() {
+			MemberVO member = mapper.read("admin");
+			log.info(member);
+		}
+*/
 }
