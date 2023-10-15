@@ -120,7 +120,7 @@
 							<!-- 버튼부 -->
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAuthenticated()">
-								<c:if test="${pinfo.username eq board.userid}">								
+								<c:if test="${pinfo.username eq board.userid || pinfo.username == 'admin'}">								
 									<button data-oper="modify" class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">Modify</button>
 								</c:if>
 							</sec:authorize>

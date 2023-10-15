@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +31,7 @@ public class CommonController {
 	@GetMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
 		log.info("--------------------------Access Denied : " + auth);
-		model.addAttribute("msg", "해당 접근권한이 없습니다.");
+		model.addAttribute("msg", "현재 페이지 접근권한이 없습니다.");
 	}
 
 	@GetMapping("/login")
@@ -88,7 +87,7 @@ public class CommonController {
 	}
 
 	// 비밀번호 초기화
-	@Transactional
+	/* @Transactional */
 	@PostMapping(value = "/resetPW")
 	public String resetPW(HttpServletRequest request, Model model,
 			@RequestParam(required = true, value = "id") String id,

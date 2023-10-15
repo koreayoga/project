@@ -114,8 +114,8 @@
 					<!-- button -->
 					<sec:authentication property="principal" var="pinfo"/>
 					<sec:authorize access="isAuthenticated()">
-						<c:if test="${pinfo.username eq board.userid}">		
-							<button data-oper="modify" class="btn btn-default">Modify</button>
+						<c:if test="${pinfo.username eq board.userid || pinfo.username == 'admin'}">						
+							<button data-oper="modify" class="btn btn-default">Modify</button>						
 							<button data-oper="remove" class="btn btn-danger">Remove</button>
 						</c:if>
 					</sec:authorize>
@@ -243,7 +243,7 @@
 				
 				formObj.empty();
 				
-				formObj.append(pageNumTag);zz
+				formObj.append(pageNumTag);
 				formObj.append(amountTag);
 				formObj.append(keywordTag);
 				formObj.append(typeTag);

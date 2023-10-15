@@ -4,15 +4,15 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.CourseVO;
 import org.zerock.domain.MemberVO;
@@ -83,7 +83,7 @@ public class MemberController {
         model.addAttribute("user", vo);
     }
 	
-	@Transactional
+	/* @Transactional */
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/update")
 	public String updateMem(MemberVO vo, Model model, RedirectAttributes rttr) {
@@ -124,7 +124,7 @@ public class MemberController {
 		MemberVO vo = service.getMem(principal.getName());
 		System.out.println("-------------------"+vo.getName()+"회원님 계정을 삭제하시겠습니까?");		
 	};
-	
+	/*
 	@PostMapping("/delete")	 
 	public String delete(Principal principal, @RequestParam("userpw") String userpw, RedirectAttributes rttr) {
 		
@@ -145,6 +145,30 @@ public class MemberController {
 	    	rttr.addFlashAttribute("result", "fail");
 	        return "redirect:/member/delete";
 	    }
+	}
+	*/
+	/* @Transactional */
+	@ResponseBody
+	@PostMapping("/delete")
+	public String memberDelete(Principal principal, @RequestBody MemberVO vo, Model model) throws Exception {
+
+		String inputPass = vo.getUserpw(); // 입력한 비밀번호	
+		MemberVO member = service.getMem(principal.getName()); // 암호화된 DB비밀번호	
+		String result = "";
+		System.out.println("access success");
+		
+		
+		if(principal.getName() != null && principal.getName() != "") {	
+			BCryptPasswordEncoder pwencoder = new BCryptPasswordEncoder();
+			System.out.println("pwencode success");
+			if(pwencoder.matches(inputPass, member.getUserpw())) {
+				System.out.println("matches success");
+				service.deleteMem(principal.getName());
+				System.out.println("delete success");
+				result = "success";
+			}
+		}		
+		return result;
 	}
 }	
 
