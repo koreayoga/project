@@ -46,8 +46,7 @@
 					<td id="buttonBox_3" colspan="3"> 
 						<button  type="button" id="update" class="btn btn-third btn-xl2" onclick="inputCheck();">수정완료</button>
 						<button class="btn btn-third btn-xl2" onclick="history.go(-1)">뒤로가기</button>	 
-						<a href="javascript:void(0);" onclick="newWindow('delete', '회원탈퇴', 430, 300);" class="btn btn-third btn-xl2">탈퇴하기</a>						
-						<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
+						
 					</td>
 				</tr>
 			</table>
@@ -56,7 +55,8 @@
 	</div>
 	
 	
-<!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->			
+<!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->
+
 <script>
 <!-- 아이디찾기/비밀번호재설정 새 창 띄우기-->
 function newWindow(url, name, width, height) {
@@ -90,6 +90,7 @@ $(document).ready(function(){
 	        alert("패스워드가 일치하지 않습니다.");        
 	        return;
 	    }
+	    
 		var reg_pw = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*?[@#$%]).{6,8}/;
 	    if(!reg_pw.test(userpw)){
 	    	alert("비밀번호 형식 오류");
@@ -105,63 +106,6 @@ $(document).ready(function(){
 	
 	    //제출
 	    document.regForm.submit();
-	} 
-/*
-	var formObj = $("form[role='form']");
-	//완료 버튼 클릭시 수정 진행==========================================================
-	$("button[id='update']").on("click", function(e){
-		e.preventDefault();
-          
-        console.log("완료 버튼 클릭");
-        
-        inputCheck(); 
-        formObj.submit();
-            
-	});
-*/	
-	
-
-
- /*
-	var csrfHeaderName ="${_csrf.headerName}";
-    var csrfTokenValue ="${_csrf.token}"; 
-        
-    $("input[type='file']").change(function(e){
-            
-    
-            var formData = new FormData();
-            var inputFile = $("input[name='uploadFile']");
-            var files = inputFile[0].files;
-    
-            
-            for(var i=0; i<files.length; i++){
-                //확인 메서드에서 false가 나오면 안됨
-                if(!checkExtension(files[i].name, files[i].size)){
-                    return false;
-                }
-                //append:요소추가
-                formData.append("uploadFile",files[i]);
-            }
-            //ajax로 서버(uploadAjaxAction)에 전송
-            $.ajax({
-                url: '/uploadAjaxAction',
-                processData: false, 
-                contentType: false,
-                //ajax로 csrf토큰 전송
-                beforeSend: function(xhr){
-                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-                },
-                data: formData,
-                type: 'POST',
-                dataType: 'json',
-                success: function(result){
-                    console.log(result)
-                    showUploadResult(result);
-                }
-            }); // End ajax
-            
-        }); //End change
- */
-</script>
-	
+	} 	
+</script>	
 <%@include file="../includes/footer.jsp"%>		
