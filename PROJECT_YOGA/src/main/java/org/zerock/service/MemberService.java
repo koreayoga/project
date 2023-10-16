@@ -7,7 +7,7 @@ import org.zerock.domain.MemberVO;
 public interface MemberService {
 
 	public List<MemberVO> getListMem();
-	public void insertMem(MemberVO member);
+	public void insertMem(MemberVO vo);
 	public MemberVO getMem(String userid);
 	public int deleteMem(String userid);
 	public int updateMem(MemberVO vo);

@@ -37,14 +37,9 @@ public class MemberController {
 	
 	@Setter(onMethod_ =@Autowired)
 	private CourseService Cservice;
+
 	
-	@PreAuthorize("principal.username == 'admin'")
-	@GetMapping("/list")
-	public void getListMem(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getListMem());
-	}
-	
+	//회원가입
 	@GetMapping("/insert")
 	public void insertMem() {
 		log.info("insert");
@@ -62,6 +57,8 @@ public class MemberController {
 		return "redirect:/main/home";
 	}
 	
+	
+	//회원정보출력-마이페이지
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/mypage")
     public void getMem(Principal principal, Model model) {  
@@ -73,7 +70,9 @@ public class MemberController {
 		model.addAttribute("course", cvo);
 		System.out.println(cvo);		
 	}
-		
+	
+	
+	//회원정보수정
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/update")
 	public void updateMem(Principal principal, Model model) {        
@@ -81,9 +80,8 @@ public class MemberController {
         String userid = principal.getName();
         MemberVO vo = service.getMem(userid);
         model.addAttribute("user", vo);
-    }
+    }	
 	
-	/* @Transactional */
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/update")
 	public String updateMem(MemberVO vo, Model model, RedirectAttributes rttr) {
@@ -94,31 +92,9 @@ public class MemberController {
         }
 		return "redirect:/member/mypage";
 	}
-		
-	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
-	@PostMapping("/updateAdmin")
-	public String updateAdmin(MemberVO vo, Model model, RedirectAttributes rttr) {
-		/* vo.setUserpw(pwencoder.encode(vo.getUserpw())); */
-		int result = service.updateAdmin(vo);
-		if (result>0) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
-	}
-/*
-	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
-	@PostMapping("/delete")
-	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
-		log.info("delete" + userid);
-		if (service.deleteMem(userid) == 1) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
-	}
-*/
 	
+	
+	//회원탈퇴
 	@GetMapping("/delete")
 	public void delete(Principal principal) {
 		MemberVO vo = service.getMem(principal.getName());
@@ -147,13 +123,13 @@ public class MemberController {
 	    }
 	}
 	*/
-	/* @Transactional */
+	
 	@ResponseBody
 	@PostMapping("/delete")
 	public String memberDelete(Principal principal, @RequestBody MemberVO vo, Model model) throws Exception {
 
-		String inputPass = vo.getUserpw(); // 입력한 비밀번호	
-		MemberVO member = service.getMem(principal.getName()); // 암호화된 DB비밀번호	
+		String inputPass = vo.getUserpw(); // 입력 비밀번호	
+		MemberVO member = service.getMem(principal.getName()); // 암호화된 DB비밀번호를 가져오기 위해 MemberVO 객체 생성	
 		String result = "";
 		System.out.println("access success");
 		
@@ -170,6 +146,38 @@ public class MemberController {
 		}		
 		return result;
 	}
+	//나중에 ADMINCONTROLLER로 옮김?
+	//회원목록
+	@GetMapping("/list")
+	@PreAuthorize("hasRole('ADMIN')")
+	public void getListMem(Model model) {
+		log.info("list");
+		model.addAttribute("list", service.getListMem());
+	}
+	
+	@PostMapping("/updateAdmin")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String updateAdmin(MemberVO vo, Model model, RedirectAttributes rttr) {
+		/* vo.setUserpw(pwencoder.encode(vo.getUserpw())); */
+		int result = service.updateAdmin(vo);
+		if (result>0) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/member/list";
+	}
+/*
+	//나중에 ADMINCONTROLLER로 옮길 예정
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
+	@PostMapping("/delete")
+	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
+		log.info("delete" + userid);
+		if (service.deleteMem(userid) == 1) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/member/list";
+	}
+*/
+	
 }	
 
 	

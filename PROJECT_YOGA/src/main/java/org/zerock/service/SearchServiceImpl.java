@@ -20,12 +20,7 @@ public class SearchServiceImpl implements SearchService {
 		log.info("search member ID-------------"+vo.getName()+" ["+vo.getEmail()+"]");	
 		return mapper.searchId(vo);
 	}
-		
-	@Override
-	public int memberPwdCheck(MemberVO vo) {
-	    return mapper.memberPwdCheck(vo);
-	}
-	 
+	
 	@Override
 	public void passwordUpdate(MemberVO vo) {
 	    mapper.passwordUpdate(vo);

@@ -47,8 +47,7 @@ public class ReplyController {
 	}
 	
 	// 댓글 삭제 기능	
-	@PreAuthorize("principal.username == #vo.replyer")
-	//@DeleteMapping(value="/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@PreAuthorize("principal.username == #vo.replyer || hasRole('ADMIN')")	
 	@DeleteMapping(value="/{rno}")
 	public ResponseEntity<String> remove(@RequestBody ReplyVO vo, @PathVariable("rno") Long rno){
 		log.info("Remove------" +rno);
@@ -68,18 +67,7 @@ public class ReplyController {
 		return service.modify(vo) == 1
 				? new ResponseEntity<>("success",HttpStatus.OK) 
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	/*
-	// 댓글 리스트 구현
-	@GetMapping(value = "/pages/{bno}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("page") int page,@PathVariable("bno") Long bno){
-		log.info("get List--------------");
-		Criteria cri = new Criteria(page,10);
-		log.info(cri);
-		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
-	}
-	*/
+	}	
 	
 	//댓글 리스트 + 페이징기능
 	@GetMapping(value = "/pages/{bno}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})

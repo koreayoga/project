@@ -66,7 +66,7 @@ public class CommonController {
 	}
 
 	@PostMapping("/searchID")
-	public String dosearchID(HttpServletRequest request, Model model,
+	public String searchID(HttpServletRequest request, Model model,
 			@RequestParam(required = true, value = "name") String name,
 			@RequestParam(required = true, value = "email") String email, MemberVO vo) {
 		try {
@@ -81,13 +81,7 @@ public class CommonController {
 		return "/loginout/searchID_result";
 	}
 
-	@GetMapping("/searchID_result")
-	public void searchID_result() {
-		System.out.println("result of searchID--------");
-	}
-
-	// 비밀번호 초기화
-	/* @Transactional */
+	// 비밀번호 초기화	
 	@PostMapping(value = "/resetPW")
 	public String resetPW(HttpServletRequest request, Model model,
 			@RequestParam(required = true, value = "id") String id,
@@ -97,10 +91,7 @@ public class CommonController {
 		try {
 			vo.setUserid(id);
 			vo.setName(name);
-			vo.setEmail(email);
-			int cnt = service.memberPwdCheck(vo);
-			System.out.println(cnt);
-			model.addAttribute("cnt", cnt);
+			vo.setEmail(email);			
 
 			String newPwd = RandomStringUtils.randomAlphanumeric(10);
 			String enpassword = encodePw.encode(newPwd);

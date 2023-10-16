@@ -17,7 +17,7 @@ import lombok.extern.log4j.Log4j;
 public class insertController {
 	
 	private MemberService service;
-	
+	//???????????
 	@ResponseBody
 	@RequestMapping(value="/checkId", method = RequestMethod.POST)
 	public int idChk(@RequestParam("userid")String userid) throws Exception {
