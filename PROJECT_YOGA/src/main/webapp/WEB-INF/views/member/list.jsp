@@ -1,29 +1,11 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>UPDATE INFO</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="../resources/assets/favicon.ico" />
-	<!-- Bootstrap Icons-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-	<!-- Google fonts-->
-	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-	<link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-	<!-- SimpleLightbox plugin CSS-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-	<!-- Core theme CSS -->
-	<link href="../resources/css/styles.css" rel="stylesheet" />
-	<link href="../resources/css/pageStyle.css" type="text/css" rel="stylesheet" />
-	<link href="../resources/css/navstyletest.css" type="text/css" rel="stylesheet" />
 
 <style>
 .modal {
@@ -68,7 +50,8 @@
 	
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Admin</h1>
+        <h1 class="page-header">Member</h1>
+        <hr class="divider" />
     </div>
 </div>
 
@@ -76,35 +59,35 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <table width="100%" class="table table-bordered">
+                <table class="table table-bordered size">
                     <thead>
-                        <tr>
-                            <th style="width: 8%">아이디</th>
-                            <th style="width: 7%">이름</th>
-                            <th style="width: 5%">성별</th>
-                            <th style="width: 10%">핸드폰</th>
-                            <th style="width: 10%">생일</th>
-                            <th style="width: 25%">주소</th>
-                            <th style="width: 20%">이메일</th>
-                            <th style="width: 5%">권한</th>
-                            <th style="width: 5%">수정</th>
-                            <th style="width: 5%">삭제</th>
+                        <tr class="information">
+                            <th class="middle">아이디</th>
+                            <th class="middle">이름</th>
+                            <th class="middle">성별</th>
+                            <th class="long">핸드폰</th>
+                            <th class="long">생일</th>
+                            <th class="long">주소</th>
+                            <th class="long">이메일</th>
+                            <th class="short">권한</th>
+                            <th class="short">수정</th>
+                            <th class="short">삭제</th>
                         </tr>
                     </thead>
                     <c:forEach items="${list}" var="member">
-                        <tr>
-                            <td><c:out value="${member.userid}" /></td>
-                            <td><c:out value="${member.name}" /></td>
-                            <td><c:out value="${member.gender}" /></td>
-                            <td><c:out value="${member.phone}" /></td>
-                            <td><c:out value="${member.birth}" /></td>
-                            <td><c:out value="${member.address}" /></td>
-                            <td><c:out value="${member.email}" /></td>
-                            <td><c:out value="${member.auth}" /></td>
-                            <td>
+                        <tr class="information">
+                            <td class="middle"><c:out value="${member.userid}" /></td>
+                            <td class="middle"><c:out value="${member.name}" /></td>
+                            <td class="middle"><c:out value="${member.gender}" /></td>
+                            <td class="long"><c:out value="${member.phone}" /></td>
+                            <td class="long"><c:out value="${member.birth}" /></td>
+                            <td class="long"><c:out value="${member.address}" /></td>
+                            <td class="long"><c:out value="${member.email}" /></td>
+                            <td class="short"><c:out value="${member.auth}" /></td>
+                            <td class="short">
                                 <button class="edit-btn" data-userid="${member.userid}">수정</button>
                             </td>
-                            <td>
+                            <td class="short">
                                 <button class="delete-btn" data-userid="${member.userid}">삭제</button>
                             </td>
                         </tr>
@@ -235,3 +218,5 @@ $(document).ajaxSend(function(e, xhr, options){
 </script>
 </body>
 </html>
+
+<%@include file="../includes/footer.jsp"%>

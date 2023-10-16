@@ -115,6 +115,11 @@ table {
 	border-top: 2px solid rgb(151, 149, 149);
 }
 
+table.size{
+	font-size: 15px;
+	width: 100%;
+}
+
 h5{
 	position: relative;
 	right: 0;

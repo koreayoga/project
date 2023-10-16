@@ -129,14 +129,14 @@
 	</div>
 </div>
 <!-- notice-->
-<section class="page-section" id="notice">
+<section id="notice">
 	<div class="container noticeContact">
 		<div class="row gx-4 gx-lg-5 justify-content-center">
 			<div class="col-lg-8 col-xl-6 text-center">
 				<h2 class="mt-0" style="color: #609966">Time Table</h2>
 				<hr class="divider" />
 			</div>
-			<table class="text-center" style="width: 900px; height: 350px;">
+			<table class="text-center" style="width: 950px; height: 350px;">
 				<tr>
 					<th style="width:9%">시간</th>
 					<th style="width:7%">강의실</th>
@@ -261,7 +261,7 @@
 				<h2 class="mt-0" style="color: #609966">Contact Us</h2>
 				<hr class="divider" />
 			</div>
-			<div style="width: 650px; height: 350px;" id="map"></div>
+			<div class="text-center" style="width: 700px; height: 350px;" id="map"></div>
 		</div>
 	</div>
 </section>

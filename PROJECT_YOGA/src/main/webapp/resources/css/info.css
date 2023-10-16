@@ -16,7 +16,7 @@ L   #faedcd     250, 237, 205
  */
 /*-------------- mypage.jsp / update.jsp ----------------*/
 .testBox{
-	position:absolute; margin-top: 100px; text-align: center; top: 40%; /* 부모 요소의 세로 중앙 정렬을 위해 top을 50%로 설정 */
+	position:absolute; margin-top: 150px; text-align: center; top: 40%; /* 부모 요소의 세로 중앙 정렬을 위해 top을 50%로 설정 */
     left: 50%; /* 부모 요소의 가로 중앙 정렬을 위해 left를 50%로 설정 */
     transform: translate(-50%, -50%); /* 테이블의 가로 세로 크기의 절반만큼 이동하여 정확한 가운데 정렬 */
     /* text-align: center; */
@@ -30,7 +30,8 @@ L   #faedcd     250, 237, 205
 
 .testBox table{
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 200px;
+	margin-bottom: 150px;
 	font-size: 20px;
 	width: 900px;
 	height: 600px;

@@ -13,6 +13,14 @@
 </style>
 </head>
 <body class = "ccodeList">
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Lesson</h1>
+        <hr class="divider" />
+    </div>
+</div>
+
 	<select name= "ccode">
 		<option value="A1000" selected>A1000</option>
 		<option value="A2000">A2000</option>
@@ -122,3 +130,5 @@
 </script>
 
 </html>
+
+<%@include file="../includes/footer.jsp"%>

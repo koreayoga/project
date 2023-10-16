@@ -6,6 +6,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Notice</h1>
+		<hr class="divider" />
 	</div>
 	<!-- /.col-lg-12 -->
 </div>

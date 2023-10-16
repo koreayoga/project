@@ -250,7 +250,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: var(--bs-link-hover-color);
+  color: #198754;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -10914,12 +10914,6 @@ body {
   overflow-x: hidden;
 }
 
-.page-section {
-  padding: 8rem 0;
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75) !important;
 }
@@ -11196,9 +11190,25 @@ th, td{
 	width: 100px;
 }
 
+th.long, td.long{
+	width: 120px;
+	display: table-cell;
+}
+
+th.short, td.short{
+	width: 60px;
+	display: table-cell;
+}
+
+th.middle, td.middle{
+	width: 80px;
+	display: table-cell;
+}
+
 .noticeContact{
 	padding-left: 0px;
 	padding-right: 0px;
+	margin: 100px 0;
 }
 
 .contactFlex{
@@ -11220,9 +11230,9 @@ th, td{
 	padding: 0;
 }
 
-.panel-heading{
+/* .panel-heading{
 	margin-top: 40px;
-}
+} */
 
 #searchForm{
 	height: 70px;
@@ -11273,3 +11283,33 @@ th{
 .paginate_button {
 	margin-left: 10px;
 } 
+
+.page-section{
+	padding: 8rem;
+}
+
+.page-header{
+	margin-top: 100px;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.information{
+	display: table;
+    table-layout: fixed;
+    width: 100%; 
+}
+
+.edit-btn , .delete-btn{
+	border: 1px solid white;
+	background-color: white;
+	color: var(--bs-link-color);
+}
+
+.edit-btn:hover {
+  color: #198754;
+}
+
+.delete-btn:hover {
+  color: #198754;
+}

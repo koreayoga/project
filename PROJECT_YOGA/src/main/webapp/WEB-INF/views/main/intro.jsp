@@ -45,7 +45,7 @@ div.test {
 
 <h1>시간표</h1>
 <hr class="divider-sh">
-<table class="text-center" style="width: 60%; height: 500px">
+<table class="text-center" style="width: 80%; height: 500px">
 	<tr>
 		<th>시간</th>
 		<th>강의실</th>
