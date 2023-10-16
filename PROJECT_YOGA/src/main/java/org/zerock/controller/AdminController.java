@@ -42,15 +42,7 @@ public class AdminController {
 	public void getLessonList(Model model) {
 		model.addAttribute("list",lessonService.getLessonCodeList("A1000"));
 	}
-	/*
-	@ResponseBody //???????
-	@GetMapping(value="/lessonList2" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<LessonVO> getLessonList(Model model,@RequestParam(name = "code", defaultValue = "A1000") String code) {
-        List<LessonVO> lessonList = lessonService.getLessonCodeList(code);
-        //model.addAttribute("list", lessonList);
-        return lessonList;
-    }
-	*/
+
 	@GetMapping("/course")
 	@PreAuthorize("hasRole('ADMIN')")
 	public void getListCourse(Model model) {
