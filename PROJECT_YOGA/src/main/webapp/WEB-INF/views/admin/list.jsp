@@ -96,7 +96,7 @@
                             <th style="width: 10%">생일</th>
                             <th style="width: 25%">주소</th>
                             <th style="width: 20%">이메일</th>
-                            <th style="width: 5%">권한</th>
+                            <th style="width: 5%">등급</th>
                             <th style="width: 5%">수정</th>
                             <th style="width: 5%">삭제</th>
                         </tr>
@@ -127,12 +127,12 @@
 <select name='type'>
 <option value=""
 	<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>---</option>
-	<option value="A"
-	<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>회원권한</option>
-	<option value="U"
-	<c:out value="${pageMaker.cri.type eq 'U'?'selected':''}"/>>회원아이디</option>
 	<option value="N"
 	<c:out value="${pageMaker.cri.type eq 'N'?'selected':''}"/>>회원이름</option>
+	<option value="U"
+	<c:out value="${pageMaker.cri.type eq 'U'?'selected':''}"/>>회원아이디</option>
+	<option value="A"
+	<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>회원등급</option>	
 </select> <input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword.toString()}"/>' />
 		  <input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>' />
 		  <input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
