@@ -2,6 +2,7 @@ package org.zerock.mapper;
 
 import java.util.List;
 
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
 
 public interface MemberMapper {
@@ -15,4 +16,9 @@ public interface MemberMapper {
 	public int checkId (String userid);
 	public int updateAdmin (MemberVO vo);	
 	public int deleteAdmin (String userid);	
+	
+//paging
+	public List<MemberVO> getListMemPaging(Criteria cri);
+	public int getTotalMemCount(Criteria cri);
+
 }

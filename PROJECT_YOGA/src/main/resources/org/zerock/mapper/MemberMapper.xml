@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.ofg//DTD Mapper 3.0//EN"
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.MemberMapper">
 	
@@ -8,7 +8,7 @@
 		<id property="userid" column="userid"/>
 		<result property="userid" column="userid"/>
 		<result property="userpw" column="userpw"/>
-		<result property="userName" column="username"/>
+		<result property="userName" column="name"/> <!-- Changed column name to "name" -->
 		<result property="enabled" column="enabled"/>
 		<result property="regDate" column="regdate"/>
 		<result property="updateDate" column="updatedate"/>		
@@ -21,44 +21,87 @@
 	</resultMap>	
 	
 	<select id="read" resultMap="memberMap">
-	select userid, userpw, name, enabled, regdate, updatedate, auth 
-		from member where userid=#{userid}
+		SELECT userid, userpw, name, enabled, regdate, updatedate, auth
+		FROM member WHERE userid=#{userid}
 	</select>
+	
 	<select id="getListMem" resultType="org.zerock.domain.MemberVO">
 		<![CDATA[
-			select * from member where userid > '0'
+		SELECT * FROM member WHERE userid > '0' ORDER BY userid
 		]]>
-	</select>	
+	</select>
 		
 	<insert id="insertMem">	
-		insert into member (userid, userpw, name, gender, phone, birth, address, email)
-		values (#{userid}, #{userpw}, #{name}, #{gender}, #{phone}, #{birth}, #{address}, #{email})
-	</insert>	
+		INSERT INTO member (userid, userpw, name, gender, phone, birth, address, email)
+		VALUES (#{userid}, #{userpw}, #{name}, #{gender}, #{phone}, #{birth}, #{address}, #{email})
+	</insert>
 	
 	<select id="getMem" resultType="org.zerock.domain.MemberVO">
-		select userid, userpw, name, gender, phone, birth, address, email from member where userid=#{userid}
+		SELECT userid, userpw, name, gender, phone, birth, address, email FROM member WHERE userid=#{userid}
 	</select>
 	
 	<select id="checkId" resultType="int">
-	    select count(*) from member where userid = #{userid}
+	    SELECT count(*) FROM member WHERE userid = #{userid}
 	</select>
 	
 	<delete id="deleteMem">
-		delete from member where userid=#{userid}
+		DELETE FROM member WHERE userid=#{userid}
 	</delete>
 	
 	<delete id="deleteAdmin">
-		delete from member where userid=#{userid}
+		DELETE FROM member WHERE userid=#{userid}
 	</delete>
 	
 	<update id="updateMem">
-		<!-- update member set userpw=#{userpw}, name=#{name}, birth=#{birth}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid} -->
-		update member set userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} where userid=#{userid}
+		UPDATE member SET userpw=#{userpw}, phone=#{phone}, address=#{address}, email=#{email} WHERE userid=#{userid}
 	</update>
 
 	<update id="updateAdmin">
-	update member set auth=#{auth} where userid=#{userid}
+		UPDATE member SET auth=#{auth} WHERE userid=#{userid}
 	</update>
 	
+	<!-- paging -->
+	<select id="getListMemPaging" resultType="org.zerock.domain.MemberVO">
+		<![CDATA[
+		SELECT userid, name, gender, phone, birth, address, email, auth
+		FROM member
+		WHERE userid IN (
+			SELECT userid
+			FROM (
+				SELECT userid
+				FROM member
+		]]>
+		 <include refid="criteria"></include>
+		<![CDATA[
+				ORDER BY userid 
+				LIMIT #{startRow}, #{amount}) AS temp) ORDER BY userid
+		]]>
+	</select>
 	
+	<select id="getTotalMemCount" resultType="int">
+		SELECT COUNT(*) FROM member WHERE userid > 0
+	</select>
+	
+	
+	<sql id="criteria">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<foreach item='type' collection="typeArr" separator="OR">
+				<!-- <trim prefix="(" suffix=") AND " prefixOverrides="OR"> <foreach 
+					item='type' collection="typeArr"> <trim prefix="OR"> -->
+				<choose>
+					<when test="type == 'A'.toString()">
+						  auth like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'U'.toString()">
+						  userid like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'N'.toString()">
+						  name like CONCAT('%', #{keyword}, '%')
+					</when>
+				</choose>
+				<!-- </trim> -->
+			</foreach>
+		</trim>
+		</sql>
+		
 </mapper>

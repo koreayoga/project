@@ -32,9 +32,9 @@ public class MemberServiceTests {
 	@Test
 	public void testInsertMem() {
 	MemberVO member = new MemberVO();
-	member.setUserid("user20");
+	member.setUserid("user10");
 	member.setUserpw("1234");
-	member.setName("최씨");
+	member.setName("김씨");
 	member.setGender("F");
 	member.setPhone("010123456");
 	Date birthDate = java.sql.Date.valueOf("1990-05-15");
@@ -80,13 +80,12 @@ public class MemberServiceTests {
 		log.info("updateMemberADMIN..............." + service.updateAdmin(member));
 	}
 	
-	
-	
-	
+
+
 	@Test
 	public void testDeleteAdmin() {
 
-		log.info("updateMemberADMIN..............." + service.deleteAdmin("a123456"));
+		log.info("updateMemberADMIN..............." + service.deleteAdmin("user20"));
 	}
 	
 
@@ -96,7 +95,10 @@ public class MemberServiceTests {
 	}
 
 	 
-	 
+	@Test
+	public void testGetListMemPaging() {
+	service.getListMemPaging(new Criteria(2,10)).forEach(member-> log.info(member));
+	}
 	 
 	 
 	

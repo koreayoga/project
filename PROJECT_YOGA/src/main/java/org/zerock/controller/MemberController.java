@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.CourseVO;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
+import org.zerock.domain.PageDTO;
 import org.zerock.service.CourseService;
 import org.zerock.service.MemberService;
 
@@ -37,13 +39,19 @@ public class MemberController {
 	
 	@Setter(onMethod_ =@Autowired)
 	private CourseService Cservice;
-	
+
+	//paging	
 	@PreAuthorize("principal.username == 'admin'")
 	@GetMapping("/list")
-	public void getListMem(Model model) {
+	public void getListMem(Criteria cri, Model model) {
 		log.info("list");
-		model.addAttribute("list", service.getListMem());
+		int total = service.getTotal(cri);
+		model.addAttribute("list", service.getListMemPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri,total));
+		//model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 	}
+	
 	
 	@GetMapping("/insert")
 	public void insertMem() {
@@ -106,18 +114,18 @@ public class MemberController {
 		}
 		return "redirect:/member/list";
 	}
-/*
+
 	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
-	@PostMapping("/delete")
-	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
-		log.info("delete" + userid);
-		if (service.deleteMem(userid) == 1) {
-			rttr.addFlashAttribute("result","success");
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
+	@PostMapping("/deleteAdmin")	 
+	public String deleteAdmin(@RequestParam("userid") String userid, RedirectAttributes rttr) {
+		int result = service.deleteAdmin(userid);
+		System.out.println(result);
+		if(result>0) {
+			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/member/list";
 	}
-*/
 	
 	@GetMapping("/delete")
 	public void delete(Principal principal) {

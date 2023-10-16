@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import java.util.List;
 
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
 
 public interface MemberService {
@@ -14,4 +15,7 @@ public interface MemberService {
 	public int checkId(String userid);
 	public int updateAdmin(MemberVO vo);
 	public int deleteAdmin(String userid);
+	public List<MemberVO> getListMemPaging(Criteria cri);
+	public int getTotal(Criteria cri);
+	
 }

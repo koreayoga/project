@@ -16,8 +16,7 @@
 	<!-- Bootstrap Icons-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- Google fonts-->
-	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-	<link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&family=Jua&family=Orbit&display=swap" rel="stylesheet">
 	<!-- SimpleLightbox plugin CSS-->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
 	<!-- Core theme CSS -->
@@ -60,18 +59,29 @@
 .modal p {
   text-align: center;
 }
+
+.pull-right {
+    font-size: 25px; 
+    font-family: sans-serif;
+}
+
+.table {
+	margin-bottom: 0;
+	}
+
 </style>
 
 
 </head>
 <body>	
-	
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Admin</h1>
     </div>
 </div>
 
+
+<!---------- List -->
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -110,6 +120,53 @@
                         </tr>
                     </c:forEach>
                 </table>
+
+
+<!----------- search -->         
+<form id="searchForm" action="/member/list" method="get">
+<select name='type'>
+<option value=""
+	<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>---</option>
+	<option value="A"
+	<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>회원권한</option>
+	<option value="U"
+	<c:out value="${pageMaker.cri.type eq 'U'?'selected':''}"/>>회원아이디</option>
+	<option value="N"
+	<c:out value="${pageMaker.cri.type eq 'N'?'selected':''}"/>>회원이름</option>
+</select> <input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword.toString()}"/>' />
+		  <input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>' />
+		  <input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
+		  <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+<button class='btn btn-default'>Search</button>
+</form>
+               
+<!----------- paging -->
+<div class='pull-right'>
+	<ul class='pagination'>
+		<c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous">
+			<a href="${pageMaker.startPage -1}">◀ Prev</a> </li>
+		</c:if>
+
+		<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+			<li class="paginate_button ${pageMaker.cri.pageNum == num?'active':''} ">
+			<a href="${num}">${num}</a>&nbsp;</li>
+		</c:forEach>
+						
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next">
+			<a href="${pageMaker.endPage +1}">Next ▶</a></li>
+		</c:if>
+	</ul>
+</div>
+ 
+ <form id="actionForm" action="/member/list" method="get">
+	<input type='hidden' name='pageNum'	value='${pageMaker.cri.pageNum}'> 
+	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'> 
+	<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type}"/>' /> 
+	<input type="hidden" name="keyword"	value='<c:out value="${pageMaker.cri.keyword}"/>' />
+</form>
+ 
             </div>
         </div>
     </div>
@@ -117,7 +174,7 @@
 
 
 
-<!-- Modal -->
+<!---------- Modal -->
 <div id="myModal" class="modal" style="display: none;">
 	<div class="modal-content">
 		<span class="close" id="closeModalBtn">&times;</span>
@@ -131,11 +188,9 @@
 	</div>
 </div>
 
-
-<!-- Modal -->
 <div id="myModal2" class="modal" style="display: none;">
     <div class="modal-content">
-        <span class="close" id="closeModalBtn">&times;</span>  
+        <span class="close" id="closeModalBtn2">&times;</span>  
         <form role="form2" name="deleteForm" method="post" action="/member/deleteAdmin">	
             <p>삭제할 회원의 ID를 다시 입력해주세요</p>
             <input type="text" id="userid" name="userid">
@@ -145,9 +200,13 @@
     </div>
 </div>
 
-<!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->			
-<script>
 
+
+
+<!-- ============SCRIPT=====================SCRIPT=========================SCRIPT============================SCRIPT======================= -->			
+
+
+<script>
 
 //UPDATE BUTTON.
 $(document).ready(function () {
@@ -194,7 +253,7 @@ $(document).ready(function () {
         $("#myModal2").css("display", "block");
      });
 
-    $("#closeModalBtn").click(function () {
+    $("#closeModalBtn2").click(function () {
         $("#myModal2").css("display", "none");
      });
 		var userid = $("#userid").val();
@@ -219,15 +278,61 @@ $(document).ready(function () {
 		}
 	});
 });
-    
+   
+
+//pageForm
+$(document).ready(function () {
+var actionForm = $("#actionForm");
+$(".paginate_button a").on(
+		"click",
+		function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']")
+					.val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+$(".move").on("click", function(e) {
+	e.preventDefault();
+	actionForm
+			.append("<input type='hidden' name='userid' value='"
+					+ $(this).attr(
+							"href")
+					+ "'>");
+	actionForm.attr("action",
+			"/member/list");
+	actionForm.submit();
+});
+
+var searchForm = $("#searchForm");
+$("#searchForm button").on(
+		"click",
+		function(e) {
+			if (!searchForm.find("option:selected")
+					.val()) {
+				alert("검색종류를 선택하세요");
+				return false;
+			}
+			if (!searchForm.find(
+					"input[name='keyword']").val()) {
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			searchForm.find("input[name='pageNum']")
+					.val("1");
+			e.preventDefault();
+
+			searchForm.submit();
+		});
+});
+
 
 // Ajax Spring Security Header
 $(document).ajaxSend(function(e, xhr, options){
    xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 });
-    
-    
-/*     //Ajax Spring Security Header
+   /*     //Ajax Spring Security Header
     $(document).ajaxSend(function(e, xhr, options){
        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
     }); */

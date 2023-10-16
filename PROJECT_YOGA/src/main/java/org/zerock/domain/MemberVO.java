@@ -26,23 +26,18 @@ public class MemberVO {
 	private int auth;
 	
 	private List<AuthVO> authList;
+	
 
-	
-	//auth에 지정된 숫자에 따른 custom권한 생성
-	public int getAuth() {
-	    return auth;
-	}
-	
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-	    List<GrantedAuthority> authorities = new ArrayList<>();
-	
-	    if (auth == 1) {
-	        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-	    } else if (auth == 2) {
-	        authorities.add(new SimpleGrantedAuthority("ROLE_TUTOR"));
-	    } else if (auth == 3){
-	        authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
-	    } 
-	    return authorities;
-	}
+	 //auth에 지정된 숫자에 따른 custom권한 생성 public int getAuth() { return auth; }
+	  
+	  public Collection<? extends GrantedAuthority> getAuthorities() {
+	  List<GrantedAuthority> authorities = new ArrayList<>();
+	 
+	  if (auth == 1) { authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN")); }
+	  else if (auth == 2) { authorities.add(new
+	  SimpleGrantedAuthority("ROLE_TUTOR")); } else if (auth == 3){
+	  authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER")); } return
+	  authorities; 
+	  }
 }
+	
