@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -151,11 +152,12 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/delete")
 	public String memberDelete(Principal principal, @RequestBody MemberVO vo, Model model) throws Exception {
-
+		System.out.println(vo);
 		String inputPass = vo.getUserpw(); // 입력한 비밀번호	
+		System.out.println(inputPass);
 		MemberVO member = service.getMem(principal.getName()); // 암호화된 DB비밀번호	
 		String result = "";
-		System.out.println("access success");
+		System.out.println("access success" + member);
 		
 		
 		if(principal.getName() != null && principal.getName() != "") {	
@@ -164,6 +166,7 @@ public class MemberController {
 			if(pwencoder.matches(inputPass, member.getUserpw())) {
 				System.out.println("matches success");
 				service.deleteMem(principal.getName());
+				 SecurityContextHolder.clearContext();
 				System.out.println("delete success");
 				result = "success";
 			}

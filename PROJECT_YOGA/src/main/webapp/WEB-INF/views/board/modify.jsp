@@ -95,7 +95,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-default">
-								<div class="panel-heading">Files</div>
+								<div class="panel-heading"><i class='fa fa-times allFile'>X</i>Files</div>
 								<!-- /.panel-heading -->
 								<div class="panel-body">
 									<div class="form-group uploadDiv">
@@ -131,6 +131,14 @@
 <!-- /.row -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		// 'x'표시에 대한 all이벤트 처리						
+		$(".panel-heading").on("click", ".allFile", function(e) {
+			$(".uploadResult button").each(function(index, element) {
+			    element.click(); // 각 버튼을 클릭
+			});   
+		});
+		
 		var formObj = $("form");
 		
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");

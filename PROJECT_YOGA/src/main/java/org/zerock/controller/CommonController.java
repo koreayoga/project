@@ -31,21 +31,21 @@ public class CommonController {
 	@GetMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
 		log.info("--------------------------Access Denied : " + auth);
-		model.addAttribute("msg", "현재 페이지 접근권한이 없습니다.");
+		model.addAttribute("msg", "�쁽�옱 �럹�씠吏� �젒洹쇨텒�븳�씠 �뾾�뒿�땲�떎.");
 	}
 
 	@GetMapping("/login")
 	public String loginInput(String error, String logout, Model model) {
-		log.info("-------------------------Error : " + error);
+		System.out.println("-------------------------Error : " + error);
 		log.info("------------------------Logout : " + logout);
 
 		if (error != null) {
-			model.addAttribute("error", "로그인 에러 : 일치하는 정보가 없습니다.");
+			model.addAttribute("error", error);
 			log.info(error);
 		}
 
 		if (logout != null) {
-			model.addAttribute("logout", "로그아웃되었습니다.");
+			model.addAttribute("logout", "濡쒓렇�븘�썐�릺�뿀�뒿�땲�떎.");
 			log.info(logout);
 		}
 
@@ -76,7 +76,7 @@ public class CommonController {
 			model.addAttribute("vo", member);
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			model.addAttribute("msg", "오류가 발생하였습니다.");
+			model.addAttribute("msg", "�삤瑜섍� 諛쒖깮�븯���뒿�땲�떎.");
 		}
 		return "/loginout/searchID_result";
 	}
@@ -86,7 +86,7 @@ public class CommonController {
 		System.out.println("result of searchID--------");
 	}
 
-	// 비밀번호 초기화
+	// 鍮꾨�踰덊샇 珥덇린�솕
 	/* @Transactional */
 	@PostMapping(value = "/resetPW")
 	public String resetPW(HttpServletRequest request, Model model,
@@ -110,7 +110,7 @@ public class CommonController {
 			model.addAttribute("newPwd", newPwd);
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			model.addAttribute("msg", "오류가 발생했습니다.");
+			model.addAttribute("msg", "�삤瑜섍� 諛쒖깮�뻽�뒿�땲�떎.");
 		}
 
 		return "/loginout/resetPW_result";

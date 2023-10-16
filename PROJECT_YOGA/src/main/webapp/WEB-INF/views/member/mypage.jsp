@@ -98,12 +98,15 @@
 	}
 
 	function checkPw() {
-	    var inputPw = document.getElementById("inputpw");
+	    //var inputPw = document.getElementById("inputpw");
+	    var inputPw = $("#inputpw").val();
+		console.log("123"+inputPw2);
+		console.log("${user.userid}");
 
 	    if(inputPw != '') {
 			
-			var userid = ${user.userid};
-			var param = {"ID":userid, "PW":inputPw}
+			var userid = "${user.userid}";
+			var param = {"userid":userid, "userpw":inputPw}
 			
 				$.ajax({			
 					async: true,
@@ -127,7 +130,7 @@
 					},
 					error:function(request, status, error){
 				        alert("오류가 발생했습니다. 다시 시도해주십시오.");
-				        checkPw();
+				        //checkPw();
 				    }		
 				})		
 		} else {
