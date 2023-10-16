@@ -31,7 +31,7 @@ public class CommonController {
 	@GetMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
 		log.info("--------------------------Access Denied : " + auth);
-		model.addAttribute("msg", "�쁽�옱 �럹�씠吏� �젒洹쇨텒�븳�씠 �뾾�뒿�땲�떎.");
+		model.addAttribute("msg", "접근권한이 없습니다.");
 	}
 
 	@GetMapping("/login")
@@ -45,7 +45,7 @@ public class CommonController {
 		}
 
 		if (logout != null) {
-			model.addAttribute("logout", "濡쒓렇�븘�썐�릺�뿀�뒿�땲�떎.");
+			model.addAttribute("logout", "로그아웃하였습니다.");
 			log.info(logout);
 		}
 
@@ -53,8 +53,7 @@ public class CommonController {
 	}
 
 	@GetMapping("/logout")
-	public void logoutGet() {
-		log.info("-----------------------------Logout!!");
+	public void logoutGet() {		
 	}
 
 	@GetMapping("/searchID")
@@ -76,7 +75,7 @@ public class CommonController {
 			model.addAttribute("vo", member);
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			model.addAttribute("msg", "�삤瑜섍� 諛쒖깮�븯���뒿�땲�떎.");
+			model.addAttribute("msg", "오류가 발생했습니다.");
 		}
 		return "/loginout/searchID_result";
 	}
@@ -100,7 +99,7 @@ public class CommonController {
 			model.addAttribute("newPwd", newPwd);
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			model.addAttribute("msg", "�삤瑜섍� 諛쒖깮�뻽�뒿�땲�떎.");
+			model.addAttribute("msg", "오류가 발생했습니다.");
 		}
 
 		return "/loginout/resetPW_result";

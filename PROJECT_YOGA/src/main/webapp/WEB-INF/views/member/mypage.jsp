@@ -123,17 +123,17 @@
 							location.href="/";
 						} else {
 							alert("비밀번호가 맞지 않습니다.");
-							checkPw();
+							pwPrompt();
 						}	
 					},
 					error:function(request, status, error){
 				        alert("오류가 발생했습니다. 다시 시도해주십시오.");
-				        //checkPw();
+				        pwPrompt();
 				    }		
 				})		
 		} else {
 			alert("비밀번호를 입력해주세요.");
-			checkPw();
+			pwPrompt();
 		}		
 	}
 	

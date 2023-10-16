@@ -37,8 +37,9 @@
 				<td>
 					<div style="padding-bottom:80px;"><b>ACCESS DENIED ERROR PAGE</b></div>
 					<c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/>
-					<c:out value="${msg}"/>	<br>
-					게시글 작성은 '강사'등급 이상부터 가능합니다.
+					현재페이지에 <c:out value="${msg}"/>	<br>					 
+					
+					<div style="margin-top:20px; font-size: 1rem">*게시글 작성은 '강사'등급 이상부터 가능합니다.</div>
 				</td>
 			</tr>				
 			<tr>
