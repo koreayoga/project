@@ -30,7 +30,7 @@
 				<!-- 아이디찾기/비밀번호찾기/회원가입-->
 				<div class="small text-muted">
 					<a href="javascript:void(0);" onclick="newWindow('searchID', '아이디찾기', 430, 300);">아이디찾기</a>|
-					<a href="javascript:void(0);" onclick="newWindow('resetPW', '비밀번호찾기', 430, 400);">비밀번호찾기</a>|					
+					<a href="javascript:void(0);" onclick="newWindow('resetPW', '비밀번호찾기', 430, 400);">비밀번호재설정</a>|					
 					<a href="/member/insert">회원가입</a>
 				</div>
 			</form>		

@@ -43,7 +43,7 @@
 					<label for="userpw" style="font-size:small; color: red">*예) yoga@gmail.com</label></td>
 				</tr>
 				<tr>
-					<td id="buttonBox_3" colspan="3"> 
+					<td id="buttonBox_2" colspan="3"> 
 						<button  type="button" id="update" class="btn btn-third btn-xl2" onclick="inputCheck();">수정완료</button>
 						<button class="btn btn-third btn-xl2" onclick="history.go(-1)">뒤로가기</button>	 
 						
