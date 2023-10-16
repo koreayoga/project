@@ -18,11 +18,5 @@ public class insertController {
 	
 	private MemberService service;
 	
-	@ResponseBody
-	@RequestMapping(value="/checkId", method = RequestMethod.POST)
-	public int idChk(@RequestParam("userid")String userid) throws Exception {
-		log.info(userid);
-		int result = service.checkId(userid);
-		return result;
-	}
+	
 }

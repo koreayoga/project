@@ -94,7 +94,7 @@
 	      return;
 	   }
        $.ajax({
-           url: "/insert/checkId",
+           url: "/member/checkId",
            type: "post",
            dataType: "json",
            data: { "userid": $("#userid").val() },
