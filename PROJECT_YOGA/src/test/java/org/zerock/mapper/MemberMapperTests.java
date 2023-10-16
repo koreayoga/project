@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
 
 
@@ -47,6 +48,27 @@ public class MemberMapperTests {
 	    member.setEmail("user01@email.com");  
 	    mapper.insertMem(member);
 	    log.info(member);
+	}
+	
+	
+	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		cri.setPageNum(1);
+		cri.setAmount(10);
+		List<MemberVO> list = mapper.getListMemPaging(cri);
+		list.forEach(member -> log.info(member));
+	}
+	
+	
+	@Test
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("2");
+		cri.setType("A");
+		List<MemberVO> list =  mapper.getListMemPaging(cri);
+		list.forEach(member -> log.info(member));
 	}
 	/*
 	@Test
