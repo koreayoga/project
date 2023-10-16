@@ -1,6 +1,9 @@
 package org.zerock.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.CourseVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.LessonVO;
 import org.zerock.domain.MemberVO;
 import org.zerock.domain.PageDTO;
 import org.zerock.service.CourseService;
@@ -55,6 +60,13 @@ public class AdminController {
 	public void getLessonList(Model model) {
 		model.addAttribute("list",lessonService.getLessonCodeList("A1000"));
 	}
+	
+	@ResponseBody //수강관리 파트
+	@GetMapping(value="/lessonList2" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<LessonVO> getLessonList(Model model,@RequestParam(name = "code", defaultValue = "A1000") String code) {
+        List<LessonVO> lessonList = lessonService.getLessonCodeList(code);
+        return lessonList;
+    }
 
 	@GetMapping("/course")
 	@PreAuthorize("hasRole('ADMIN')")
