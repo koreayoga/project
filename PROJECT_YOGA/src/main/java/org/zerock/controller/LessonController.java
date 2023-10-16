@@ -50,7 +50,7 @@ public class LessonController {
 	}
 	
 	@GetMapping("/insert") 
-	@PreAuthorize("hasRole('ADMIN')") 
+	@PreAuthorize("isAuthenticated()") 
 	public ResponseEntity<String> lessonInsert(@Param("ccode")String ccode, @Param("userid")String userid) {
 		log.info(ccode + userid);
 		int result = service.lessonInsert(ccode, userid);

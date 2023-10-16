@@ -100,8 +100,6 @@
 	function checkPw() {
 	    //var inputPw = document.getElementById("inputpw");
 	    var inputPw = $("#inputpw").val();
-		console.log("123"+inputPw2);
-		console.log("${user.userid}");
 
 	    if(inputPw != '') {
 			
@@ -125,61 +123,20 @@
 							location.href="/";
 						} else {
 							alert("비밀번호가 맞지 않습니다.");
-							checkPw();
+							pwPrompt();
 						}	
 					},
 					error:function(request, status, error){
 				        alert("오류가 발생했습니다. 다시 시도해주십시오.");
-				        //checkPw();
+				        pwPrompt();
 				    }		
 				})		
 		} else {
 			alert("비밀번호를 입력해주세요.");
-			checkPw();
+			pwPrompt();
 		}		
 	}
 	
-</script>
-<!-- <script>
-function deleteMem() {	
-	
-	var inputPw = prompt("비밀번호를 입력해주세요.");
-	
-	if(inputPw.trim() != '') {
-		
-		var userid = $("#userid").val();
-		var param = {"ID":userid, "PW":inputPw}
-		
-			$.ajax({			
-				async: true,
-				type: 'POST',
-				data: JSON.stringify(param),
-				beforeSend: function(xhr) {
-					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-				},
-				url: "/member/delete",
-				dataType: "text",
-				contentType: "application/json; charset=UTF-8",
-				success: function(data) {	
-					if(data == "success") {					
-						alert("탈퇴가 처리되었습니다.");
-						closePasswordPrompt();
-						location.href="/";
-					} else {
-						alert("비밀번호가 맞지 않습니다.");
-						deleteMem();
-					}	
-				},
-				error:function(request, status, error){
-			        alert("오류가 발생했습니다. 다시 시도해주십시오.");
-			        deleteMem();
-			    }		
-			})		
-	} else {
-		alert("비밀번호를 입력해주세요.");
-		deleteMem();
-	}
-}
-</script> -->			
+</script>		
 <%@include file="../includes/footer.jsp"%>		
 

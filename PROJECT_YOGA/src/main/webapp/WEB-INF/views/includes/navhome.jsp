@@ -73,8 +73,8 @@
                        	<li class="nav-item"><a class="nav-link" href="/member/mypage">MYPAGE</a></li>                
                         <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
                         <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Lesson/lesson">LESSON</a></li>                    
 						<li class="nav-item"><a class="nav-link" href="/admin/lessonList">LIST_LESSON</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="/Lesson/lesson">LESSON</a></li> -->                    
                     </ul>
                 </div>
             </div>
@@ -89,11 +89,13 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">                    	                    	
                        	<li class="nav-item"><a class="nav-link" href="/loginout/logout">LOGOUT</a></li>                       	
-                        <li class="nav-item"><a class="nav-link" href="/member/list">LIST_MEMBER</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/member/mypage">MYPAGE</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Lesson/lesson">LESSON</a></li>                       
+                        <li class="nav-item"><a class="nav-link" href="/admin/list">LIST_MEMBER</a></li>
                         <li class="nav-item"><a class="nav-link" href="/admin/lessonList">LIST_LESSON</a></li>
                         <li class="nav-item"><a class="nav-link" href="/admin/course">LIST_COURSE</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/main/intro">INTRO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/board/list">BOARD</a></li>                       
                     </ul>
                 </div>
             </div>

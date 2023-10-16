@@ -98,35 +98,13 @@ public class MemberController {
 	
 	
 	//회원탈퇴
-	@GetMapping("/delete")
-	public void delete(Principal principal) {
-		MemberVO vo = service.getMem(principal.getName());
-		System.out.println("-------------------"+vo.getName()+"회원님 계정을 삭제하시겠습니까?");		
-	};
 	/*
-	@PostMapping("/delete")	 
-	public String delete(Principal principal, @RequestParam("userpw") String userpw, RedirectAttributes rttr) {
-		
-		MemberVO vo = service.getMem(principal.getName());
-		System.out.println(vo);
-	    vo.setUserpw(pwencoder.encode(userpw));
-	    
-	    if (pwencoder.matches(userpw, vo.getUserpw())) {
-	    	
-	    	// 비밀번호 확인이 맞으면 탈퇴
-	        service.deleteMem(vo.getUserid());
-	        // 로그아웃 처리(세션만료)
-	        SecurityContextHolder.clearContext();
-	        rttr.addFlashAttribute("result", "success");	        
-	        return "redirect:/";
-	    } else {
-	        // 비밀번호가 틀렸을 때
-	    	rttr.addFlashAttribute("result", "fail");
-	        return "redirect:/member/delete";
-	    }
-	}
-	*/
-	
+	 * @GetMapping("/delete") public void delete(Principal principal) { MemberVO vo
+	 * = service.getMem(principal.getName());
+	 * System.out.println("-------------------"+vo.getName()+"회원님 계정을 삭제하시겠습니까?");
+	 * };
+	 */
+
 	@ResponseBody
 	@PostMapping("/delete")
 	public String memberDelete(Principal principal, @RequestBody MemberVO vo, Model model) throws Exception {
@@ -149,40 +127,6 @@ public class MemberController {
 		}		
 		return result;
 	}
-
-	//나중에 ADMINCONTROLLER로 옮김?
-	//회원목록
-	@GetMapping("/list")
-	@PreAuthorize("hasRole('ADMIN')")
-	public void getListMem(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getListMem());
-	}
-	
-	@PostMapping("/updateAdmin")
-	@PreAuthorize("hasRole('ADMIN')")
-	public String updateAdmin(MemberVO vo, Model model, RedirectAttributes rttr) {
-		/* vo.setUserpw(pwencoder.encode(vo.getUserpw())); */
-		int result = service.updateAdmin(vo);
-		if (result>0) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
-	}
-/*
-	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
-	@PostMapping("/delete")
-	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
-		log.info("delete" + userid);
-		if (service.deleteMem(userid) == 1) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
-	}
-*/
-	
-
 	
 	@ResponseBody
 	@RequestMapping(value="/checkId", method = RequestMethod.POST)

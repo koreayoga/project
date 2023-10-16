@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
 import org.zerock.mapper.MemberMapper;
 
@@ -66,4 +67,22 @@ public class MemberServiceImpl implements MemberService {
 		log.info("updateMember......................" + userid);
 		return mapper.deleteAdmin(userid);
 	}
+
+
+	@Override
+	public List<MemberVO> getListMemPaging(Criteria cri) {
+		log.info("getMemberList......................");
+		cri.setAmount(10);
+		return mapper.getListMemPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalMemCount(cri);
+	}
+	
+	
+	
+	
+
 }

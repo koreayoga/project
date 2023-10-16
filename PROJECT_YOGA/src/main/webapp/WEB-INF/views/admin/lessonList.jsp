@@ -46,8 +46,14 @@
 		<td>${lesson.userid}</td>
 		<td></td>
 		<td>
-			<a class="deleteLesson">삭제</a>
-			<input type="hidden" value='${lesson.lnum}'>
+			<!-- button -->
+			<sec:authentication property="principal" var="pinfo"/>
+			<sec:authorize access="isAuthenticated()">
+				<c:if test="hasRole('ADMIN')">										
+					<a class="deleteLesson">삭제</a>
+					<input type="hidden" value='${lesson.lnum}'>
+				</c:if>
+			</sec:authorize>		
 		</td>		
 		</tr>
 	</c:forEach>
@@ -128,7 +134,6 @@
     });
 
 </script>
-
 </html>
 
 <%@include file="../includes/footer.jsp"%>

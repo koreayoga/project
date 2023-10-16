@@ -233,9 +233,11 @@
 						for(var i=0, len=list.length||0; i<len; i++){
 							var buttons = '';
 							console.log(list[i].replyer + " )" +replyer);
-					        if (list[i].replyer === replyer) {
-					            buttons += '<button id="modalModBtn" data-rno="' + list[i].rno + '" type="button" class="modalModBtn">Modify</button>';
-					            buttons += '<button id="modalRemoveBtn" data-rno="' + list[i].rno + '" type="button" class="modalModBtn">Remove</button>';
+					        if (list[i].replyer === replyer || replyer === 'admin') {
+					            	buttons += '<button id="modalRemoveBtn" data-rno="' + list[i].rno + '" type="button" class="modalModBtn">Remove</button>';
+					            if(list[i].replyer === replyer){
+						            buttons += '<button id="modalModBtn" data-rno="' + list[i].rno + '" type="button" class="modalModBtn">Modify</button>';
+					            }
 					        } 
 							str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";							
 							str += "	<div><div class='header'><strong class='primary-font'>["+list[i].rno+"] "+list[i].replyer+"</strong>";
@@ -247,7 +249,7 @@
 						replyUL.html(str);
 						showReplyPage(replyCnt);
 					});
-				}
+				}					
 				
 				var replyer = null;
 				<sec:authorize access="isAuthenticated()">								
