@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.CourseVO;
@@ -131,8 +134,7 @@ public class MemberController {
 		String inputPass = vo.getUserpw(); // 입력 비밀번호	
 		MemberVO member = service.getMem(principal.getName()); // 암호화된 DB비밀번호를 가져오기 위해 MemberVO 객체 생성	
 		String result = "";
-		System.out.println("access success");
-		
+		System.out.println("access success" + member);		
 		
 		if(principal.getName() != null && principal.getName() != "") {	
 			BCryptPasswordEncoder pwencoder = new BCryptPasswordEncoder();
@@ -140,12 +142,14 @@ public class MemberController {
 			if(pwencoder.matches(inputPass, member.getUserpw())) {
 				System.out.println("matches success");
 				service.deleteMem(principal.getName());
+				 SecurityContextHolder.clearContext();
 				System.out.println("delete success");
 				result = "success";
 			}
 		}		
 		return result;
 	}
+
 	//나중에 ADMINCONTROLLER로 옮김?
 	//회원목록
 	@GetMapping("/list")
@@ -178,6 +182,16 @@ public class MemberController {
 	}
 */
 	
+
+	
+	@ResponseBody
+	@RequestMapping(value="/checkId", method = RequestMethod.POST)
+	public int idChk(@RequestParam("userid")String userid) throws Exception {
+		log.info(userid);
+		int result = service.checkId(userid);
+		return result;
+	}
+
 }	
 
 	
