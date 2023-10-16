@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.CourseVO;
-import org.zerock.domain.Criteria;
 import org.zerock.domain.MemberVO;
-import org.zerock.domain.PageDTO;
 import org.zerock.service.CourseService;
 import org.zerock.service.MemberService;
 
@@ -100,11 +98,12 @@ public class MemberController {
 	
 	
 	//회원탈퇴
-	@GetMapping("/delete")
-	public void delete(Principal principal) {
-		MemberVO vo = service.getMem(principal.getName());
-		System.out.println("-------------------"+vo.getName()+"회원님 계정을 삭제하시겠습니까?");		
-	};
+	/*
+	 * @GetMapping("/delete") public void delete(Principal principal) { MemberVO vo
+	 * = service.getMem(principal.getName());
+	 * System.out.println("-------------------"+vo.getName()+"회원님 계정을 삭제하시겠습니까?");
+	 * };
+	 */
 
 	@ResponseBody
 	@PostMapping("/delete")
