@@ -62,7 +62,7 @@
 	            },
 	            success: function(response) {
 	                // 서버로부터 응답 성공 시 실행될 코드
-	                alert("성공");
+	                //alert("성공");
 	                console.log(response);
 	                let tbody = $('.lessonloop').html("");
 	                // 리스트를 화면에 출력

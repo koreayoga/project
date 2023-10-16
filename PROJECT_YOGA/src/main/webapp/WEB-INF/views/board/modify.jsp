@@ -95,7 +95,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-default">
-								<div class="panel-heading">Files</div>
+								<div class="panel-heading"><i class='fa fa-times allFile'>X</i>Files</div>
 								<!-- /.panel-heading -->
 								<div class="panel-body">
 									<div class="form-group uploadDiv">
@@ -114,8 +114,8 @@
 					<!-- button -->
 					<sec:authentication property="principal" var="pinfo"/>
 					<sec:authorize access="isAuthenticated()">
-						<c:if test="${pinfo.username eq board.userid}">		
-							<button data-oper="modify" class="btn btn-default">Modify</button>
+						<c:if test="${pinfo.username eq board.userid || pinfo.username == 'admin'}">						
+							<button data-oper="modify" class="btn btn-default">Modify</button>						
 							<button data-oper="remove" class="btn btn-danger">Remove</button>
 						</c:if>
 					</sec:authorize>
@@ -131,6 +131,14 @@
 <!-- /.row -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		// 'x'표시에 대한 all이벤트 처리						
+		$(".panel-heading").on("click", ".allFile", function(e) {
+			$(".uploadResult button").each(function(index, element) {
+			    element.click(); // 각 버튼을 클릭
+			});   
+		});
+		
 		var formObj = $("form");
 		
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
@@ -243,7 +251,7 @@
 				
 				formObj.empty();
 				
-				formObj.append(pageNumTag);zz
+				formObj.append(pageNumTag);
 				formObj.append(amountTag);
 				formObj.append(keywordTag);
 				formObj.append(typeTag);

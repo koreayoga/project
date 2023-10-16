@@ -5,14 +5,17 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.CourseVO;
 import org.zerock.domain.Criteria;
@@ -40,19 +43,8 @@ public class MemberController {
 	@Setter(onMethod_ =@Autowired)
 	private CourseService Cservice;
 
-	//paging	
-	@PreAuthorize("principal.username == 'admin'")
-	@GetMapping("/list")
-	public void getListMem(Criteria cri, Model model) {
-		log.info("list");
-		int total = service.getTotal(cri);
-		model.addAttribute("list", service.getListMemPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri,total));
-		//model.addAttribute("pageMaker", new PageDTO(cri, total));
-		
-	}
 	
-	
+	//회원가입
 	@GetMapping("/insert")
 	public void insertMem() {
 		log.info("insert");
@@ -70,6 +62,8 @@ public class MemberController {
 		return "redirect:/main/home";
 	}
 	
+	
+	//회원정보출력-마이페이지
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/mypage")
     public void getMem(Principal principal, Model model) {  
@@ -81,7 +75,9 @@ public class MemberController {
 		model.addAttribute("course", cvo);
 		System.out.println(cvo);		
 	}
-		
+	
+	
+	//회원정보수정
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/update")
 	public void updateMem(Principal principal, Model model) {        
@@ -89,9 +85,8 @@ public class MemberController {
         String userid = principal.getName();
         MemberVO vo = service.getMem(userid);
         model.addAttribute("user", vo);
-    }
+    }	
 	
-	@Transactional
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/update")
 	public String updateMem(MemberVO vo, Model model, RedirectAttributes rttr) {
@@ -102,37 +97,15 @@ public class MemberController {
         }
 		return "redirect:/member/mypage";
 	}
-		
-	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
-	@PostMapping("/updateAdmin")
-	public String updateAdmin(MemberVO vo, Model model, RedirectAttributes rttr) {
-		/* vo.setUserpw(pwencoder.encode(vo.getUserpw())); */
-		int result = service.updateAdmin(vo);
-		if (result>0) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/member/list";
-	}
-
-	//나중에 ADMINCONTROLLER로 옮길 예정
-	@PreAuthorize("isAuthenticated() and principal.username=='admin'")
-	@PostMapping("/deleteAdmin")	 
-	public String deleteAdmin(@RequestParam("userid") String userid, RedirectAttributes rttr) {
-		int result = service.deleteAdmin(userid);
-		System.out.println(result);
-		if(result>0) {
-			rttr.addFlashAttribute("result", "success");
-		}
-		return "redirect:/member/list";
-	}
 	
+	
+	//회원탈퇴
 	@GetMapping("/delete")
 	public void delete(Principal principal) {
 		MemberVO vo = service.getMem(principal.getName());
 		System.out.println("-------------------"+vo.getName()+"회원님 계정을 삭제하시겠습니까?");		
 	};
-	
+	/*
 	@PostMapping("/delete")	 
 	public String delete(Principal principal, @RequestParam("userpw") String userpw, RedirectAttributes rttr) {
 		
@@ -154,6 +127,73 @@ public class MemberController {
 	        return "redirect:/member/delete";
 	    }
 	}
+	*/
+	
+	@ResponseBody
+	@PostMapping("/delete")
+	public String memberDelete(Principal principal, @RequestBody MemberVO vo, Model model) throws Exception {
+
+		String inputPass = vo.getUserpw(); // 입력 비밀번호	
+		MemberVO member = service.getMem(principal.getName()); // 암호화된 DB비밀번호를 가져오기 위해 MemberVO 객체 생성	
+		String result = "";
+		System.out.println("access success" + member);		
+		
+		if(principal.getName() != null && principal.getName() != "") {	
+			BCryptPasswordEncoder pwencoder = new BCryptPasswordEncoder();
+			System.out.println("pwencode success");
+			if(pwencoder.matches(inputPass, member.getUserpw())) {
+				System.out.println("matches success");
+				service.deleteMem(principal.getName());
+				 SecurityContextHolder.clearContext();
+				System.out.println("delete success");
+				result = "success";
+			}
+		}		
+		return result;
+	}
+
+	//나중에 ADMINCONTROLLER로 옮김?
+	//회원목록
+	@GetMapping("/list")
+	@PreAuthorize("hasRole('ADMIN')")
+	public void getListMem(Model model) {
+		log.info("list");
+		model.addAttribute("list", service.getListMem());
+	}
+	
+	@PostMapping("/updateAdmin")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String updateAdmin(MemberVO vo, Model model, RedirectAttributes rttr) {
+		/* vo.setUserpw(pwencoder.encode(vo.getUserpw())); */
+		int result = service.updateAdmin(vo);
+		if (result>0) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/member/list";
+	}
+/*
+	//나중에 ADMINCONTROLLER로 옮길 예정
+	@PreAuthorize("isAuthenticated() and principal.username=='admin'")	
+	@PostMapping("/delete")
+	public String deleteMem(@RequestParam("userid") String userid, RedirectAttributes rttr) {
+		log.info("delete" + userid);
+		if (service.deleteMem(userid) == 1) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/member/list";
+	}
+*/
+	
+
+	
+	@ResponseBody
+	@RequestMapping(value="/checkId", method = RequestMethod.POST)
+	public int idChk(@RequestParam("userid")String userid) throws Exception {
+		log.info(userid);
+		int result = service.checkId(userid);
+		return result;
+	}
+
 }	
 
 	

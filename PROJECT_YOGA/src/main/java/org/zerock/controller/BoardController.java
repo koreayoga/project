@@ -32,7 +32,9 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController {
+	//BoardService
 	private BoardService service;
+	// 첨부파일 삭제
 	private void deleteFiles(List<BoardAttachVO> attachList) {
 		if(attachList == null || attachList.size() == 0) {
 			return;
@@ -54,7 +56,8 @@ public class BoardController {
 			}
 		});
 	}
-
+		
+	//게시글 목록 조회 : 로그인된 회원
 	@GetMapping("/list")
 	@PreAuthorize("isAuthenticated()") 
 	public void list(Criteria cri, Model model) {		
@@ -65,8 +68,13 @@ public class BoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri,total));
 	}
 	
+	//게시글 등록 : 강사, 관리자 등급만 가능
+	@GetMapping("/register")
+	@PreAuthorize("hasAnyRole('ADMIN','TUTOR')")
+	public void register() {}
+	
 	@PostMapping("/register") 
-	@PreAuthorize("isAuthenticated()") 
+	@PreAuthorize("hasAnyRole('ADMIN','TUTOR')") 
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		if(board.getAttachList() != null) {
 			board.getAttachList().forEach(attach -> log.info(attach));
@@ -81,26 +89,23 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/register") 
-	@PreAuthorize("hasAnyRole(1, 2)") 
-	public void register() {		
-		
-	}
-	
+	//게시글 불러오기 : 로그인된 회원 가능 
 	@GetMapping({"/get"}) 
+	@PreAuthorize("isAuthenticated()") 
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, Long hit) {
 		log.info("/get");
 		service.setHit(bno,hit);
 		model.addAttribute("board", service.get(bno));
 	}
-	@GetMapping({"/get2"}) // 해당 게시글 불러오기
+	@GetMapping({"/get2"}) // ??????
 	public void get2(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, Long hit) {
 		log.info("/get");
 		service.setHit(bno,hit);
 		model.addAttribute("board", service.get(bno));
 	}
 	
-	@GetMapping({"/modify"}) 
+	//게시글 수정하기 : 글 작성자 본인
+	@GetMapping({"/modify"})	
 	public void modify(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/modify");
 		model.addAttribute("board", service.get(bno));
@@ -119,35 +124,22 @@ public class BoardController {
 		rttr.addAttribute("type",cri.getType());
 		return "redirect:/board/list";
 	}
-
+	
+	//게시글 삭제하기 : 글 작성자 본인 or 관리자
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #userid and hasAuthority('ADMIN')") 
+	@PreAuthorize("principal.username == #userid || hasRole('ADMIN')") 
 	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String userid) {
-		log.info("remove : " + bno);
-		/*
-		// rttr.addAttribute 諛⑹떇 (parameter瑜� 怨꾩냽 異붽��빐以섏빞�븿.) 
-		if (service.remove(bno)) {
-			rttr.addFlashAttribute("result", "success");
-		}
-		//redirect�떆 媛�吏�怨� �꽆�뼱媛� �젙蹂대뱾 
-		rttr.addAttribute("pageNum",cri.getPageNum());
-		rttr.addAttribute("amount",cri.getAmount());
-		rttr.addAttribute("keyword",cri.getKeyword());
-		rttr.addAttribute("type",cri.getType());
-		// redirect path
-		return "redirect:/board/list";
-		*/
+		log.info("remove : " + bno);		
 		
-		// 硫붿꽌�뱶 �꽑�뼵 �썑 留곹겕 (由ы꽩�뿉�꽌 由щ떎�씠�젆�듃寃쎈줈 + 硫붿꽌�뱶)
 		List<BoardAttachVO> attachList = service.getAttachList(bno);
-		if (service.remove(bno)) {
-			//delete attachList(files)
+		if (service.remove(bno)) {			
 			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "success");
 		}		
 		return "redirect:/board/list"+cri.getListLink();
 	}
 	
+	//첨부파일목록 불러오기
 	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno){

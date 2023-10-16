@@ -1,7 +1,6 @@
 package org.zerock.controller;
 
 
-import java.sql.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,20 +18,17 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-
 @WebAppConfiguration
 @ContextConfiguration({
 	"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"
 })
-
 @Log4j
 public class MemberControllerTests {
 
 		@Setter(onMethod_ = {@Autowired})
 		private WebApplicationContext ctx;
 		private MockMvc mockMvc;
-		
 		
 	@Before
 	public void setup() {
@@ -47,7 +43,6 @@ public class MemberControllerTests {
 			.getModelAndView()
 			.getModelMap());
 	}
-	
 	
 	@Test
 	public void testInsertMem() throws Exception {
@@ -70,11 +65,11 @@ public class MemberControllerTests {
 	@Test
 	public void testGetMem() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/member/get")
-				.param("userid","a123456"))
+				.param("userid","admin"))
 				.andReturn()
 				.getModelAndView().getModelMap());
 	}
-	
+		
 	
 	@Test
 	public void testUpdateMem() throws Exception {
@@ -96,6 +91,4 @@ public class MemberControllerTests {
 				.andReturn().getModelAndView().getViewName();
 		log.info("resultPage");
 	}
-
-	
 }

@@ -94,7 +94,7 @@
 	      return;
 	   }
        $.ajax({
-           url: "/insert/checkId",
+           url: "/member/checkId",
            type: "post",
            dataType: "json",
            data: { "userid": $("#userid").val() },
@@ -163,9 +163,9 @@
 	        alert("비밀번호 규칙 오류");
 	        return;
 	    }
-	
 	    // 모든 검사가 통과되면 폼을 서버로 제출합니다.
 	    document.regForm.submit();
+	    alert(userid+"님 회원가입을 축하드립니다.");
 	} 
  </script>      
 <%@include file="../includes/footer.jsp"%>

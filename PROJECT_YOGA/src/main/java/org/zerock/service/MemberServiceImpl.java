@@ -27,15 +27,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void insertMem(MemberVO member) {
-		log.info("insertMember......................" + member);
-		mapper.insertMem(member);
+	public void insertMem(MemberVO vo) {
+		log.info("insertMember......................" + vo);
+		mapper.insertMem(vo);
 	}
 
 	@Override
 	public MemberVO getMem(String userid) {
 		log.info("getMember......................" + userid);
-		return mapper.getMem(userid);
+		return mapper.read(userid);
 	}
 
 	@Override

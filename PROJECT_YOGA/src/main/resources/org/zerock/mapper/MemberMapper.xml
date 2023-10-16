@@ -8,10 +8,16 @@
 		<id property="userid" column="userid"/>
 		<result property="userid" column="userid"/>
 		<result property="userpw" column="userpw"/>
-		<result property="userName" column="name"/> <!-- Changed column name to "name" -->
+		<result property="name" column="name"/>
+		<result property="gender" column="gender"/>
+		<result property="phone" column="phone"/>
+		<result property="birth" column="birth"/>
+		<result property="address" column="address"/>
+		<result property="email" column="email"/>
 		<result property="enabled" column="enabled"/>
 		<result property="regDate" column="regdate"/>
 		<result property="updateDate" column="updatedate"/>		
+		<result property="auth" column="auth"/>
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 	
@@ -21,8 +27,9 @@
 	</resultMap>	
 	
 	<select id="read" resultMap="memberMap">
-		SELECT userid, userpw, name, enabled, regdate, updatedate, auth
-		FROM member WHERE userid=#{userid}
+	select auth, userid, userpw, name, gender, phone, 
+	birth, address, email, enabled,	regdate, updatedate  
+	from member where userid=#{userid}
 	</select>
 	
 	<select id="getListMem" resultType="org.zerock.domain.MemberVO">
@@ -37,7 +44,7 @@
 	</insert>
 	
 	<select id="getMem" resultType="org.zerock.domain.MemberVO">
-		SELECT userid, userpw, name, gender, phone, birth, address, email FROM member WHERE userid=#{userid}
+		select userid, userpw, name, gender, phone, birth, address, email, auth from member where userid=#{userid}
 	</select>
 	
 	<select id="checkId" resultType="int">

@@ -1,7 +1,8 @@
 <%@include file="/WEB-INF/views/includes/header.jsp"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html >
 		<!-- <title>Login Page</title> -->
 
 	<div class="test" style="align-items: center;">
@@ -17,42 +18,57 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<!-- 비밀번호 보이기/숨기기 -->
 					<input type="checkbox" id="showpw">
-    				<label for="showpw" class="small text-center text-muted">&nbsp;&nbsp;비밀번호 보이기</label>
+    				<label for="showpw" class="small text-center text-muted">&nbsp;&nbsp;비밀번호 보이기</label><br>
+    				
 				</div>
 				<!-- 로그인 버튼 생성 -->
 				<div class="m-b100">
 					<a href="/" class="btn btn-login btn-primary" style="color: white; font-size:20px; font-weight:700">로그인</a><p/>
 				</div>
 				<!-- 비밀번호 암호화 -->
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">				
 				<!-- 아이디찾기/비밀번호찾기/회원가입-->
 				<div class="small text-muted">
 					<a href="javascript:void(0);" onclick="newWindow('searchID', '아이디찾기', 430, 300);">아이디찾기</a>|
 					<a href="javascript:void(0);" onclick="newWindow('resetPW', '비밀번호찾기', 430, 400);">비밀번호찾기</a>|					
 					<a href="/member/insert">회원가입</a>
 				</div>
-			</form>
+			</form>		
 		</div>
 	</div>
 
-
 	<!-- 로그인버튼 처리 -->
 	<script type="text/javascript">
-		// 빈칸미입력 오류 
-    	$(".btn-login").on("click", function(e){
-			e.preventDefault();
-    	 	/* var id = document.getElementById("id").value;
-    	 	var pw = document.getElementById("pw").value;
-			if(id==null || id==""){
-				alert("아이디를 입력해주세요.");				
-			}
-			if(pw==null || pw==""){
-				alert("비밀번호를 입력해주세요.");
-			}
-			if(${error} != null) {
-				alert("<c:out value="+${error}+"/>")
-			} */
-			$("form").submit();			
+		$(document).ready(function () {
+		    // 아이디 입력란 가져오기
+		    var idVal = document.getElementById("id");
+		    // 비밀번호 입력란 가져오기
+		    var pwVal = document.getElementById("pw");
+	
+		    // "로그인" 버튼 클릭 시 동작
+		    $(".btn-login").on("click", function (e) {
+		        e.preventDefault();
+	
+		        if (idVal == null || idVal.value === "") {
+		            alert("아이디를 입력해주세요.");
+		            idVal.focus();
+		            return;
+		        }
+	
+		        if (pwVal == null || pwVal.value === "") {
+		            alert("비밀번호를 입력해주세요.");
+		            pwVal.focus();
+		            return;
+		        }
+		        
+		     	// 일치정보 없음 오류
+		        if ("${error}" !== "") {
+		            alert("${error}");
+		            return;
+		        }
+		        
+		        $("form").submit();
+		    });
 		});
    </script>
    <!-- 비밀번호보이기 -->
@@ -84,7 +100,6 @@
 			window.location.href = "../main/member";
 		});
     </script>
-
 <!-- logout성공 기능구현 -->
 <%-- <c:if test="${param.logout != null}">
 	<script>

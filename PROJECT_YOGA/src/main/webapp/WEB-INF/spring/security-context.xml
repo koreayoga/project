@@ -10,9 +10,10 @@
 
 	<bean id="customAD" class="org.zerock.security.CustomAccessDeniedHandeler"/>	
 	<bean id="customUS" class="org.zerock.security.CustomUserDetailsService"/>
-	<bean id="BcryptPE" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>	                
-	<security:http pattern="/insert/checkId" security="none"/>
+	<bean id="BcryptPE"	class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" primary="true" scope="singleton" />
+	<security:http pattern="/member/checkId" security="none"/>
 	<security:http>
+	
 		<!-- 접근권한 -->
 		<security:intercept-url pattern="/main/**" access="permitAll"/>
 		<security:intercept-url pattern="/loginout/**" access="permitAll"/>
@@ -20,12 +21,7 @@
 		<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
 		<security:intercept-url pattern="/member/insert" access="permitAll"/>
 		<security:intercept-url pattern="/member/**" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/board/list" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/board/get" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/board/register" access="hasAnyRole('TUTOR','ADMIN')"/>
-		<security:intercept-url pattern="/board/modify" access="hasAnyRole('TUTOR','ADMIN')"/>
-		<security:intercept-url pattern="/board/delete" access="hasAnyRole('TUTOR','ADMIN')"/>
-		
+		<security:intercept-url pattern="/board/**" access="isAuthenticated()"/>				
 		
 		<!-- 접근권한 오류 핸들러 -->
 		<security:access-denied-handler ref="customAD"/>
@@ -36,13 +32,11 @@
 		<!-- 로그아웃시 자동로그인 종료 -->
 		<security:logout logout-url="/loginout/logout" invalidate-session="true" delete-cookies="remember-me, JSESSION_ID"/>
 	</security:http>
-	
 	<security:authentication-manager>
 		<!-- 사용자 정보 조회 및 처리 -->		
 		<security:authentication-provider user-service-ref="customUS">
 			<!-- 비밀번호 암호화 : BCryptPasswordEncoder -->
 			<security:password-encoder ref="BcryptPE"/>			
 		</security:authentication-provider>
-	</security:authentication-manager>
-
+	</security:authentication-manager>	
 </beans>
