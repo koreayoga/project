@@ -36,7 +36,7 @@
     <body>       
       <!-- 비회원/미로그인상태 Navigation-->
       <sec:authorize access="isAnonymous()">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -54,7 +54,7 @@
       </sec:authorize>
       <!-- 회원등급 MEMBER(일반회원) Navigation-->   
       <sec:authorize access="hasRole('MEMBER')" > 
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -72,7 +72,7 @@
       </sec:authorize>
       <!-- 회원등급 TUTOR(강사) Navigation-->
       <sec:authorize access="hasRole('TUTOR')" > 
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -91,7 +91,7 @@
       </sec:authorize>
       <!-- 회원등급 ADMIN(관리자) Navigation-->      
       <sec:authorize access="hasRole('ADMIN')" >      	       	 
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="Nav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="Nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/main/home">YOGA</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
