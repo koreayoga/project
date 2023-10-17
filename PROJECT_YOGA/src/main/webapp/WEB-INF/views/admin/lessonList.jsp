@@ -48,11 +48,9 @@
 		<td>
 			<!-- button -->
 			<sec:authentication property="principal" var="pinfo"/>
-			<sec:authorize access="isAuthenticated()">
-				<c:if test="hasRole('ADMIN')">										
+			<sec:authorize access="hasRole('ADMIN')">										
 					<a class="deleteLesson">삭제</a>
 					<input type="hidden" value='${lesson.lnum}'>
-				</c:if>
 			</sec:authorize>		
 		</td>		
 		</tr>
