@@ -46,7 +46,7 @@ public class AdminController {
 	@GetMapping("/list")
 	public void getListMem(Criteria cri, Model model) {
 		log.info("list");
-		model.addAttribute("list", service.getListMem());
+		//model.addAttribute("list", service.getListMem());
 		int total = service.getTotal(cri);
 		model.addAttribute("list", service.getListMemPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri,total));

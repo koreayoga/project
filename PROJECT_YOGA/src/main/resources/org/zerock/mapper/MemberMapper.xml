@@ -86,7 +86,7 @@
 	</select>
 	
 	<select id="getTotalMemCount" resultType="int">
-		SELECT COUNT(*) FROM member WHERE userid > 0
+		SELECT COUNT(*) FROM member
 	</select>
 	
 	
