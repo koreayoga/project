@@ -25,7 +25,7 @@
         <link href="../resources/css/navstyletest.css" rel="stylesheet" />
     	 
     	<!-- Bootstrap Core CSS (BookCSS CORE/Menu/DB/DB-response/Custom CSS/Custom Font -->
-		<!-- <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!--<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 		<link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 		<link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">

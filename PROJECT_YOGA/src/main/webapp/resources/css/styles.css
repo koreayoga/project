@@ -11313,3 +11313,100 @@ th{
 .delete-btn:hover {
   color: #198754;
 }
+
+.attachul{
+	padding-left: 0;
+}
+
+ol, ul {
+	margin-top: 0;
+	margin-bottom: 10px;
+	list-style: none;
+}
+
+.inputFile-button{
+  font-size: 10px;
+  padding: 4px 15px;
+  background-color:white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  color: black;
+  cursor: pointer;
+}
+
+.form-group-uploadDiv{
+	float: right;
+	right: 100px;
+}
+
+.headDiv {
+	display: flex;
+}
+
+.uploadResult  div div{
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.img-size{
+	width: 30px;
+	height: 30px;
+	border-radius: 4px;
+}
+
+.headFile {
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+.col-lg-12-table{
+	padding-right: 200px;
+    padding-left: 200px;
+}
+
+.panel {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+}
+
+.fileList {
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+	border-top-color: #ddd
+}
+
+.panel-default>.panel-heading .badge {
+	color: #f5f5f5;
+	background-color: #333
+}
+
+.panel-default>.panel-footer+.panel-collapse>.panel-body {
+	border-bottom-color: #ddd
+}
+
+.panel-default>.panel-heading-reply {
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd
+}
+
+.panel-body-register {
+	padding: 15px;
+	margin-left: auto;
+	background-position: center;
+    background-size: cover;
+}
+
+.form-group{
+	margin-bottom: 10px;
+}
