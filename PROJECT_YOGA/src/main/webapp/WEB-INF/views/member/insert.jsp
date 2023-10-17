@@ -61,7 +61,7 @@
                <td colspan="3" style="text-align: center;"><b>개인정보 및 약관동의서</b><hr style="width:860px; margin-top: 10px"></td>
             </tr>
             <tr>               
-               <td colspan="3" style="height: 300px"><textarea style="width: 860px; height:300px; border: 0px solid transparent;" readonly><%@include file="agree.txt"%></textarea></td>
+               <td colspan="3" style="height: 300px"><textarea style="width: 860px; height:300px; border: 0px solid transparent;" readonly><%@include file="agree.jsp"%></textarea></td>
             </tr>
             <tr>
                <!-- <td><input type="hidden"></td> -->               
