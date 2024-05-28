@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@include file="../includes/header.jsp"%>
 <title>lesson</title>
 <meta charset="UTF-8">
@@ -43,10 +44,10 @@ hr {
 <body>
 <div id = "lessonFullContainer">
 ${result}${result2}
-	<c:forEach items="${list}" var="lesson">
+	<c:forEach items="${list}" var="lesson" varStatus="loop">
 	  <div>
 		<div class="lessonmiddelContainer imgContainer">
-			<img alt="yoga" src="/resources/assets/img/yoga.jpg" width="400px;" height="250px;">
+			<img alt="yoga" src="/resources/assets/img/portfolio/fullsize/class${loop.index+1}.jpg" width="400px;" height="250px;">
 			<sec:authorize access="isAuthenticated() and #result != principal.username">
 			<a class='lessonClick' href='#'>수강신청</a>
 			</sec:authorize>

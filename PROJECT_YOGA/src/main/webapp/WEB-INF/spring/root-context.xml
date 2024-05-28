@@ -23,7 +23,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://34.64.198.251:3306/yoga" />
+		<!-- <property name="jdbcUrl" value="jdbc:mysql://34.64.198.251:3306/yoga" /> -->
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/yoga" />
 		<property name="username" value="yoga" />
 		<property name="password" value="yoga" />		
 	</bean>
